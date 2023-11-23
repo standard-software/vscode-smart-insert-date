@@ -8,7 +8,25 @@ const vscode = require('vscode');
 /**
  * @param {vscode.ExtensionContext} context
  */
+
+let i = 0;
+
 function activate(context) {
+
+  const insertString = (str) => {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      vscode.window.showInformationMessage(`No editor is active`);
+      return;
+    }
+
+    editor.edit(editBuilder => {
+      for (const selection of editor.selections) {
+        editBuilder.replace(selection, ``);
+        editBuilder.insert(selection.active, str);
+      }
+    });
+  };
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
@@ -21,7 +39,11 @@ function activate(context) {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from vscode-insert-date-time!');
+		vscode.window.showInformationMessage('4 Hello World from vscode-insert-date-time!');
+
+    i += 1;
+    insertString(`Hello World ${i} `)
+
 	});
 
 	context.subscriptions.push(disposable);

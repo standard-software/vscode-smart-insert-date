@@ -13,20 +13,37 @@ let i = 0;
 
 function activate(context) {
 
-  const insertString = (str) => {
-    const editor = vscode.window.activeTextEditor;
-    if (!editor) {
-      vscode.window.showInformationMessage(`No editor is active`);
-      return;
-    }
-
+  const insertText = (editor, str) => {
     editor.edit(editBuilder => {
       for (const selection of editor.selections) {
-        editBuilder.replace(selection, ``);
-        editBuilder.insert(selection.active, str);
+        // editBuilder.replace(selection, ``);
+        // editBuilder.insert(selection.active, str);
+        editBuilder.replace(selection, str);
       }
     });
   };
+
+  const getSelectedText = (editor) => {
+    const result = [];
+    for (let selection of editor.selections) {
+      const text = editor.document.getText(selection);
+      result.push(text);
+    };
+    return result;
+  }
+
+  // const getSelectionFirstString = () => {
+  //   const editor = vscode.window.activeTextEditor;
+  //   if (!editor) {
+  //     vscode.window.showInformationMessage(`No editor is active`);
+  //     return;
+  //   }
+
+  //   if (1 <= editor.selections.length) {
+  //     return editor.selections[0];
+  //   }
+  //   return '';
+  // }
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
@@ -39,10 +56,18 @@ function activate(context) {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('4 Hello World from vscode-insert-date-time!');
+
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      vscode.window.showInformationMessage(`No editor is active`);
+      return;
+    }
+
+    const selectedText = getSelectedText(editor)[0] ?? ``;
+		vscode.window.showInformationMessage(`${selectedText} from vscode-insert-date-time! 2023/11/24 Fri 01:45:35`);
 
     i += 1;
-    insertString(`Hello World ${i} `)
+    insertText(editor, `Hello World ${i} `)
 
 	});
 

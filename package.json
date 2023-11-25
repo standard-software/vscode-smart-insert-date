@@ -39,7 +39,30 @@
             { "format": "ddd, DD MMM, YYYY" },
             { "format": "YYYYMMDD" }
           ],
-          "description": "Date Time Calendar | Date Format"
+          "description": "Smart Insert Date | Date Format"
+        },
+        "SmartInsertDate.DateTimeFormat": {
+          "type": "array",
+          "default": [
+            { "format": "YYYY-MM-DD ddd HH:mm" },
+            { "format": "YYYY/MM/DD(ddd) AAhh:mm" },
+            { "format": "ddd, MMM DD, YYYY hh:mm AA" },
+            { "format": "dddd, MMMMM DD, YYYY hh:mm AA" },
+            { "format": "dddd, MM DD, YYYY hh:mm AA" },
+            { "format": "ddd, DD MMM, YYYY HH:mm" },
+            { "format": "YYYYMMDDHHmmss" }
+          ],
+          "description": "Smart Insert Date | DateTime Format"
+        },
+        "SmartInsertDate.TimeFormat": {
+          "type": "array",
+          "default": [
+            { "format": "HH:mm" },
+            { "format": "hh:mm AA" },
+            { "format": "AAhh:mm:ss" },
+            { "format": "HH:mm:ss" }
+          ],
+          "description": "Smart Insert Date | Time Format"
         }
       }
     },
@@ -47,6 +70,14 @@
       {
         "command": "vscode-smart-insert-date.Today",
         "title": "Smart Insert Date | Insert Today"
+      },
+      {
+        "command": "vscode-smart-insert-date.NowDateTime",
+        "title": "Smart Insert Date | Insert Now DateTime"
+      },
+      {
+        "command": "vscode-smart-insert-date.NowTime",
+        "title": "Smart Insert Date | Insert Now Time"
       }
     ]
   },

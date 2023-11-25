@@ -21,6 +21,7 @@ const {
 
 let insertTextBuffer = ``;
 let insertDateFormatIndexBuffer = -1;
+let insertTypeBuffer = ``;
 
 const equalSelectionItem = (itemA, itemB) => {
   if (
@@ -114,11 +115,11 @@ function activate(context) {
     const dateFormatArray = getDateFormatArray(`DateFormat`);
 
     const selectedText = getSelectedText(editor)[0] ?? ``;
+
     if (
-      insertDateFormatIndexBuffer === -1
+      insertTypeBuffer === `Date`
+      && insertTextBuffer === selectedText
     ) {
-      insertDateFormatIndexBuffer = 0;
-    } else if (insertTextBuffer === selectedText) {
       insertDateFormatIndexBuffer += 1;
       if (dateFormatArray.length === insertDateFormatIndexBuffer) {
         insertDateFormatIndexBuffer = 0;
@@ -127,9 +128,55 @@ function activate(context) {
       insertDateFormatIndexBuffer = 0;
     }
 
+    insertTypeBuffer = `Date`;
     insertTextBuffer = dateToStringJp(new Date(), dateFormatArray[insertDateFormatIndexBuffer]);
     insertText(editor, insertTextBuffer);
+  });
 
+  registerCommand(context, `vscode-smart-insert-date.NowDateTime`, () => {
+    const editor = getEditor(); if (!editor) { return; }
+
+    const dateFormatArray = getDateFormatArray(`DateTimeFormat`);
+
+    const selectedText = getSelectedText(editor)[0] ?? ``;
+    if (
+      insertTypeBuffer === `DateTime`
+      && insertTextBuffer === selectedText
+    ) {
+      insertDateFormatIndexBuffer += 1;
+      if (dateFormatArray.length === insertDateFormatIndexBuffer) {
+        insertDateFormatIndexBuffer = 0;
+      }
+    } else {
+      insertDateFormatIndexBuffer = 0;
+    }
+
+    insertTypeBuffer = `DateTime`;
+    insertTextBuffer = dateToStringJp(new Date(), dateFormatArray[insertDateFormatIndexBuffer]);
+    insertText(editor, insertTextBuffer);
+  });
+
+  registerCommand(context, `vscode-smart-insert-date.NowTime`, () => {
+    const editor = getEditor(); if (!editor) { return; }
+
+    const dateFormatArray = getDateFormatArray(`TimeFormat`);
+
+    const selectedText = getSelectedText(editor)[0] ?? ``;
+    if (
+      insertTypeBuffer === `Time`
+      && insertTextBuffer === selectedText
+    ) {
+      insertDateFormatIndexBuffer += 1;
+      if (dateFormatArray.length === insertDateFormatIndexBuffer) {
+        insertDateFormatIndexBuffer = 0;
+      }
+    } else {
+      insertDateFormatIndexBuffer = 0;
+    }
+
+    insertTypeBuffer = `Time`;
+    insertTextBuffer = dateToStringJp(new Date(), dateFormatArray[insertDateFormatIndexBuffer]);
+    insertText(editor, insertTextBuffer);
   });
 
 }

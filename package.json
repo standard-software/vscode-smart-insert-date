@@ -21,10 +21,11 @@
           "default": [
             { "format": "YYYY-MM-DD ddd" },
             { "format": "YYYY/MM/DD(ddd)" },
-            { "format": "YYYY.MM.DD" },
-            { "format": "YYYYMMDD" },
-            { "format": "ddd, DD MMM YYYY" },
-            { "format": "dddd, DD MMMMM YYYY" }
+            { "format": "ddd, MMM DD, YYYY" },
+            { "format": "dddd, MMMMM DD, YYYY" },
+            { "format": "dddd, MM DD, YYYY" },
+            { "format": "ddd, DD MMM, YYYY" },
+            { "format": "YYYYMMDD" }
           ],
           "description": "Date Time Calendar | Date Format"
         }

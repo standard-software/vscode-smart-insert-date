@@ -93,8 +93,12 @@ const hours = (date, timezoneOffset) => {
   return result;
 };
 const hour12_1 = (date, timezoneOffset) => {
-  // 0-11
-  return (hours(date, timezoneOffset) % 12).toString();
+  let result = hours(date, timezoneOffset);
+  if (13 <= result) {
+    result -= 12;
+    // 13-23 -> 1-11
+  }
+  return (result).toString();
 };
 
 const hour12_2 = (date, timezoneOffset) => {

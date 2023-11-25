@@ -102,13 +102,13 @@ const getDateFormatArray = (formatName) => {
   if (!([`DateFormat`, `DateTimeFormat`, `TimeFormat`].includes(formatName))) {
     throw new Error(`getFormatArray formatName`);
   }
-  const formatData = vscode.workspace.getConfiguration(`InsertDateTime`).get(formatName);
+  const formatData = vscode.workspace.getConfiguration(`SmartInsertDate`).get(formatName);
   return formatData.map(item => item.format);
 };
 
 function activate(context) {
 
-  registerCommand(context, `vscode-insert-date-time.Today`, () => {
+  registerCommand(context, `vscode-smart-insert-date.Today`, () => {
     const editor = getEditor(); if (!editor) { return; }
 
     const dateFormatArray = getDateFormatArray(`DateFormat`);

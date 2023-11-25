@@ -1,2 +1,2 @@
-# vscode-insert-date-time README
+# vscode-smart-insert-date README
 

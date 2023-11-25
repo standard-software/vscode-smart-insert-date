@@ -1,6 +1,6 @@
 {
-  "name": "vscode-insert-date-time",
-  "displayName": "vscode-insert-date-time",
+  "name": "vscode-smart-insert-date",
+  "displayName": "vscode-smart-insert-date",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -14,9 +14,9 @@
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "InsertDateTime",
+      "title": "SmartInsertDate",
       "properties": {
-        "InsertDateTime.DateFormat": {
+        "SmartInsertDate.DateFormat": {
           "type": "array",
           "default": [
             { "format": "YYYY-MM-DD ddd" },
@@ -32,8 +32,8 @@
     },
     "commands": [
       {
-        "command": "vscode-insert-date-time.Today",
-        "title": "Insert Date Time | Today"
+        "command": "vscode-smart-insert-date.Today",
+        "title": "Smart Insert Date | Insert Today"
       }
     ]
   },

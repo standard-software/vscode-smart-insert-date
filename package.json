@@ -12,10 +12,30 @@
   "activationEvents": [],
   "main": "./src/extension.js",
   "contributes": {
-    "commands": [{
-      "command": "vscode-insert-date-time.helloWorld",
-      "title": "Hello World"
-    }]
+    "configuration": {
+      "type": "object",
+      "title": "InsertDateTime",
+      "properties": {
+        "InsertDateTime.DateFormat": {
+          "type": "array",
+          "default": [
+            { "format": "YYYY-MM-DD ddd" },
+            { "format": "YYYY/MM/DD(ddd)" },
+            { "format": "YYYY.MM.DD" },
+            { "format": "YYYYMMDD" },
+            { "format": "ddd, DD MMM YYYY" },
+            { "format": "dddd, DD MMMMM YYYY" }
+          ],
+          "description": "Date Time Calendar | Date Format"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "vscode-insert-date-time.Today",
+        "title": "Insert Date Time | Today"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",

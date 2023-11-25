@@ -1,11 +1,73 @@
 const vscode = require('vscode');
 
-let i = 0;
+const {
+  isUndefined,
+  _dateToString,
+  _Year,
+  _Month,
+  _Day,
+} = require(`./parts/parts.js`);
 
-const insertText = (editor, str) => {
+const {
+  equalMonth,
+  equalDate,
+  equalToday,
+  monthDayCount,
+  dateToStringJp,
+  getDateArrayWeeklyMonth,
+  textCalendarLineVertical,
+  textCalendarMonthly,
+} = require(`./lib/lib.js`);
+
+let insertTextBuffer = ``;
+let insertDateFormatIndexBuffer = -1;
+
+const equalSelectionItem = (itemA, itemB) => {
+  if (
+    itemA.line === itemB.line
+    && itemA.character === itemB.character
+  ) {
+    return true;
+  }
+  return false;
+}
+
+const insertTextUnSelect = (editor, str) => {
   editor.edit(editBuilder => {
     for (const selection of editor.selections) {
-      editBuilder.replace(selection, str);
+      editBuilder.replace(selection, ``);
+      editBuilder.insert(selection.active, str);
+    }
+  });
+};
+
+const insertText = (editor, str) => {
+  const updateSelections = [];
+  editor.edit(editBuilder => {
+    for (const selection of editor.selections) {
+      if (equalSelectionItem(selection.start, selection.end)) {
+        editBuilder.replace(selection, str);
+        updateSelections.push(true);
+      } else {
+        editBuilder.replace(selection, str);
+        updateSelections.push(false);
+      }
+    }
+  }).then(() => {
+    if (updateSelections.some(v=>v)) {
+      const newSelections = [...editor.selections];
+      for (const [i, update] of updateSelections.entries()) {
+        if (update) {
+          newSelections[i] =
+          new vscode.Selection(
+            editor.selections[i].start.line,
+            editor.selections[i].start.character - str.length,
+            editor.selections[i].end.line,
+            editor.selections[i].end.character,
+          );
+        }
+      }
+      editor.selections = newSelections;
     }
   });
 };
@@ -27,21 +89,47 @@ const registerCommand = (context, commandName, func) => {
   );
 };
 
+const getEditor = () => {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+    vscode.window.showInformationMessage(`No editor is active`);
+    return;
+  }
+  return editor;
+}
+
+const getDateFormatArray = (formatName) => {
+  if (!([`DateFormat`, `DateTimeFormat`, `TimeFormat`].includes(formatName))) {
+    throw new Error(`getFormatArray formatName`);
+  }
+  const formatData = vscode.workspace.getConfiguration(`InsertDateTime`).get(formatName);
+  return formatData.map(item => item.format);
+};
+
 function activate(context) {
 
-  registerCommand(context, `vscode-insert-date-time.helloWorld`, () => {
+  registerCommand(context, `vscode-insert-date-time.Today`, () => {
+    const editor = getEditor(); if (!editor) { return; }
 
-    const editor = vscode.window.activeTextEditor;
-    if (!editor) {
-      vscode.window.showInformationMessage(`No editor is active`);
-      return;
-    }
+    const dateFormatArray = getDateFormatArray(`DateFormat`);
 
     const selectedText = getSelectedText(editor)[0] ?? ``;
-		vscode.window.showInformationMessage(`${selectedText} from vscode-insert-date-time! 2023/11/24 Fri 02:38:16`);
+    if (
+      insertDateFormatIndexBuffer === -1
+    ) {
+      insertDateFormatIndexBuffer = 0;
+    } else if (insertTextBuffer === selectedText) {
+      insertDateFormatIndexBuffer += 1;
+      if (dateFormatArray.length === insertDateFormatIndexBuffer) {
+        insertDateFormatIndexBuffer = 0;
+      }
+    } else {
+      insertDateFormatIndexBuffer = 0;
+    }
 
-    i += 1;
-    insertText(editor, `Hello World ${i} `)
+    insertTextBuffer = dateToStringJp(new Date(), dateFormatArray[insertDateFormatIndexBuffer]);
+    insertText(editor, insertTextBuffer);
+
   });
 
 }

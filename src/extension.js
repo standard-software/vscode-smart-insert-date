@@ -16,10 +16,7 @@ const {
   dateToStringJp,
 } = require(`./lib/lib.js`);
 
-let insertTextBuffer = ``;
-let insertDateFormatIndexBuffer = -1;
-let insertTypeBuffer = ``;
-
+// editor.selections
 const equalSelectionItem = (itemA, itemB) => {
   if (
     itemA.line === itemB.line
@@ -79,6 +76,7 @@ const getSelectedText = (editor) => {
   return result;
 }
 
+// VSCode
 const registerCommand = (context, commandName, func) => {
   context.subscriptions.push(
     vscode.commands.registerCommand(
@@ -96,6 +94,33 @@ const getEditor = () => {
   return editor;
 }
 
+const commandQuickPick = (commands, placeHolder) => {
+  // const commands = commandsArray.map(c => ({label:c[0], description:c[1], func:c[2]}));
+  // command = [
+  //   {label:``, description:``, func: ()=>{}},
+  //   {label:``, kind:vscode.QuickPickItemKind.Separator}
+  // ]
+
+  vscode.window.showQuickPick(
+    commands.map(({func, ...command}) => (command)),
+    {
+      canPickMany: false,
+      placeHolder
+    }
+  ).then((item) => {
+    if (!item) { return; }
+    commands.find(({label}) => label === item.label).func();
+  });
+};
+
+// This Application
+const insertBuffer = {
+  text: ``,
+  formatIndex: -1,
+  dateType: ``,
+  date: new Date(),
+}
+
 const getDateFormatArray = (formatType) => {
   if (!([`DateFormat`, `DateTimeFormat`, `TimeFormat`].includes(formatType))) {
     throw new Error(`getFormatArray formatType`);
@@ -106,26 +131,35 @@ const getDateFormatArray = (formatType) => {
 
 function activate(context) {
 
-  const insertDateTimeCommand = (dateType) => {
+  const insertDateTime = (dateType) => {
     if (!([`Date`, `DateTime`, `Time`].includes(dateType))) {
       throw new Error(`insertDateTimeCommand insertType`);
     }
     const editor = getEditor(); if (!editor) { return; }
     const dateFormatArray = getDateFormatArray(`${dateType}Format`);
+    if (dateFormatArray.length === 0) { return; }
 
     const selectedText = getSelectedText(editor)[0] ?? ``;
     if (
-      insertTypeBuffer === dateType
-      && insertTextBuffer === selectedText
+      insertBuffer.dateType === dateType
+      && insertBuffer.text === selectedText
     ) {
-      insertDateFormatIndexBuffer += 1;
-      if (dateFormatArray.length === insertDateFormatIndexBuffer) {
-        insertDateFormatIndexBuffer = 0;
+      insertBuffer.formatIndex += 1;
+      if (dateFormatArray.length === insertBuffer.formatIndex) {
+        insertBuffer.formatIndex = 0;
       }
     } else {
-      insertDateFormatIndexBuffer = 0;
+      insertBuffer.formatIndex = 0;
+      insertBuffer.date = new Date();
     }
 
+    insertBuffer.dateType = dateType;
+    insertBuffer.text = dateToStringJp(
+      insertBuffer.date,
+      dateFormatArray[insertBuffer.formatIndex]
+    );
+    insertText(editor, insertBuffer.text);
+  }
     insertTypeBuffer = dateType;
     insertTextBuffer = dateToStringJp(
       new Date(), dateFormatArray[insertDateFormatIndexBuffer]
@@ -134,16 +168,53 @@ function activate(context) {
   }
 
   registerCommand(context, `vscode-smart-insert-date.Today`, () => {
-    insertDateTimeCommand(`Date`);
+    insertDateTime(`Date`);
   });
 
   registerCommand(context, `vscode-smart-insert-date.NowDateTime`, () => {
-    insertDateTimeCommand(`DateTime`);
+    insertDateTime(`DateTime`);
   });
 
   registerCommand(context, `vscode-smart-insert-date.NowTime`, () => {
-    insertDateTimeCommand(`Time`);
+    insertDateTime(`Time`);
   });
+
+  const selectFormat = (targetDate) => {
+    commandQuickPick([
+        [{label: `Date`, kind: vscode.QuickPickItemKind.Separator}],
+        getDateFormatArray(`DateFormat`).map(
+          format => ({
+            label: dateToStringJp(targetDate, format),
+            description: ``,
+            func: () => { insertDateTime(`Date`); }
+          })
+        ),
+        [{label: `Datetime`, kind: vscode.QuickPickItemKind.Separator}],
+        getDateFormatArray(`DateTimeFormat`).map(
+          format => ({
+            label: dateToStringJp(targetDate, format),
+            description: ``,
+            func: () => { insertDateTime(`DateTime`); }
+          })
+        ),
+        [{label: `Time`, kind: vscode.QuickPickItemKind.Separator}],
+        getDateFormatArray(`TimeFormat`).map(
+          format => ({
+            label: dateToStringJp(targetDate, format),
+            description: ``,
+            func: () => { insertDateTime(`Time`); }
+          })
+        ),
+      ].flat(),
+      `Smart Insert Date | Insert Today,Now | Select Format`
+    );
+  };
+
+  registerCommand(context, `vscode-smart-insert-date.SelectFormat`, () => {
+    selectFormat(new Date());
+  });
+
+
 
 }
 

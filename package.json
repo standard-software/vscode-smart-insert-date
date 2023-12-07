@@ -78,9 +78,16 @@
       {
         "command": "vscode-smart-insert-date.NowTime",
         "title": "Smart Insert Date | Insert Now Time"
+      },
+      {
+        "command": "vscode-smart-insert-date.SelectFormat",
+        "title": "Smart Insert Date | Insert Today,Now | Select Format"
       }
     ]
   },
+  "enabledApiProposals": [
+    "quickPickSeparators"
+  ],
   "scripts": {
     "lint": "eslint --fix ./src",
     "pack": "npx -y vsce package && code --install-extension vscode-smart-insert-date-0.0.1.vsix",

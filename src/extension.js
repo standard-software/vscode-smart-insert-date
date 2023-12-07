@@ -1,22 +1,19 @@
 const vscode = require('vscode');
 
-const {
-  isUndefined,
-  _dateToString,
-  _Year,
-  _Month,
-  _Day,
-} = require(`./parts/parts.js`);
+// const {
+//   // isUndefined,
+//   // _dateToString,
+//   // _Year,
+//   // _Month,
+//   // _Day,
+// } = require(`./parts/parts.js`);
 
 const {
-  equalMonth,
-  equalDate,
-  equalToday,
-  monthDayCount,
+  // equalMonth,
+  // equalDate,
+  // equalToday,
+  // monthDayCount,
   dateToStringJp,
-  getDateArrayWeeklyMonth,
-  textCalendarLineVertical,
-  textCalendarMonthly,
 } = require(`./lib/lib.js`);
 
 let insertTextBuffer = ``;
@@ -99,25 +96,26 @@ const getEditor = () => {
   return editor;
 }
 
-const getDateFormatArray = (formatName) => {
-  if (!([`DateFormat`, `DateTimeFormat`, `TimeFormat`].includes(formatName))) {
-    throw new Error(`getFormatArray formatName`);
+const getDateFormatArray = (formatType) => {
+  if (!([`DateFormat`, `DateTimeFormat`, `TimeFormat`].includes(formatType))) {
+    throw new Error(`getFormatArray formatType`);
   }
-  const formatData = vscode.workspace.getConfiguration(`SmartInsertDate`).get(formatName);
+  const formatData = vscode.workspace.getConfiguration(`SmartInsertDate`).get(formatType);
   return formatData.map(item => item.format);
 };
 
 function activate(context) {
 
-  registerCommand(context, `vscode-smart-insert-date.Today`, () => {
+  const insertDateTimeCommand = (dateType) => {
+    if (!([`Date`, `DateTime`, `Time`].includes(dateType))) {
+      throw new Error(`insertDateTimeCommand insertType`);
+    }
     const editor = getEditor(); if (!editor) { return; }
-
-    const dateFormatArray = getDateFormatArray(`DateFormat`);
+    const dateFormatArray = getDateFormatArray(`${dateType}Format`);
 
     const selectedText = getSelectedText(editor)[0] ?? ``;
-
     if (
-      insertTypeBuffer === `Date`
+      insertTypeBuffer === dateType
       && insertTextBuffer === selectedText
     ) {
       insertDateFormatIndexBuffer += 1;
@@ -128,55 +126,23 @@ function activate(context) {
       insertDateFormatIndexBuffer = 0;
     }
 
-    insertTypeBuffer = `Date`;
-    insertTextBuffer = dateToStringJp(new Date(), dateFormatArray[insertDateFormatIndexBuffer]);
+    insertTypeBuffer = dateType;
+    insertTextBuffer = dateToStringJp(
+      new Date(), dateFormatArray[insertDateFormatIndexBuffer]
+    );
     insertText(editor, insertTextBuffer);
+  }
+
+  registerCommand(context, `vscode-smart-insert-date.Today`, () => {
+    insertDateTimeCommand(`Date`);
   });
 
   registerCommand(context, `vscode-smart-insert-date.NowDateTime`, () => {
-    const editor = getEditor(); if (!editor) { return; }
-
-    const dateFormatArray = getDateFormatArray(`DateTimeFormat`);
-
-    const selectedText = getSelectedText(editor)[0] ?? ``;
-    if (
-      insertTypeBuffer === `DateTime`
-      && insertTextBuffer === selectedText
-    ) {
-      insertDateFormatIndexBuffer += 1;
-      if (dateFormatArray.length === insertDateFormatIndexBuffer) {
-        insertDateFormatIndexBuffer = 0;
-      }
-    } else {
-      insertDateFormatIndexBuffer = 0;
-    }
-
-    insertTypeBuffer = `DateTime`;
-    insertTextBuffer = dateToStringJp(new Date(), dateFormatArray[insertDateFormatIndexBuffer]);
-    insertText(editor, insertTextBuffer);
+    insertDateTimeCommand(`DateTime`);
   });
 
   registerCommand(context, `vscode-smart-insert-date.NowTime`, () => {
-    const editor = getEditor(); if (!editor) { return; }
-
-    const dateFormatArray = getDateFormatArray(`TimeFormat`);
-
-    const selectedText = getSelectedText(editor)[0] ?? ``;
-    if (
-      insertTypeBuffer === `Time`
-      && insertTextBuffer === selectedText
-    ) {
-      insertDateFormatIndexBuffer += 1;
-      if (dateFormatArray.length === insertDateFormatIndexBuffer) {
-        insertDateFormatIndexBuffer = 0;
-      }
-    } else {
-      insertDateFormatIndexBuffer = 0;
-    }
-
-    insertTypeBuffer = `Time`;
-    insertTextBuffer = dateToStringJp(new Date(), dateFormatArray[insertDateFormatIndexBuffer]);
-    insertText(editor, insertTextBuffer);
+    insertDateTimeCommand(`Time`);
   });
 
 }

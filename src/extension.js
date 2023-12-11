@@ -212,16 +212,12 @@ function activate(context) {
 
   const selectDate = () => {
     const dateThisYear = _Year(`this`);
-    const dateLastYear = _Year(`this`);
-    dateLastYear.setFullYear(dateLastYear.getFullYear() - 1);
-    const dateNextYear = _Year(`this`);
-    dateNextYear.setFullYear(dateNextYear.getFullYear() + 1);
+    const dateLastYear = _Year(-1, dateThisYear);
+    const dateNextYear = _Year(+1, dateThisYear);
 
     const dateThisMonth = _Month(`this`);
-    const dateLastMonth = _Month(`this`)
-    dateLastMonth.setMonth(dateLastMonth.getMonth() - 1);
-    const dateNextMonth = _Month(`this`)
-    dateNextMonth.setMonth(dateNextMonth.getMonth() + 1);
+    const dateLastMonth = _Month(-1, dateThisMonth);
+    const dateNextMonth = _Month(+1, dateThisMonth);
 
     const today = _Day(`today`)
     const dateThisWeek = _Day(-today.getDay(), today);
@@ -294,24 +290,25 @@ function activate(context) {
   const selectDateRange200Year = () => {
 
     const dateThisYear = _Year(`this`);
-    const yearThis =  dateThisYear.getFullYear();
-    const yearBefore100 = yearThis - 100;
-    const yearBefore10 = yearThis - 10;
-    const yearBefore1 = yearThis - 1;
-    const yearAfter1 = yearThis + 1;
-    const yearAfter10 = yearThis + 10;
-    const yearAfter100 = yearThis + 100;
+    const dateLastYear = _Year(-1, dateThisYear);
+    const dateNextYear = _Year(+1, dateThisYear);
 
+    const yearThis =  dateThisYear.getFullYear();
     commandQuickPick([
       {
-        label: `${yearBefore100} - ${yearBefore10 - 1} : 100 year before`,
+        label: `${yearThis - 100} - ${yearThis - 10 - 1} : 100 year before`,
         description: `▸`,
         func: () => { selectTenYear(_Year(-100, dateThisYear)); }
       },
       {
-        label: `${yearBefore10} - ${yearBefore1} : 10 year before`,
+        label: `${yearThis - 10} - ${yearThis - 2} : 10 year before`,
         description: `▸`,
-        func: () => { selectOneYear(_Year(-10, dateThisYear)); }
+        func: () => { selectOneYear(_Year(-10, dateThisYear), 9); }
+      },
+      {
+        label: `${yearThis - 1} : Last year`,
+        description: `▸`,
+        func: () => { selectMonth(dateLastYear); }
       },
       {
         label: `${yearThis} : This year`,
@@ -319,12 +316,17 @@ function activate(context) {
         func: () => { selectMonth(dateThisYear); }
       },
       {
-        label: `${yearAfter1} - ${yearAfter10} : 10 year after`,
+        label: `${yearThis + 1} : Next year`,
         description: `▸`,
-        func: () => { selectOneYear(_Year(1, dateThisYear)); }
+        func: () => { selectMonth(dateNextYear); }
       },
       {
-        label: `${yearAfter10 + 1} - ${yearAfter100} : 100 year after`,
+        label: `${yearThis + 2} - ${yearThis + 10} : 10 year after`,
+        description: `▸`,
+        func: () => { selectOneYear(_Year(2, dateThisYear), 9); }
+      },
+      {
+        label: `${yearThis + 10 + 1} - ${yearThis + 100} : 100 year after`,
         description: `▸`,
         func: () => { selectTenYear(_Year(11, dateThisYear)); }
       },
@@ -338,7 +340,7 @@ function activate(context) {
       commands.push({
         label: `${_dateToString(targetDate, `YYYY`)} - ${_dateToString(_Year(9, targetDate), `YYYY`)}`,
         description: `▸`,
-        func: () => { selectOneYear(targetDate); },
+        func: () => { selectOneYear(targetDate, 10); },
       });
     }
     commandQuickPick(commands,
@@ -346,9 +348,9 @@ function activate(context) {
       `${_dateToString(dateYear, `YYYY`)} - ${_dateToString(_Year(89, dateYear), `YYYY`)}`);
   };
 
-  const selectOneYear = (dateYear) => {
+  const selectOneYear = (dateYear, count) => {
     const commands = [];
-    for (let i = 0; i <= 9; i += 1) {
+    for (let i = 0; i <= count - 1; i += 1) {
       const targetDate = _Year(i, dateYear);
       commands.push({
         label: _dateToString(targetDate, `YYYY`),

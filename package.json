@@ -32,11 +32,11 @@
           "type": "array",
           "default": [
             { "format": "YYYY-MM-DD ddd" },
-            { "format": "YYYY/MM/DD(ddd)" },
             { "format": "ddd, MMM DD, YYYY" },
             { "format": "dddd, MMMMM DD, YYYY" },
             { "format": "dddd, MM DD, YYYY" },
             { "format": "ddd, DD MMM, YYYY" },
+            { "format": "YYYY/MM/DD(ddd)" },
             { "format": "YYYYMMDD" }
           ],
           "description": "Smart Insert Date | Date Format"
@@ -45,11 +45,11 @@
           "type": "array",
           "default": [
             { "format": "YYYY-MM-DD ddd HH:mm" },
-            { "format": "YYYY/MM/DD(ddd) AAhh:mm" },
             { "format": "ddd, MMM DD, YYYY hh:mm AA" },
             { "format": "dddd, MMMMM DD, YYYY hh:mm AA" },
             { "format": "dddd, MM DD, YYYY hh:mm AA" },
             { "format": "ddd, DD MMM, YYYY HH:mm" },
+            { "format": "YYYY/MM/DD(ddd) AAhh:mm" },
             { "format": "YYYYMMDDHHmmss" }
           ],
           "description": "Smart Insert Date | DateTime Format"

@@ -2,7 +2,7 @@
   "name": "vscode-smart-insert-date",
   "displayName": "Smart Insert Date",
   "description": "This extension inserts fomatted date and time",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "SatoshiYamamoto",
   "author": {
     "name": "Satoshi Yamamoto",
@@ -10,10 +10,14 @@
     "url": "https://www.facebook.com/stndardsoftware"
   },
   "license":"MIT",
+  "homepage": "https://github.com/standard-software/vscode-smart-insert-date",
   "repository": {
     "type": "git",
     "url": "https://github.com/standard-software/vscode-smart-insert-date"
   },
+  "bugs": {
+		"url": "https://github.com/standard-software/vscode-smart-insert-date/issues"
+	},
   "engines": {
     "vscode": "^1.84.0"
   },
@@ -45,11 +49,11 @@
           "type": "array",
           "default": [
             { "format": "YYYY-MM-DD ddd HH:mm" },
-            { "format": "ddd, MMM DD, YYYY hh:mm AA" },
-            { "format": "dddd, MMMMM DD, YYYY hh:mm AA" },
-            { "format": "dddd, MM DD, YYYY hh:mm AA" },
+            { "format": "ddd, MMM DD, YYYY hh:mm aa" },
+            { "format": "dddd, MMMMM DD, YYYY hh:mm aa" },
+            { "format": "dddd, MM DD, YYYY hh:mm aa" },
             { "format": "ddd, DD MMM, YYYY HH:mm" },
-            { "format": "YYYY/MM/DD(ddd) AAhh:mm" },
+            { "format": "YYYY/MM/DD(ddd) AAhh:mm:ss" },
             { "format": "YYYYMMDDHHmmss" }
           ],
           "description": "Smart Insert Date | DateTime Format"
@@ -58,7 +62,7 @@
           "type": "array",
           "default": [
             { "format": "HH:mm" },
-            { "format": "hh:mm AA" },
+            { "format": "hh:mm aa" },
             { "format": "AAhh:mm:ss" },
             { "format": "HH:mm:ss" }
           ],
@@ -87,14 +91,31 @@
         "command": "vscode-smart-insert-date.SelectDate",
         "title": "Smart Insert Date | Select Date"
       }
-    ]
+    ],
+    "keybindings": [
+			{
+				"command": "vscode-smart-insert-date.Today",
+				"key": "alt+ctrl+oem_plus",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "vscode-smart-insert-date.NowDateTime",
+				"key": "alt+ctrl+shift+oem_plus",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "vscode-smart-insert-date.NowTime",
+				"key": "alt+shift+oem_plus",
+				"when": "editorTextFocus"
+			}
+		]
   },
   "enabledApiProposals": [
     "quickPickSeparators"
   ],
   "scripts": {
     "lint": "eslint --fix ./src",
-    "pack": "npx -y vsce package && code --install-extension vscode-smart-insert-date-0.0.1.vsix",
+    "pack": "npx -y vsce package && code --install-extension vscode-smart-insert-date-1.0.0.vsix",
     "": ""
   },
   "devDependencies": {

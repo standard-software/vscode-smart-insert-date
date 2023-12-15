@@ -1,9 +1,5 @@
 # Change Log
 
-All notable changes to the "vscode-insert-date-time" extension will be documented in this file.
+## [1.0.0] - 2023/12/16 Sat
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+- First Release

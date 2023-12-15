@@ -2,8 +2,8 @@
   "name": "vscode-smart-insert-date",
   "displayName": "Smart Insert Date",
   "description": "This extension inserts fomatted date and time",
-  "version": "1.0.1",
-	"icon": "vscode-smart-insert-date_icon.png",
+  "version": "1.0.2",
+  "icon": "vscode-smart-insert-date_icon.png",
   "publisher": "SatoshiYamamoto",
   "author": {
     "name": "Satoshi Yamamoto",
@@ -17,8 +17,8 @@
     "url": "https://github.com/standard-software/vscode-smart-insert-date"
   },
   "bugs": {
-		"url": "https://github.com/standard-software/vscode-smart-insert-date/issues"
-	},
+    "url": "https://github.com/standard-software/vscode-smart-insert-date/issues"
+  },
   "engines": {
     "vscode": "^1.84.0"
   },
@@ -94,29 +94,29 @@
       }
     ],
     "keybindings": [
-			{
-				"command": "vscode-smart-insert-date.Today",
-				"key": "alt+ctrl+oem_plus",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "vscode-smart-insert-date.NowDateTime",
-				"key": "alt+ctrl+shift+oem_plus",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "vscode-smart-insert-date.NowTime",
-				"key": "alt+shift+oem_plus",
-				"when": "editorTextFocus"
-			}
-		]
+      {
+        "command": "vscode-smart-insert-date.Today",
+        "key": "alt+ctrl+[Semicolon]",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "vscode-smart-insert-date.NowDateTime",
+        "key": "alt+ctrl+shift+[Semicolon]",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "vscode-smart-insert-date.NowTime",
+        "key": "alt+shift+[Semicolon]",
+        "when": "editorTextFocus"
+      }
+    ]
   },
   "enabledApiProposals": [
     "quickPickSeparators"
   ],
   "scripts": {
     "lint": "eslint --fix ./src",
-    "pack": "npx -y vsce package && code --install-extension vscode-smart-insert-date-1.0.1.vsix",
+    "pack": "npx -y vsce package && code --install-extension vscode-smart-insert-date-1.0.2.vsix",
     "": ""
   },
   "devDependencies": {

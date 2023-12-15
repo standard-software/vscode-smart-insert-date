@@ -62,6 +62,8 @@ PM11:04:04
 | Insert Now DateTime | Ctrl + Shift + Alt + ;  |
 | Insert Now Time     | Shift + Alt + ;         |
 
+\* macOS:  Alt = Option key
+
 ## Usage
 
 ### Insert
@@ -109,22 +111,6 @@ Works the same way.
 keybindings.json
 ```json
 [
-  // Smart Insert Date
-  {
-    "key": "ctrl+shift+alt+oem_plus",
-    "command": "-vscode-smart-insert-date.NowDateTime",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "shift+alt+oem_plus",
-    "command": "-vscode-smart-insert-date.NowTime",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+alt+oem_plus",
-    "command": "-vscode-smart-insert-date.Today",
-    "when": "editorTextFocus"
-  },
   {
     "key": "shift+f5",
     "command": "vscode-smart-insert-date.Today"

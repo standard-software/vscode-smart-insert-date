@@ -1,12 +1,13 @@
 const {
   _dateToString,
-  _dayOfWeek, _nameOfMonth,
+  _dayOfWeek,
+  _nameOfMonth,
   _Month,
   _Day,
   _Datetime,
   _getDatetime,
   _unique,
-  _subFirst, _subLast,
+  _subFirst,
   _paddingFirst, _paddingLast,
 } = require(`../parts/parts.js`);
 
@@ -14,18 +15,6 @@ const dayOfWeekEn2 = (date, timezoneOffset) => {
   return _subFirst(_dayOfWeek.names.EnglishShort()[
     _dateToString.rule.dayOfWeek(date, timezoneOffset)
   ], 2);
-};
-
-const dayOfWeekJpShort = (date, timezoneOffset) => {
-  return _dayOfWeek.names.JapaneseShort()[
-    _dateToString.rule.dayOfWeek(date, timezoneOffset)
-  ];
-};
-
-const dayOfWeekJpLong = (date, timezoneOffset) => {
-  return _dayOfWeek.names.JapaneseLong()[
-    _dateToString.rule.dayOfWeek(date, timezoneOffset)
-  ];
 };
 
 const am_pmJp = (date, timezoneOffset) => {
@@ -52,15 +41,26 @@ const monthEnLongRight = (date, timezoneOffset) => {
   ], 9, ` `);
 };
 
-const dateToStringJp = (date, format) => {
+const dateToStringJp = (date, format,
+  dayOfWeekCustomNamesShort,
+  dayOfWeekCustomNamesLong,
+) => {
   const rule = _dateToString.rule.Default();
   rule[`dd`] = { func: dayOfWeekEn2 };
   rule[`SD`] = { func: date2Space };
   rule[`SM`] = { func: month2Space };
   rule[`LMMMMM`] = { func: monthEnLongLeft };
   rule[`RMMMMM`] = { func: monthEnLongRight };
-  rule[`DDD`] = { func: dayOfWeekJpShort };
-  rule[`DDDD`] = { func: dayOfWeekJpLong };
+  rule[`DDD`] = {
+    func: (date, timezoneOffset) => dayOfWeekCustomNamesShort[
+      _dateToString.rule.dayOfWeek(date, timezoneOffset)
+    ]
+  };
+  rule[`DDDD`] = {
+    func: (date, timezoneOffset) => dayOfWeekCustomNamesLong[
+      _dateToString.rule.dayOfWeek(date, timezoneOffset)
+    ]
+  };
   rule[`AAA`] = { func: am_pmJp };
   return _dateToString(
     date, format, undefined, rule,
@@ -151,132 +151,10 @@ const equalToday = (sourceDate) => {
   return equalDate(sourceDate, new Date());
 };
 
-const getEndDayOfWeek = (startDayOfWeek) => {
-  if (startDayOfWeek === `Sun`) {
-    return `Sat`;
-  } else if (startDayOfWeek === `Mon`) {
-    return `Sun`;
-  } else {
-    throw new Error(`getEndDayOfWeek startDayOfWeek`);
-  }
-};
-
 const monthDayCount = (date) => {
   const {year, month } = _getDatetime(date);
   const target = _Datetime(year, month + 1, 1);
   return _getDatetime(_Day(-1, target)).date;
-};
-
-const textCalendarLineVertical = (targetDates,{
-  pickupDate,
-  headerFormat,
-  todayFormat,
-  lineFormat,
-}) => {
-  let result = ``;
-  let headerBuffer = ``;
-  for (const date of targetDates) {
-    const header = dateToStringJp(date, headerFormat);
-    if (headerBuffer !== header) {
-      result += `${header}\n`;
-    }
-    headerBuffer = header;
-    if (pickupDate && equalDate(date, pickupDate)) {
-      result += dateToStringJp(date, todayFormat);
-    } else {
-      result += dateToStringJp(date, lineFormat);
-    }
-    result += `\n`;
-  }
-  return result;
-};
-
-const textCalendarMonthly = (targetDate,{
-  startDayOfWeek,
-  pickupDate,
-  headerFormat,
-  dayOfWeekFormat,
-  dateFormat,
-  indent,
-  space,
-  todayLeft,
-  todayRight,
-  otherMonthDate,
-}) => {
-  if (![`Sun`, `Mon`].includes(startDayOfWeek)) {
-    throw new Error(`textCalendarMonthly startDayOfWeek`);
-  }
-  const dayOfWeekEnShort = _dayOfWeek.names.EnglishShort();
-  const weekEndDayOfWeek = getEndDayOfWeek(startDayOfWeek);
-
-  const dateMonthStart = _Month(`this`, targetDate);
-  const dateMonthEnd = _Day(-1, _Month(1, targetDate));
-
-  let result = `${dateToStringJp(dateMonthStart, headerFormat)}\n`;
-  const weekDates = getDateArrayInWeek(dateMonthStart, startDayOfWeek);
-  const calendarDates = _unique(
-    [
-      ...weekDates,
-      ...getDateArrayInMonth(targetDate),
-      ...getDateArrayInWeek(dateMonthEnd, startDayOfWeek),
-    ],
-    v => v.getTime()
-  );
-
-  result += indent;
-  for (const date of weekDates) {
-    const dayOfWeek = dateToStringJp(date, dayOfWeekFormat);
-    if (weekDates.indexOf(date) === weekDates.length - 1) {
-      result += dayOfWeek;
-    } else {
-      result += dayOfWeek + _subLast(space, space.length - (dayOfWeek.length - 2));
-    }
-  }
-  result += `\n`;
-
-  let todayFlag = false;
-  for (const date of calendarDates) {
-    if (pickupDate && equalDate(date, pickupDate)) {
-      if (dayOfWeekEnShort[date.getDay()] === startDayOfWeek) {
-        result +=
-          _subFirst(indent, indent.length - todayLeft.length) +
-          todayLeft +
-          dateToStringJp(date, dateFormat) +
-          todayRight;
-      } else {
-        result +=
-          _subFirst(space, space.length - todayLeft.length) +
-          todayLeft +
-          dateToStringJp(date, dateFormat) +
-          todayRight;
-      }
-      todayFlag = true;
-    } else if (!otherMonthDate && !equalMonth(date, targetDate)) {
-      if (dayOfWeekEnShort[date.getDay()] === startDayOfWeek) {
-        result += indent + `  `;
-      } else {
-        result +=
-          (!todayFlag ? space
-            : _subLast(space, space.length - todayRight.length)) +
-            `  `;
-      }
-      todayFlag = false;
-    } else {
-      if (dayOfWeekEnShort[date.getDay()] === startDayOfWeek) {
-        result += indent + dateToStringJp(date, dateFormat);
-      } else {
-        result +=
-          (!todayFlag ? space
-            : _subLast(space, space.length - todayRight.length)) +
-            dateToStringJp(date, dateFormat);
-      }
-      todayFlag = false;
-    }
-    if (dayOfWeekEnShort[date.getDay()] === weekEndDayOfWeek) {
-      result += `\n`;
-    }
-  }
-  return result;
 };
 
 module.exports = {
@@ -286,6 +164,4 @@ module.exports = {
   monthDayCount,
   dateToStringJp,
   getDateArrayWeeklyMonth,
-  textCalendarLineVertical,
-  textCalendarMonthly,
 };

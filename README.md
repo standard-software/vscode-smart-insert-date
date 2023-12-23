@@ -180,9 +180,10 @@ _ = Space
 | `YY`    | 22        |
 | `MM`    | 01        |
 | `M`     | 1         |
+| `SM`    | _1        |
 | `DD`    | 09        |
 | `D`     | 9         |
-| `SD`    | _9        | Day leading space-filling, use Weekly or Monthly Calendar
+| `SD`    | _9        | 
 | `HH`    | 18        |
 | `H`     | 18        | 0-24
 | `hh`    | 06        |

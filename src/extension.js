@@ -136,9 +136,33 @@ function activate(context) {
     insertBuffer.date = date;
     insertBuffer.formatIndex = formatIndex;
 
+    const dayOfWeekKeys = [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+    ];
+    let dayOfWeekCustomNamesLong = [];
+    const customDayOfWeekLong = vscode.workspace
+      .getConfiguration(`SmartInsertDate`).get(`CustomDayOfWeekLong`)
+    for (const key of dayOfWeekKeys) {
+      dayOfWeekCustomNamesLong.push(customDayOfWeekLong[key] ?? ``);
+    }
+    let dayOfWeekCustomNamesShort = [];
+    const customDayOfWeekShort = vscode.workspace
+      .getConfiguration(`SmartInsertDate`).get(`CustomDayOfWeekShort`)
+    for (const key of dayOfWeekKeys) {
+      dayOfWeekCustomNamesShort.push(customDayOfWeekShort[key] ?? ``);
+    }
+
     insertBuffer.text = dateToStringJp(
       insertBuffer.date,
-      format
+      format,
+      dayOfWeekCustomNamesShort,
+      dayOfWeekCustomNamesLong,
     );
     insertText(editor, insertBuffer.text);
   }

@@ -194,7 +194,7 @@ function activate(context) {
       }
       for (const [index, format] of formats.entries()) {
         commands.push({
-          label: dateToStringJp(targetDate, format),
+          label: _dateToString(targetDate, format),
           description: ``,
           func: () => { _insertDateTime(dateType, targetDate, index, format); }
         });
@@ -227,38 +227,38 @@ function activate(context) {
     commandQuickPick([
       {
         label: `This Week | `
-        + `${dateToStringJp(dateThisWeek, `YYYY-MM-DD`)}`,
+        + `${_dateToString(dateThisWeek, `YYYY-MM-DD`)}`,
         description: `▸`,
         func: () => { selectDateInWeek(dateThisWeek); }
       },
       {
         label: `-1 Week | Last Week | `
-        + `${dateToStringJp(dateLastWeek, `YYYY-MM-DD`)}`,
+        + `${_dateToString(dateLastWeek, `YYYY-MM-DD`)}`,
         description: `▸`,
         func: () => { selectDateInWeek(dateLastWeek); }
       },
       {
         label: `+1 Week | Next Week | `
-        + `${dateToStringJp(dateNextWeek, `YYYY-MM-DD`)}`,
+        + `${_dateToString(dateNextWeek, `YYYY-MM-DD`)}`,
         description: `▸`,
         func: () => { selectDateInWeek(dateNextWeek); }
       },
       {label: ``, kind: vscode.QuickPickItemKind.Separator},
       {
         label: `This Month | `
-        + `${dateToStringJp(dateThisMonth, `YYYY-MM : MMM`)}`,
+        + `${_dateToString(dateThisMonth, `YYYY-MM : MMM`)}`,
         description: `▸`,
         func: () => { selectDateInMonth(dateThisMonth); }
       },
       {
         label: `-1 Month | Last Month | `
-        + `${dateToStringJp(dateLastMonth, `YYYY-MM : MMM`)}`,
+        + `${_dateToString(dateLastMonth, `YYYY-MM : MMM`)}`,
         description: `▸`,
         func: () => { selectDateInMonth(dateLastMonth); }
       },
       {
         label: `+1 Month | Next Month | `
-        + `${dateToStringJp(dateNextMonth, `YYYY-MM : MMM`)}`,
+        + `${_dateToString(dateNextMonth, `YYYY-MM : MMM`)}`,
         description: `▸`,
         func: () => { selectDateInMonth(dateNextMonth); }
       },
@@ -369,7 +369,7 @@ function activate(context) {
       const targetDate = _Month(i - 1, dateYear);
       const isThisMonth = equalMonth(targetDate, _Month(`this`));
       commands.push({
-        label: dateToStringJp(targetDate, `MM : YYYY-MM : MMM`) +
+        label: _dateToString(targetDate, `MM : YYYY-MM : MMM`) +
         (isThisMonth ? ` : This month` : ``),
         description: `▸`,
         func: () => {

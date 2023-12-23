@@ -53,10 +53,10 @@ PM11:04:04
 - Smart Insert Date | Select Format
 ```
 
-Windows
+Windows  
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_command_win.png)
 
-Mac
+Mac  
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_command_mac.png)
 
 ### Default Key

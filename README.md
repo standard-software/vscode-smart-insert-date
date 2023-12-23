@@ -52,23 +52,28 @@ PM11:04:04
 - Smart Insert Date | Select Date
 - Smart Insert Date | Select Format
 ```
-![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_command.png)
+
+Windows
+![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_command_win.png)
+
+Mac
+![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_command_mac.png)
 
 ### Default Key
 
-| Command | Default Key |
-|-        |-            |
-| Insert Today        | Ctrl + Alt + ;          |
-| Insert Now DateTime | Ctrl + Shift + Alt + ;  |
-| Insert Now Time     | Shift + Alt + ;         |
-
-\* macOS:  Alt = Option key
+| Command             | Default Key Windows     | Default Key Mac         |
+|-                    |-                        | -                       |
+| Insert Today        | Alt + Ctrl +  ;          | Opt + Ctrl +  ;          |
+| Insert Now DateTime | Alt + Ctrl + Shift +  ;  | Opt + Ctrl + Shift +  ;  |
+| Insert Now Time     | Alt + Shift +  ;         | Opt + Shift +  ;         |
 
 ## Usage
 
 ### Insert
 
-- Press [`Alt + Ctrl + ;`]
+- Press
+  - Windows[`Alt + Ctrl + ;`]
+  - Mac[`Opt + Ctrl + ;`]
 - run [Smart Insert Date | Insert Today]
 - Inserted, text is selected
 ```

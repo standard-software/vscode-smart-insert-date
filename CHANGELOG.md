@@ -1,5 +1,14 @@
 # Change Log
 
+## [1.1.1] - 2023/12/28 Thu
+- update README/CHANGELOG
+
+## [1.1.0] - 2023/12/28 Thu
+- uddate Custom DayOfWeek
+- update Custom AM PM
+- update README
+  - add To Chinese, To Taiwanese
+
 ## [1.0.2] - 2023/12/16 Sat
 - update README
   - Key Mac

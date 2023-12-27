@@ -128,7 +128,6 @@ keybindings.json
     "key": "ctrl+f5",
     "command": "vscode-smart-insert-date.NowTime"
   },
-  ...
 ]
 ```
 
@@ -162,7 +161,6 @@ settings.json
     { "format": "AAhh:mm:ss" },
     { "format": "HH:mm:ss" }
   ],
-  ...
 }
 ```
 
@@ -228,7 +226,6 @@ settings.json
   "SmartInsertDate.TimeFormat": [
     { "format": "AAAhh時mm分" }
   ],
-  ...
 }
 ```
 
@@ -239,7 +236,6 @@ settings.json
 | `DDD`   | 日        | DayOfWeek text 日,月,火,水,木,金,土
 | `DDDD`  | 日曜日    | DayOfWeek text 日曜日,月曜日,火曜日,...
 | `AAA`   | 午後      | ampm 午前,午後
-| `AAAA`  | 午後      | ampm 午前,午後
 
 ## To Chinese, To Taiwanese
 
@@ -257,15 +253,6 @@ settings.json
     "Fri": "星期五",
     "Sat": "星期六"
   },
-  // "SmartInsertDate.CustomDayOfWeekLong": {
-  //   "Sun": "禮拜日",
-  //   "Mon": "禮拜一",
-  //   "Tue": "禮拜二",
-  //   "Wed": "禮拜三",
-  //   "Thu": "禮拜四",
-  //   "Fri": "禮拜五",
-  //   "Sat": "禮拜六"
-  // },
   "SmartInsertDate.CustomDayOfWeekShort": {
     "Sun": "日",
     "Mon": "一",
@@ -294,16 +281,29 @@ settings.json
   "SmartInsertDate.TimeFormat": [
     { "format": "AAAhh点mm分ss秒" }
     { "format": "AAAAhh点mm分ss秒" }
-  ],
-  ...
+  ]
 }
 ```
+
+Other Patterns
+```json
+  "SmartInsertDate.CustomDayOfWeekLong": {
+    "Sun": "禮拜日",
+    "Mon": "禮拜一",
+    "Tue": "禮拜二",
+    "Wed": "禮拜三",
+    "Thu": "禮拜四",
+    "Fri": "禮拜五",
+    "Sat": "禮拜六"
+  },
+```
+
 ### Date Format String
 
 | Format  | Value     | Memo  |
 | -       | -         | -     |
 | `DDD`   | 日        | DayOfWeek text 日,一,二,三,四,五,六
-| `DDDD`  | 日曜日    | DayOfWeek text 星期日,星期一,星期二,...
+| `DDDD`  | 星期日    | DayOfWeek text 星期日,星期一,星期二,...
 | `AAA`   | 下        | ampm 上,下
 | `AAAA`  | 下午      | ampm 上午,下午
 

@@ -124,7 +124,8 @@ const getDateFormatArray = (formatType) => {
   if (!([`DateFormat`, `DateTimeFormat`, `TimeFormat`].includes(formatType))) {
     throw new Error(`getFormatArray formatType`);
   }
-  const formatData = vscode.workspace.getConfiguration(`SmartInsertDate`).get(formatType);
+  const formatData = vscode.workspace
+    .getConfiguration(`SmartInsertDate`).get(formatType);
   return formatData.map(item => item.format);
 };
 
@@ -145,24 +146,41 @@ function activate(context) {
       "Fri",
       "Sat",
     ];
-    let dayOfWeekCustomNamesLong = [];
-    const customDayOfWeekLong = vscode.workspace
-      .getConfiguration(`SmartInsertDate`).get(`CustomDayOfWeekLong`)
-    for (const key of dayOfWeekKeys) {
-      dayOfWeekCustomNamesLong.push(customDayOfWeekLong[key] ?? ``);
-    }
-    let dayOfWeekCustomNamesShort = [];
+
+    const dayOfWeekCustomNamesShort = [];
     const customDayOfWeekShort = vscode.workspace
       .getConfiguration(`SmartInsertDate`).get(`CustomDayOfWeekShort`)
     for (const key of dayOfWeekKeys) {
       dayOfWeekCustomNamesShort.push(customDayOfWeekShort[key] ?? ``);
     }
 
+    const dayOfWeekCustomNamesLong = [];
+    const customDayOfWeekLong = vscode.workspace
+      .getConfiguration(`SmartInsertDate`).get(`CustomDayOfWeekLong`)
+    for (const key of dayOfWeekKeys) {
+      dayOfWeekCustomNamesLong.push(customDayOfWeekLong[key] ?? ``);
+    }
+
+    const ampmCustomNamesShort = [];
+    const customAmPmShort = vscode.workspace
+      .getConfiguration(`SmartInsertDate`).get(`CustomAmPmShort`)
+    console.log(`customAmPmShort`, customAmPmShort)
+    ampmCustomNamesShort[0] = customAmPmShort?.am ?? ``;
+    ampmCustomNamesShort[1] = customAmPmShort?.pm ?? ``;
+
+    const ampmCustomNamesLong = [];
+    const customAmPmLong = vscode.workspace
+      .getConfiguration(`SmartInsertDate`).get(`CustomAmPmLong`)
+    ampmCustomNamesLong[0] = customAmPmLong?.am ?? ``;
+    ampmCustomNamesLong[1] = customAmPmLong?.pm ?? ``;
+
     insertBuffer.text = dateToStringJp(
       insertBuffer.date,
       format,
       dayOfWeekCustomNamesShort,
       dayOfWeekCustomNamesLong,
+      ampmCustomNamesShort,
+      ampmCustomNamesLong,
     );
     insertText(editor, insertBuffer.text);
   }

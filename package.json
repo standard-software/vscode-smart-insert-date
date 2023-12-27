@@ -2,7 +2,7 @@
   "name": "vscode-smart-insert-date",
   "displayName": "Smart Insert Date",
   "description": "This extension inserts fomatted date and time",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "icon": "vscode-smart-insert-date_icon.png",
   "publisher": "SatoshiYamamoto",
   "author": {
@@ -44,7 +44,7 @@
             { "format": "YYYY/MM/DD(ddd)" },
             { "format": "YYYYMMDD" }
           ],
-          "description": "Smart Insert Date | Date Format"
+          "description": "Smart Insert Date | DateFormat"
         },
         "SmartInsertDate.DateTimeFormat": {
           "type": "array",
@@ -57,7 +57,7 @@
             { "format": "YYYY/MM/DD(ddd) AAhh:mm:ss" },
             { "format": "YYYYMMDDHHmmss" }
           ],
-          "description": "Smart Insert Date | DateTime Format"
+          "description": "Smart Insert Date | DateTimeFormat"
         },
         "SmartInsertDate.TimeFormat": {
           "type": "array",
@@ -67,7 +67,7 @@
             { "format": "AAhh:mm:ss" },
             { "format": "HH:mm:ss" }
           ],
-          "description": "Smart Insert Date | Time Format"
+          "description": "Smart Insert Date | TimeFormat"
         },
         "SmartInsertDate.CustomDayOfWeekLong": {
           "default": {
@@ -78,7 +78,8 @@
             "Thu": "木曜日",
             "Fri": "金曜日",
             "Sat": "土曜日"
-          }
+          },
+          "description": "Smart Insert Date | CustomDayOfWeekLong"
         },
         "SmartInsertDate.CustomDayOfWeekShort": {
           "default": {
@@ -89,7 +90,22 @@
             "Thu": "木",
             "Fri": "金",
             "Sat": "土"
-          }
+          },
+          "description": "Smart Insert Date | CustomDayOfWeekShort"
+        },
+        "SmartInsertDate.CustomAmPmShort": {
+          "default": {
+            "am": "午前",
+            "pm": "午後"
+          },
+          "description": "Smart Insert Date | CustomAmPmShort"
+        },
+        "SmartInsertDate.CustomAmPmLong": {
+          "default": {
+            "am": "午前",
+            "pm": "午後"
+          },
+          "description": "Smart Insert Date | CustomAmPmLong"
         }
       }
     },
@@ -138,7 +154,7 @@
   ],
   "scripts": {
     "lint": "eslint --fix ./src",
-    "pack": "npx -y vsce package && code --install-extension vscode-smart-insert-date-1.0.2.vsix",
+    "pack": "npx -y vsce package && code --install-extension vscode-smart-insert-date-1.1.0.vsix",
     "": ""
   },
   "devDependencies": {

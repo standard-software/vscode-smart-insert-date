@@ -17,10 +17,6 @@ const dayOfWeekEn2 = (date, timezoneOffset) => {
   ], 2);
 };
 
-const am_pmJp = (date, timezoneOffset) => {
-  return _dateToString.rule.hours(date, timezoneOffset) < 12 ? `午前` : `午後`;
-};
-
 const date2Space = (date, timezoneOffset) => {
   return _paddingFirst(_dateToString.rule.date1(date, timezoneOffset), 2, ` `);
 };
@@ -44,6 +40,8 @@ const monthEnLongRight = (date, timezoneOffset) => {
 const dateToStringJp = (date, format,
   dayOfWeekCustomNamesShort,
   dayOfWeekCustomNamesLong,
+  ampmCustomNamesShort,
+  ampmCustomNamesLong,
 ) => {
   const rule = _dateToString.rule.Default();
   rule[`dd`] = { func: dayOfWeekEn2 };
@@ -61,7 +59,19 @@ const dateToStringJp = (date, format,
       _dateToString.rule.dayOfWeek(date, timezoneOffset)
     ]
   };
-  rule[`AAA`] = { func: am_pmJp };
+  rule[`AAA`] = {
+    func: (date, timezoneOffset) =>
+      _dateToString.rule.hours(date, timezoneOffset) < 12
+        ? ampmCustomNamesShort[0]
+        : ampmCustomNamesShort[1]
+  };
+  rule[`AAAA`] = {
+    func: (date, timezoneOffset) =>
+      _dateToString.rule.hours(date, timezoneOffset) < 12
+        ? ampmCustomNamesLong[0]
+        : ampmCustomNamesLong[1]
+  };
+
   return _dateToString(
     date, format, undefined, rule,
   );

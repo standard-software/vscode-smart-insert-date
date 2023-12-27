@@ -128,7 +128,7 @@ keybindings.json
     "key": "ctrl+f5",
     "command": "vscode-smart-insert-date.NowTime"
   },
-  :
+  ...
 ]
 ```
 
@@ -162,7 +162,7 @@ settings.json
     { "format": "AAhh:mm:ss" },
     { "format": "HH:mm:ss" }
   ],
-  :
+  ...
 }
 ```
 
@@ -186,15 +186,15 @@ _ = Space
 | `SD`    | _9        | 
 | `HH`    | 18        |
 | `H`     | 18        | 0-24
-| `hh`    | 06        |
+| `hh`    | 06        | 0-12,1-23
 | `h`     | 6         |
 | `mm`    | 05        |
 | `m`     | 5         |
 | `ss`    | 07        |
 | `s`     | 7         |
-| `SSS`   | 999       | 000-999
-| `SS`    | 99        | 00-99
-| `S`     | 9         | 0-9
+| `SSS`   | 999       | 000-999 MilliSeconds
+| `SS`    | 99        | 00-99  MilliSeconds
+| `S`     | 9         | 0-9  MilliSeconds
 | `aa`    | pm        | am,pm
 | `AA`    | PM        | AM,PM
 | `a`     | a         | a,p
@@ -228,7 +228,7 @@ settings.json
   "SmartInsertDate.TimeFormat": [
     { "format": "AAAhh時mm分" }
   ],
-  :
+  ...
 }
 ```
 
@@ -238,7 +238,74 @@ settings.json
 | -       | -         | -     |
 | `DDD`   | 日        | DayOfWeek text 日,月,火,水,木,金,土
 | `DDDD`  | 日曜日    | DayOfWeek text 日曜日,月曜日,火曜日,...
-| `AAA`   | 午後      | Japanese ampm 午前,午後
+| `AAA`   | 午後      | ampm 午前,午後
+| `AAAA`  | 午後      | ampm 午前,午後
+
+## To Chinese, To Taiwanese
+
+### Setting
+settings.json
+
+```json
+{
+  "SmartInsertDate.CustomDayOfWeekLong": {
+    "Sun": "星期日",
+    "Mon": "星期一",
+    "Tue": "星期二",
+    "Wed": "星期三",
+    "Thu": "星期四",
+    "Fri": "星期五",
+    "Sat": "星期六"
+  },
+  // "SmartInsertDate.CustomDayOfWeekLong": {
+  //   "Sun": "禮拜日",
+  //   "Mon": "禮拜一",
+  //   "Tue": "禮拜二",
+  //   "Wed": "禮拜三",
+  //   "Thu": "禮拜四",
+  //   "Fri": "禮拜五",
+  //   "Sat": "禮拜六"
+  // },
+  "SmartInsertDate.CustomDayOfWeekShort": {
+    "Sun": "日",
+    "Mon": "一",
+    "Tue": "二",
+    "Wed": "三",
+    "Thu": "四",
+    "Fri": "五",
+    "Sat": "六"
+  },
+  "SmartInsertDate.CustomAmPmShort": {
+    "am": "上",
+    "pm": "下"
+  },
+  "SmartInsertDate.CustomAmPmLong": {
+    "am": "上午",
+    "pm": "下午"
+  }
+  "SmartInsertDate.DateFormat": [
+    { "format": "YYYY/MM/DD(DDD)" },
+    { "format": "YYYY年MM月DD号 DDDD" }
+  ],
+  "SmartInsertDate.DateTimeFormat": [
+    { "format": "YYYY/MM/DD(DDD) HH:mm" },
+    { "format": "YYYY年MM月DD号 DDDD AAAhh点mm分ss秒" }
+  ],
+  "SmartInsertDate.TimeFormat": [
+    { "format": "AAAhh点mm分ss秒" }
+    { "format": "AAAAhh点mm分ss秒" }
+  ],
+  ...
+}
+```
+### Date Format String
+
+| Format  | Value     | Memo  |
+| -       | -         | -     |
+| `DDD`   | 日        | DayOfWeek text 日,一,二,三,四,五,六
+| `DDDD`  | 日曜日    | DayOfWeek text 星期日,星期一,星期二,...
+| `AAA`   | 下        | ampm 上,下
+| `AAAA`  | 下午      | ampm 上午,下午
 
 ## License
 

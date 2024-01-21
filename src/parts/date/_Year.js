@@ -21,7 +21,7 @@ const _Year = (
     } else if (value === `next`) {
       value = 1;
     } else {
-      throw new TypeError(
+      throw new Error(
         `_Year args(value:${value}) is not this | last | next`,
       );
     }

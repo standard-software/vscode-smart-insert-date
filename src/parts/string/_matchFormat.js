@@ -7,13 +7,13 @@ const _matchFormat = (
   const patterns = Object.keys(_matchFormat.pattern);
   const index = patterns.indexOf(formatName);
   if (index === -1) {
-    throw new RangeError(
+    throw new Error(
       `_matchFormat args(formatName:${formatName}) is not exists format`,
     );
   }
   const result = _matchFormat.pattern[patterns[index]](value);
   if (!isBoolean(result)) {
-    throw new RangeError(
+    throw new Error(
       `_matchFormat args(formatName:${formatName})` +
       ` function result is not boolean`,
     );

@@ -7,7 +7,7 @@ const __max = (array) => {
   let result = array[0];
   for (let i = 0, l = array.length; i < l; i += 1) {
     if (!isNumber(array[i])) {
-      throw new TypeError(
+      throw new Error(
         `__max args(array) element is not number`,
       );
     }

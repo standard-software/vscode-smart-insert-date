@@ -46,11 +46,11 @@ PM11:04:04
 ## Command
 
 ```
-- Smart Insert Date | Insert Today
-- Smart Insert Date | Insert Now DateTime
-- Smart Insert Date | Insert Now Time
-- Smart Insert Date | Select Date
-- Smart Insert Date | Select Format
+- Smart Insert Date : Insert Today
+- Smart Insert Date : Insert Now DateTime
+- Smart Insert Date : Insert Now Time
+- Smart Insert Date : Select Date
+- Smart Insert Date : Select Format
 ```
 
 Windows  
@@ -74,7 +74,7 @@ Mac
 - Press
   - Windows[`Alt + Ctrl + ;`]
   - Mac[`Opt + Ctrl + ;`]
-- run [Smart Insert Date | Insert Today]
+- run [Smart Insert Date : Insert Today]
 - Inserted, text is selected
 ```
 2023-12-16 Sat
@@ -91,19 +91,19 @@ Saturday, December 16, 2023
 ```
 - rotate
 
-run [Smart Insert Date | Insert Now DateTime]  
-run [Smart Insert Date | Insert Now Time]  
+run [Smart Insert Date : Insert Now DateTime]  
+run [Smart Insert Date : Insert Now Time]  
 Works the same way.
 
 ### Select Format
 
-- run [Smart Insert Date | Select Format]
+- run [Smart Insert Date : Select Format]
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat.png)
 
 
 ### Select Date
 
-- run [Smart Insert Date | Select Date]
+- run [Smart Insert Date : Select Date]
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectdate_01.png)
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectdate_02.png)
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectdate_03.png)
@@ -202,7 +202,7 @@ _ = Space
 | `dddd`  | Sunday    | Sunday,Monday,Tuesday,...
 | `MMM`   | Jan       | Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
 | `MMMM`  | Jan.      | Jan.,Feb.,Mar.,Apr.,May,June,July,Aug.,Sep.,Oct.,Nov.,Dec.
-| `MMMMM` | January  
+| `MMMMM` | January   |
 | `Z`     | 09:00     | timezone
 | `ZZ`    | 0900      | timezone
 | `LMMMMM`| January__ | Left align space-filling
@@ -217,7 +217,10 @@ settings.json
 {
   "SmartInsertDate.DateFormat": [
     { "format": "YYYY/MM/DD(DDD)" },
-    { "format": "YYYY年MM月DD日 DDDD" }
+    { "format": "YYYY年MM月DD日 DDDD" },
+    { "format": "GE年MM月DD日" },
+    { "format": "GGE年MM月DD日 DDD" },
+    { "format": "GGGEE年MM月DD日 DDDD" }
   ],
   "SmartInsertDate.DateTimeFormat": [
     { "format": "YYYY/MM/DD(DDD) HH:mm" },
@@ -233,8 +236,8 @@ settings.json
 
 | Format  | Value     | Memo  |
 | -       | -         | -     |
-| `DDD`   | 日        | DayOfWeek text: 日,月,火,水,木,金,土
-| `DDDD`  | 日曜日    | DayOfWeek text: 日曜日,月曜日,火曜日,...
+| `DDD`   | 火        | DayOfWeek text: 日,月,火,水,木,金,土
+| `DDDD`  | 火曜日    | DayOfWeek text: 日曜日,月曜日,火曜日,...
 | `AAA`   | 午後      | ampm: 午前,午後
 | `G`     | R         | Japanese imperial year: R,H,S,T,M 
 | `GG`    | 令        | Japanese imperial year: 令,平,昭,大,明 
@@ -308,8 +311,8 @@ Other Patterns
 
 | Format  | Value     | Memo  |
 | -       | -         | -     |
-| `DDD`   | 日        | DayOfWeek text: 日,一,二,三,四,五,六
-| `DDDD`  | 星期日    | DayOfWeek text: 星期日,星期一,星期二,...
+| `DDD`   | 二        | DayOfWeek text: 日,一,二,三,四,五,六
+| `DDDD`  | 星期二    | DayOfWeek text: 星期日,星期一,星期二,...
 | `AAA`   | 下        | ampm: 上,下
 | `AAAA`  | 下午      | ampm: 上午,下午
 

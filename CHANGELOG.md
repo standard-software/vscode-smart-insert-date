@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.2.1] - 2024/01/22 Mon
+- update README
+- change Command delimter '|' -> ':'
+
 ## [1.2.0] - 2024/01/22 Mon
 - refactoring
   - add libVSCode.js

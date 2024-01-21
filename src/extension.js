@@ -22,7 +22,7 @@ const {
   equalToday,
   monthDayCount,
   dateToStringJp,
-} = require(`./lib/lib.js`);
+} = require(`./lib/libDate.js`);
 
 // This Application
 const insertBuffer = {

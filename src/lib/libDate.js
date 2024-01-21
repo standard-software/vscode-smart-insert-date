@@ -37,6 +37,47 @@ const monthEnLongRight = (date, timezoneOffset) => {
   ], 9, ` `);
 };
 
+const japaneseCalenderYear = (date) => {
+  const result = {};
+  const reiwaStart = _Datetime(2019, 5, 1);
+  const heiseiStart = _Datetime(1989,  1,  8);
+  const shouwaStart = _Datetime(1926, 12, 25);
+  const taishoStart = _Datetime(1912,  7, 30);
+  const meijiStart  = _Datetime(1868,  9,  8);
+  if (reiwaStart <= date) {
+    result.gengoLong = '令和';
+    result.gengoShort = '令';
+    result.gengoAlphabet = 'R';
+    result.year = (date.getFullYear() - reiwaStart.getFullYear() + 1);
+  } else if (heiseiStart <= date) {
+    result.gengoLong = '平成';
+    result.gengoShort = '平';
+    result.gengoAlphabet = 'H';
+    result.year = (date.getFullYear() - heiseiStart.getFullYear() + 1);
+  } else if (shouwaStart <= date) {
+    result.gengoLong = '昭和';
+    result.gengoShort = '昭';
+    result.gengoAlphabet = 'S';
+    result.year = (date.getFullYear() - shouwaStart.getFullYear() + 1);
+  } else if (taishoStart <= date) {
+    result.gengoLong = '大正';
+    result.gengoShort = '大';
+    result.gengoAlphabet = 'T';
+    result.year = (date.getFullYear() - taishoStart.getFullYear() + 1);
+  } else if (meijiStart <= date) {
+    result.gengoLong = '明治';
+    result.gengoShort = '明';
+    result.gengoAlphabet = 'M';
+    result.year = (date.getFullYear() - meijiStart.getFullYear() + 1);
+  } else {
+    result.gengoLong = '';
+    result.gengoShort = '';
+    result.gengoAlphabet = '';
+    result.year = date.getFullYear();
+  }
+  return result;
+};
+
 const dateToStringJp = (date, format,
   dayOfWeekCustomNamesShort,
   dayOfWeekCustomNamesLong,
@@ -59,17 +100,42 @@ const dateToStringJp = (date, format,
       _dateToString.rule.dayOfWeek(date, timezoneOffset)
     ]
   };
+  rule[`AAAA`] = {
+    func: (date, timezoneOffset) =>
+      _dateToString.rule.hours(date, timezoneOffset) < 12
+        ? ampmCustomNamesLong[0]
+        : ampmCustomNamesLong[1]
+  };
   rule[`AAA`] = {
     func: (date, timezoneOffset) =>
       _dateToString.rule.hours(date, timezoneOffset) < 12
         ? ampmCustomNamesShort[0]
         : ampmCustomNamesShort[1]
   };
-  rule[`AAAA`] = {
-    func: (date, timezoneOffset) =>
-      _dateToString.rule.hours(date, timezoneOffset) < 12
-        ? ampmCustomNamesLong[0]
-        : ampmCustomNamesLong[1]
+  rule[`GGG`] = {
+    func: (date) => {
+      return japaneseCalenderYear(date).gengoLong;
+    }
+  };
+  rule[`GG`] = {
+    func: (date) => {
+      return japaneseCalenderYear(date).gengoShort;
+    }
+  };
+  rule[`G`] = {
+    func: (date) => {
+      return japaneseCalenderYear(date).gengoAlphabet;
+    }
+  };
+  rule[`EE`] = {
+    func: (date) => {
+      return _paddingFirst(japaneseCalenderYear(date).year.toString(), 2, `0`);
+    }
+  };
+  rule[`E`] = {
+    func: (date) => {
+      return japaneseCalenderYear(date).year.toString();
+    }
   };
 
   return _dateToString(

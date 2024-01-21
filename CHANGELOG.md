@@ -3,6 +3,7 @@
 ## [1.2.0] - 2024/01/22 Mon
 - refactoring
   - add libVSCode.js
+- support Japan Year Gengo
 
 ## [1.1.1] - 2023/12/28 Thu
 - update README/CHANGELOG

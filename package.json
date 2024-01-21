@@ -2,7 +2,7 @@
   "name": "vscode-smart-insert-date",
   "displayName": "Smart Insert Date",
   "description": "This extension inserts fomatted date and time",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "icon": "vscode-smart-insert-date_icon.png",
   "publisher": "SatoshiYamamoto",
   "author": {
@@ -154,7 +154,7 @@
   ],
   "scripts": {
     "lint": "eslint --fix ./src",
-    "pack": "npx -y vsce package && code --install-extension vscode-smart-insert-date-1.1.1.vsix",
+    "pack": "npx -y vsce package && code --install-extension vscode-smart-insert-date-1.2.0.vsix",
     "": ""
   },
   "devDependencies": {

@@ -233,9 +233,15 @@ settings.json
 
 | Format  | Value     | Memo  |
 | -       | -         | -     |
-| `DDD`   | 日        | DayOfWeek text 日,月,火,水,木,金,土
-| `DDDD`  | 日曜日    | DayOfWeek text 日曜日,月曜日,火曜日,...
-| `AAA`   | 午後      | ampm 午前,午後
+| `DDD`   | 日        | DayOfWeek text: 日,月,火,水,木,金,土
+| `DDDD`  | 日曜日    | DayOfWeek text: 日曜日,月曜日,火曜日,...
+| `AAA`   | 午後      | ampm: 午前,午後
+| `G`     | R         | Japanese imperial year: R,H,S,T,M 
+| `GG`    | 令        | Japanese imperial year: 令,平,昭,大,明 
+| `GGG`   | 令和      | Japanese imperial year: 令和,平成,昭和,大正,明治
+| `E`     | 6         | A.D.2024 = R6
+| `EE`    | 06        | A.D.2024 = R06
+
 
 ## To Chinese, To Taiwanese
 
@@ -302,10 +308,10 @@ Other Patterns
 
 | Format  | Value     | Memo  |
 | -       | -         | -     |
-| `DDD`   | 日        | DayOfWeek text 日,一,二,三,四,五,六
-| `DDDD`  | 星期日    | DayOfWeek text 星期日,星期一,星期二,...
-| `AAA`   | 下        | ampm 上,下
-| `AAAA`  | 下午      | ampm 上午,下午
+| `DDD`   | 日        | DayOfWeek text: 日,一,二,三,四,五,六
+| `DDDD`  | 星期日    | DayOfWeek text: 星期日,星期一,星期二,...
+| `AAA`   | 下        | ampm: 上,下
+| `AAAA`  | 下午      | ampm: 上午,下午
 
 ## License
 

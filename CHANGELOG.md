@@ -5,6 +5,7 @@
 - change Command delimter '|' -> ':'
 - update fix Error
 - update select date select format type only date
+- fix load setting command text
 
 ## [1.2.0] - 2024/01/22 Mon
 - refactoring

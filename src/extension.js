@@ -10,7 +10,6 @@ const {
 } = require(`./lib/libVSCode.js`);
 
 const {
-  _dateToString,
   _Year,
   _Month,
   _Day,
@@ -41,7 +40,60 @@ const getDateFormatArray = (formatType) => {
   return formatData.map(item => item.format);
 };
 
+const createDateToString = () => {
+
+  const dayOfWeekKeys = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+  ];
+
+  const dayOfWeekCustomNamesShort = [];
+  const customDayOfWeekShort = vscode.workspace
+    .getConfiguration(`SmartInsertDate`).get(`CustomDayOfWeekShort`)
+  for (const key of dayOfWeekKeys) {
+    dayOfWeekCustomNamesShort.push(customDayOfWeekShort[key] ?? ``);
+  }
+
+  const dayOfWeekCustomNamesLong = [];
+  const customDayOfWeekLong = vscode.workspace
+    .getConfiguration(`SmartInsertDate`).get(`CustomDayOfWeekLong`)
+  for (const key of dayOfWeekKeys) {
+    dayOfWeekCustomNamesLong.push(customDayOfWeekLong[key] ?? ``);
+  }
+
+  const ampmCustomNamesShort = [];
+  const customAmPmShort = vscode.workspace
+    .getConfiguration(`SmartInsertDate`).get(`CustomAmPmShort`)
+  console.log(`customAmPmShort`, customAmPmShort)
+  ampmCustomNamesShort[0] = customAmPmShort?.am ?? ``;
+  ampmCustomNamesShort[1] = customAmPmShort?.pm ?? ``;
+
+  const ampmCustomNamesLong = [];
+  const customAmPmLong = vscode.workspace
+    .getConfiguration(`SmartInsertDate`).get(`CustomAmPmLong`)
+  ampmCustomNamesLong[0] = customAmPmLong?.am ?? ``;
+  ampmCustomNamesLong[1] = customAmPmLong?.pm ?? ``;
+
+  return (date, format) => {
+    return dateToStringJp(
+      date,
+      format,
+      dayOfWeekCustomNamesShort,
+      dayOfWeekCustomNamesLong,
+      ampmCustomNamesShort,
+      ampmCustomNamesLong,
+    );
+  };
+}
+
 function activate(context) {
+
+  const dateToString = createDateToString();
 
   const _insertDateTime = (dateType, date, formatIndex, format) => {
     const editor = getEditor(); if (!editor) { return; }
@@ -49,50 +101,9 @@ function activate(context) {
     insertBuffer.date = date;
     insertBuffer.formatIndex = formatIndex;
 
-    const dayOfWeekKeys = [
-      "Sun",
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat",
-    ];
-
-    const dayOfWeekCustomNamesShort = [];
-    const customDayOfWeekShort = vscode.workspace
-      .getConfiguration(`SmartInsertDate`).get(`CustomDayOfWeekShort`)
-    for (const key of dayOfWeekKeys) {
-      dayOfWeekCustomNamesShort.push(customDayOfWeekShort[key] ?? ``);
-    }
-
-    const dayOfWeekCustomNamesLong = [];
-    const customDayOfWeekLong = vscode.workspace
-      .getConfiguration(`SmartInsertDate`).get(`CustomDayOfWeekLong`)
-    for (const key of dayOfWeekKeys) {
-      dayOfWeekCustomNamesLong.push(customDayOfWeekLong[key] ?? ``);
-    }
-
-    const ampmCustomNamesShort = [];
-    const customAmPmShort = vscode.workspace
-      .getConfiguration(`SmartInsertDate`).get(`CustomAmPmShort`)
-    console.log(`customAmPmShort`, customAmPmShort)
-    ampmCustomNamesShort[0] = customAmPmShort?.am ?? ``;
-    ampmCustomNamesShort[1] = customAmPmShort?.pm ?? ``;
-
-    const ampmCustomNamesLong = [];
-    const customAmPmLong = vscode.workspace
-      .getConfiguration(`SmartInsertDate`).get(`CustomAmPmLong`)
-    ampmCustomNamesLong[0] = customAmPmLong?.am ?? ``;
-    ampmCustomNamesLong[1] = customAmPmLong?.pm ?? ``;
-
-    insertBuffer.text = dateToStringJp(
+    insertBuffer.text = dateToString(
       insertBuffer.date,
       format,
-      dayOfWeekCustomNamesShort,
-      dayOfWeekCustomNamesLong,
-      ampmCustomNamesShort,
-      ampmCustomNamesLong,
     );
     insertText(editor, insertBuffer.text);
   }
@@ -151,7 +162,7 @@ function activate(context) {
       }
       for (const [index, format] of formats.entries()) {
         commands.push({
-          label: _dateToString(targetDate, format),
+          label: dateToString(targetDate, format),
           description: ``,
           func: () => { _insertDateTime(dateType, targetDate, index, format); }
         });
@@ -191,38 +202,38 @@ function activate(context) {
     commandQuickPick([
       {
         label: `This Week | `
-        + `${_dateToString(dateThisWeek, `YYYY-MM-DD`)}`,
+        + `${dateToString(dateThisWeek, `YYYY-MM-DD`)}`,
         description: `▸`,
         func: () => { selectDateInWeek(dateThisWeek); }
       },
       {
         label: `-1 Week | Last Week | `
-        + `${_dateToString(dateLastWeek, `YYYY-MM-DD`)}`,
+        + `${dateToString(dateLastWeek, `YYYY-MM-DD`)}`,
         description: `▸`,
         func: () => { selectDateInWeek(dateLastWeek); }
       },
       {
         label: `+1 Week | Next Week | `
-        + `${_dateToString(dateNextWeek, `YYYY-MM-DD`)}`,
+        + `${dateToString(dateNextWeek, `YYYY-MM-DD`)}`,
         description: `▸`,
         func: () => { selectDateInWeek(dateNextWeek); }
       },
       {label: ``, kind: vscode.QuickPickItemKind.Separator},
       {
         label: `This Month | `
-        + `${_dateToString(dateThisMonth, `YYYY-MM : MMM`)}`,
+        + `${dateToString(dateThisMonth, `YYYY-MM : MMM`)}`,
         description: `▸`,
         func: () => { selectDateInMonth(dateThisMonth); }
       },
       {
         label: `-1 Month | Last Month | `
-        + `${_dateToString(dateLastMonth, `YYYY-MM : MMM`)}`,
+        + `${dateToString(dateLastMonth, `YYYY-MM : MMM`)}`,
         description: `▸`,
         func: () => { selectDateInMonth(dateLastMonth); }
       },
       {
         label: `+1 Month | Next Month | `
-        + `${_dateToString(dateNextMonth, `YYYY-MM : MMM`)}`,
+        + `${dateToString(dateNextMonth, `YYYY-MM : MMM`)}`,
         description: `▸`,
         func: () => { selectDateInMonth(dateNextMonth); }
       },
@@ -302,14 +313,14 @@ function activate(context) {
     for (let i = 0; i <= 8; i += 1) {
       const targetDate = _Year(i * 10, dateYear);
       commands.push({
-        label: `${_dateToString(targetDate, `YYYY`)} - ${_dateToString(_Year(9, targetDate), `YYYY`)}`,
+        label: `${dateToString(targetDate, `YYYY`)} - ${dateToString(_Year(9, targetDate), `YYYY`)}`,
         description: `▸`,
         func: () => { selectOneYear(targetDate, 10); },
       });
     }
     commandQuickPick(commands,
       `Smart Insert Date | Select Date | ` +
-      `${_dateToString(dateYear, `YYYY`)} - ${_dateToString(_Year(89, dateYear), `YYYY`)}`);
+      `${dateToString(dateYear, `YYYY`)} - ${dateToString(_Year(89, dateYear), `YYYY`)}`);
   };
 
   const selectOneYear = (dateYear, count) => {
@@ -317,14 +328,14 @@ function activate(context) {
     for (let i = 0; i <= count - 1; i += 1) {
       const targetDate = _Year(i, dateYear);
       commands.push({
-        label: _dateToString(targetDate, `YYYY`),
+        label: dateToString(targetDate, `YYYY`),
         description: `▸`,
         func: () => { selectMonth(targetDate); },
       });
     }
     commandQuickPick(commands,
       `Smart Insert Date | Select Date | ` +
-      `${_dateToString(dateYear, `YYYY`)} - ${_dateToString(_Year(9, dateYear), `YYYY`)}`);
+      `${dateToString(dateYear, `YYYY`)} - ${dateToString(_Year(9, dateYear), `YYYY`)}`);
   };
 
   const selectMonth = (dateYear) => {
@@ -333,7 +344,7 @@ function activate(context) {
       const targetDate = _Month(i - 1, dateYear);
       const isThisMonth = equalMonth(targetDate, _Month(`this`));
       commands.push({
-        label: _dateToString(targetDate, `MM : YYYY-MM : MMM`) +
+        label: dateToString(targetDate, `MM : YYYY-MM : MMM`) +
         (isThisMonth ? ` : This month` : ``),
         description: `▸`,
         func: () => {
@@ -356,7 +367,7 @@ function activate(context) {
       const isTomorrow = equalDate(targetDate, _Day(1));
       commands.push({
         label:
-          _dateToString(targetDate, `DD : YYYY-MM-DD ddd`) +
+          dateToString(targetDate, `DD : YYYY-MM-DD ddd`) +
           (isYesterday ? ` : Yesterday`
             : isToday ? ` : Today`
               : isTomorrow ? ` : Tomorrow`
@@ -366,7 +377,7 @@ function activate(context) {
           selectFormat(
             targetDate,
             `Smart Insert Date | Select Date | ` +
-            `${_dateToString(targetDate, `YYYY-MM-DD ddd`)}`,
+            `${dateToString(targetDate, `YYYY-MM-DD ddd`)}`,
             [`Date`],
           );
         }
@@ -374,7 +385,7 @@ function activate(context) {
     }
     commandQuickPick(commands,
       `Smart Insert Date | Select Date | ` +
-      `${_dateToString(dateMonth, `YYYY-MM`)}`
+      `${dateToString(dateMonth, `YYYY-MM`)}`
     );
   };
 
@@ -387,7 +398,7 @@ function activate(context) {
       const isTomorrow = equalDate(targetDate, _Day(`tomorrow`));
       commands.push({
         label:
-          _dateToString(targetDate, `DD : YYYY-MM-DD ddd`) + (
+          dateToString(targetDate, `DD : YYYY-MM-DD ddd`) + (
             isYesterday ? ` : Yesterday`
             : isToday ? ` : Today`
             : isTomorrow ? ` : Tomorrow`
@@ -398,7 +409,7 @@ function activate(context) {
           selectFormat(
             targetDate,
             `Smart Insert Date | Select Date | ` +
-            `${_dateToString(targetDate, `YYYY-MM-DD ddd`)}`,
+            `${dateToString(targetDate, `YYYY-MM-DD ddd`)}`,
             [`Date`],
           );
         }
@@ -407,7 +418,7 @@ function activate(context) {
 
     commandQuickPick(commands,
       `Smart Insert Date | Select Date | ` +
-      `${_dateToString(dateWeekStart, `YYYY-MM`)}`
+      `${dateToString(dateWeekStart, `YYYY-MM`)}`
     );
   };
 
@@ -421,6 +432,6 @@ function activate(context) {
 function deactivate() {}
 
 module.exports = {
-	activate,
-	deactivate
+  activate,
+  deactivate
 }

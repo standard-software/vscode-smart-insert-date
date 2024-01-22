@@ -140,9 +140,9 @@ function activate(context) {
     () => { insertDateTime(`Time`); }
   );
 
-  const selectFormat = (targetDate, placeHolder) => {
+  const selectFormat = (targetDate, placeHolder, dateTypes) => {
     const commands = [];
-    for (const dateType of [`Date`, `DateTime`, `Time`]) {
+    for (const dateType of dateTypes) {
       const formats = getDateFormatArray(`${dateType}Format`);
       if (formats.length !== 0) {
         commands.push(
@@ -165,7 +165,13 @@ function activate(context) {
 
   registerCommand(context,
     `vscode-smart-insert-date.SelectFormat`,
-    () => { selectFormat(new Date(), `Smart Insert Date | Select Format`); }
+    () => {
+      selectFormat(
+        new Date(),
+        `Smart Insert Date | Select Format`,
+        [`Date`, `DateTime`, `Time`],
+      );
+    }
   );
 
   const selectDate = () => {
@@ -360,7 +366,8 @@ function activate(context) {
           selectFormat(
             targetDate,
             `Smart Insert Date | Select Date | ` +
-            `${_dateToString(targetDate, `YYYY-MM-DD ddd`)}`
+            `${_dateToString(targetDate, `YYYY-MM-DD ddd`)}`,
+            [`Date`],
           );
         }
       });
@@ -391,7 +398,8 @@ function activate(context) {
           selectFormat(
             targetDate,
             `Smart Insert Date | Select Date | ` +
-            `${_dateToString(targetDate, `YYYY-MM-DD ddd`)}`
+            `${_dateToString(targetDate, `YYYY-MM-DD ddd`)}`,
+            [`Date`],
           );
         }
       });

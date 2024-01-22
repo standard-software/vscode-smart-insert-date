@@ -3,7 +3,8 @@
 ## [1.2.1] - 2024/01/22 Mon
 - update README
 - change Command delimter '|' -> ':'
-- update fix misstake Error
+- update fix Error
+- update select date select format type only date
 
 ## [1.2.0] - 2024/01/22 Mon
 - refactoring

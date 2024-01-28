@@ -1,5 +1,8 @@
 # Change Log
 
+## [1.2.2] - 2024/01/29 Mon
+- update command title
+
 ## [1.2.1] - 2024/01/22 Mon
 - update README
 - change Command delimter '|' -> ':'

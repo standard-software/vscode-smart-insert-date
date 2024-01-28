@@ -124,11 +124,11 @@
       },
       {
         "command": "vscode-smart-insert-date.SelectFormat",
-        "title": "Smart Insert Date : Select Format"
+        "title": "Smart Insert Date : Select Format..."
       },
       {
         "command": "vscode-smart-insert-date.SelectDate",
-        "title": "Smart Insert Date : Select Date"
+        "title": "Smart Insert Date : Select Date..."
       }
     ],
     "keybindings": [

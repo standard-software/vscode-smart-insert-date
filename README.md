@@ -3,7 +3,7 @@
 [![](https://vsmarketplacebadges.dev/version-short/SatoshiYamamoto.vscode-smart-insert-date.png)](https://marketplace.visualstudio.com/items?itemName=SatoshiYamamoto.vscode-smart-insert-date)
 [![](https://vsmarketplacebadges.dev/installs-short/SatoshiYamamoto.vscode-smart-insert-date.png)](https://marketplace.visualstudio.com/items?itemName=SatoshiYamamoto.vscode-smart-insert-date)
 [![](https://vsmarketplacebadges.dev/rating-short/SatoshiYamamoto.vscode-smart-insert-date.png)](https://marketplace.visualstudio.com/items?itemName=SatoshiYamamoto.vscode-smart-insert-date)
-[![](https://img.shields.io/github/license/standard-software/vscode-date-time-calendar.png)](https://github.com/standard-software/vscode-date-time-calendar/blob/main/LICENSE)
+[![](https://img.shields.io/github/license/standard-software/vscode-smart-insert-date.png)](https://github.com/standard-software/vscode-smart-insert-date/blob/main/LICENSE)
 
 This extension inserts formatted dates and times into the editor.
 

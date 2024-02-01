@@ -5,7 +5,7 @@ const {
   getEditor,
   commandQuickPick,
 
-  insertText,
+  insertTextSelected,
   getSelectedText,
 } = require(`./lib/libVSCode.js`);
 
@@ -105,7 +105,7 @@ function activate(context) {
       insertBuffer.date,
       format,
     );
-    insertText(editor, insertBuffer.text);
+    insertTextSelected(editor, insertBuffer.text);
   }
 
   const insertDateTime = (dateType) => {

@@ -39,53 +39,79 @@ const commandQuickPick = (commands, placeHolder) => {
 
 // VSCode editor.selections
 
-const equalSelectionItem = (itemA, itemB) => {
-  if (
-    itemA.line === itemB.line
-    && itemA.character === itemB.character
-  ) {
-    return true;
-  }
-  return false;
-}
-
-const insertTextUnSelect = (editor, str) => {
+const insertText = (editor, str) => {
   editor.edit(editBuilder => {
     for (const selection of editor.selections) {
-      editBuilder.replace(selection, ``);
-      editBuilder.insert(selection.active, str);
+      editBuilder.replace(selection, str);
     }
   });
 };
 
-const insertText = (editor, str) => {
-  const updateSelections = [];
+const insertTextNotSelected = (editor, str) => {
   editor.edit(editBuilder => {
     for (const selection of editor.selections) {
-      if (equalSelectionItem(selection.start, selection.end)) {
-        editBuilder.replace(selection, str);
-        updateSelections.push(true);
-      } else {
-        editBuilder.replace(selection, str);
-        updateSelections.push(false);
-      }
+      editBuilder.replace(selection, str);
     }
   }).then(() => {
-    if (updateSelections.some(v=>v)) {
-      const newSelections = [...editor.selections];
-      for (const [i, update] of updateSelections.entries()) {
-        if (update) {
-          newSelections[i] =
-          new vscode.Selection(
-            editor.selections[i].start.line,
-            editor.selections[i].start.character - str.length,
-            editor.selections[i].end.line,
-            editor.selections[i].end.character,
-          );
-        }
+    const newSelections = [];
+    for (const selection of editor.selections) {
+      if (
+        selection.start.line === selection.end.line
+        && selection.start.character === selection.end.character
+      ) {
+        newSelections.push(selection);
+      } else {
+        newSelections.push(new vscode.Selection(
+          selection.end.line,
+          selection.end.character,
+          selection.end.line,
+          selection.end.character
+        ));
       }
-      editor.selections = newSelections;
     }
+    editor.selections = newSelections;
+  });
+};
+
+const insertTextSelected = (editor, str) => {
+  editor.edit(editBuilder => {
+    for (const selection of editor.selections) {
+      editBuilder.replace(selection, str);
+    }
+  }).then(() => {
+    const newSelections = [];
+    for (const selection of editor.selections) {
+      if (
+        selection.start.line === selection.end.line
+        && selection.start.character === selection.end.character
+      ) {
+        const strLines = str.split(`\n`);
+        if (strLines.length === 0) {
+          throw new Error(`insertTextSelected`);
+        } else if (strLines.length === 1) {
+          newSelections.push(new vscode.Selection(
+            selection.start.line,
+            selection.start.character - str.length,
+            selection.end.line,
+            selection.end.character,
+          ));
+        } else {
+          const selectionStartLine = selection.start.line - (strLines.length - 1);
+          const selectionStartCharactor =
+            editor.document.lineAt(selectionStartLine).text.length -
+            strLines[0].length
+          newSelections.push(new vscode.Selection(
+            selectionStartLine,
+            selectionStartCharactor,
+            selection.start.line,
+            selection.start.character
+          ));
+        }
+      } else {
+        newSelections.push(selection);
+      }
+    }
+    editor.selections = newSelections;
   });
 };
 
@@ -104,8 +130,8 @@ module.exports = {
   getEditor,
   commandQuickPick,
 
-  equalSelectionItem,
-  insertTextUnSelect,
   insertText,
+  insertTextNotSelected,
+  insertTextSelected,
   getSelectedText,
 };

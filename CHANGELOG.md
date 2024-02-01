@@ -2,6 +2,9 @@
 
 ## [1.2.2] - 2024/01/29 Mon
 - update command title
+- update image
+- refactoring
+- fix README link
 
 ## [1.2.1] - 2024/01/22 Mon
 - update README

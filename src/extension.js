@@ -195,28 +195,17 @@ function activate(context) {
     const dateNextMonth = _Month(+1, dateThisMonth);
 
     const today = _Day(`today`)
-    const dateThisWeek = _Day(-today.getDay(), today);
-    const dateLastWeek = _Day(-today.getDay() - 7, today);
-    const dateNextWeek = _Day(-today.getDay() + 7, today);
+    const dateLastWeekStart = _Day(-today.getDay() - 7, today);
+    const dateNextWeekEnd = _Day(-today.getDay() + 14 - 1, today);
 
     commandQuickPick([
       {
-        label: `This Week | `
-        + `${dateToString(dateThisWeek, `YYYY-MM-DD`)}`,
+        label: `Last Week To Next Week | `
+        + `${dateToString(dateLastWeekStart, `YYYY-MM-DD`)}`
+        + ` _ ${dateToString(dateNextWeekEnd, `YYYY-MM-DD`)}`
+        ,
         description: `▸`,
-        func: () => { selectDateInWeek(dateThisWeek); }
-      },
-      {
-        label: `-1 Week | Last Week | `
-        + `${dateToString(dateLastWeek, `YYYY-MM-DD`)}`,
-        description: `▸`,
-        func: () => { selectDateInWeek(dateLastWeek); }
-      },
-      {
-        label: `+1 Week | Next Week | `
-        + `${dateToString(dateNextWeek, `YYYY-MM-DD`)}`,
-        description: `▸`,
-        func: () => { selectDateInWeek(dateNextWeek); }
+        func: () => { selectDateInDays(dateLastWeekStart, + 21); }
       },
       {label: ``, kind: vscode.QuickPickItemKind.Separator},
       {
@@ -389,10 +378,10 @@ function activate(context) {
     );
   };
 
-  const selectDateInWeek = (dateWeekStart) => {
+  const selectDateInDays = (dateStart, dateCount) => {
     const commands = [];
-    for (let i = 0; i <= 6; i += 1) {
-      const targetDate = _Day(i, dateWeekStart);
+    for (let i = 0; i <= dateCount - 1; i += 1) {
+      const targetDate = _Day(i, dateStart);
       const isYesterday = equalDate(targetDate, _Day(`yesterday`));
       const isToday = equalToday(targetDate, _Day(`today`));
       const isTomorrow = equalDate(targetDate, _Day(`tomorrow`));
@@ -418,7 +407,7 @@ function activate(context) {
 
     commandQuickPick(commands,
       `Smart Insert Date | Select Date | ` +
-      `${dateToString(dateWeekStart, `YYYY-MM`)}`
+      `${dateToString(dateStart, `YYYY-MM`)}`
     );
   };
 

@@ -26,6 +26,7 @@ const commandQuickPick = (commands, placeHolder) => {
   //   {label:``, kind:vscode.QuickPickItemKind.Separator}
   // ]
   vscode.window.showQuickPick(
+    // eslint-disable-next-line no-unused-vars
     commands.map(({func, ...command}) => (command)),
     {
       canPickMany: false,

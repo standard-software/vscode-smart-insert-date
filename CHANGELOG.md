@@ -3,6 +3,7 @@
 ## [1.3.0] - 2024/04/03 Wed
 - update select date
   - last, this, next week -> last week to next week
+- update README
 
 ## [1.2.2] - 2024/01/29 Mon
 - update command title

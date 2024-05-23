@@ -3,6 +3,8 @@
 ## [1.3.0] - 2024/05/23 Thu
 - update select date
   - today | yesterday | tomorrow
+- update menu delimiter
+  - | -> :
 
 ## [1.3.0] - 2024/04/03 Wed
 - update select date

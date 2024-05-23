@@ -178,7 +178,7 @@ function activate(context) {
     () => {
       selectFormat(
         new Date(),
-        `Smart Insert Date | Select Format`,
+        `Smart Insert Date : Select Format`,
         [`Date`, `DateTime`, `Time`],
       );
     }
@@ -201,39 +201,39 @@ function activate(context) {
 
     commandQuickPick([
       {
-        label: `Today | `
+        label: `Today : `
         + `${dateToString(today, `YYYY-MM-DD`)}`
         ,
         func: () => {
           selectFormat(
             today,
-            `Smart Insert Date | Select Date | ` +
+            `Smart Insert Date : Select Date : ` +
             `${dateToString(today, `YYYY-MM-DD ddd`)}`,
             [`Date`],
           );
         }
       },
       {
-        label: `-1 Day | Yesterday | `
+        label: `-1 Day : Yesterday : `
         + `${dateToString(yesterday, `YYYY-MM-DD`)}`
         ,
         func: () => {
           selectFormat(
             yesterday,
-            `Smart Insert Date | Select Date | ` +
+            `Smart Insert Date : Select Date : ` +
             `${dateToString(yesterday, `YYYY-MM-DD ddd`)}`,
             [`Date`],
           );
         }
       },
       {
-        label: `+1 Day | Tomorrow | `
+        label: `+1 Day : Tomorrow : `
         + `${dateToString(tomorrow, `YYYY-MM-DD`)}`
         ,
         func: () => {
           selectFormat(
             tomorrow,
-            `Smart Insert Date | Select Date | ` +
+            `Smart Insert Date : Select Date : ` +
             `${dateToString(tomorrow, `YYYY-MM-DD ddd`)}`,
             [`Date`],
           );
@@ -241,7 +241,7 @@ function activate(context) {
       },
       {label: ``, kind: vscode.QuickPickItemKind.Separator},
       {
-        label: `Last Week To Next Week | `
+        label: `Last Week To Next Week : `
         + `${dateToString(dateLastWeekStart, `YYYY-MM-DD`)}`
         + ` _ ${dateToString(dateNextWeekEnd, `YYYY-MM-DD`)}`
         ,
@@ -250,36 +250,36 @@ function activate(context) {
       },
       {label: ``, kind: vscode.QuickPickItemKind.Separator},
       {
-        label: `This Month | `
+        label: `This Month : `
         + `${dateToString(dateThisMonth, `YYYY-MM : MMM`)}`,
         description: `▸`,
         func: () => { selectDateInMonth(dateThisMonth); }
       },
       {
-        label: `-1 Month | Last Month | `
+        label: `-1 Month : Last Month : `
         + `${dateToString(dateLastMonth, `YYYY-MM : MMM`)}`,
         description: `▸`,
         func: () => { selectDateInMonth(dateLastMonth); }
       },
       {
-        label: `+1 Month | Next Month | `
+        label: `+1 Month : Next Month : `
         + `${dateToString(dateNextMonth, `YYYY-MM : MMM`)}`,
         description: `▸`,
         func: () => { selectDateInMonth(dateNextMonth); }
       },
       {label: ``, kind: vscode.QuickPickItemKind.Separator},
       {
-        label: `This Year | ${dateThisYear.getFullYear()}`,
+        label: `This Year : ${dateThisYear.getFullYear()}`,
         description: `▸`,
         func: () => { selectMonth(dateThisYear); }
       },
       {
-        label: `-1 Year | Last Year | ${dateLastYear.getFullYear()}`,
+        label: `-1 Year : Last Year : ${dateLastYear.getFullYear()}`,
         description: `▸`,
         func: () => { selectMonth(dateLastYear); }
       },
       {
-        label: `+1 Year | Next Year | ${dateNextYear.getFullYear()}`,
+        label: `+1 Year : Next Year : ${dateNextYear.getFullYear()}`,
         description: `▸`,
         func: () => { selectMonth(dateNextYear); }
       },
@@ -289,7 +289,7 @@ function activate(context) {
         description: `▸`,
         func: () => { selectDateRange200Year(); }
       },
-    ], `Smart Insert Date | Select Date`);
+    ], `Smart Insert Date : Select Date`);
   }
 
   const selectDateRange200Year = () => {
@@ -335,7 +335,7 @@ function activate(context) {
         description: `▸`,
         func: () => { selectTenYear(_Year(11, dateThisYear)); }
       },
-    ], `Smart Insert Date | Select Date | Select Year range -100 to +100`);
+    ], `Smart Insert Date : Select Date : Select Year range -100 to +100`);
   }
 
   const selectTenYear = (dateYear) => {
@@ -349,7 +349,7 @@ function activate(context) {
       });
     }
     commandQuickPick(commands,
-      `Smart Insert Date | Select Date | ` +
+      `Smart Insert Date : Select Date : ` +
       `${dateToString(dateYear, `YYYY`)} - ${dateToString(_Year(89, dateYear), `YYYY`)}`);
   };
 
@@ -364,7 +364,7 @@ function activate(context) {
       });
     }
     commandQuickPick(commands,
-      `Smart Insert Date | Select Date | ` +
+      `Smart Insert Date : Select Date : ` +
       `${dateToString(dateYear, `YYYY`)} - ${dateToString(_Year(9, dateYear), `YYYY`)}`);
   };
 
@@ -383,7 +383,7 @@ function activate(context) {
       });
     }
     commandQuickPick(commands,
-      `Smart Insert Date | Select Date | ` +
+      `Smart Insert Date : Select Date : ` +
       `${dateYear.getFullYear()}`);
   };
 
@@ -406,7 +406,7 @@ function activate(context) {
         func: () => {
           selectFormat(
             targetDate,
-            `Smart Insert Date | Select Date | ` +
+            `Smart Insert Date : Select Date : ` +
             `${dateToString(targetDate, `YYYY-MM-DD ddd`)}`,
             [`Date`],
           );
@@ -414,7 +414,7 @@ function activate(context) {
       });
     }
     commandQuickPick(commands,
-      `Smart Insert Date | Select Date | ` +
+      `Smart Insert Date : Select Date : ` +
       `${dateToString(dateMonth, `YYYY-MM`)}`
     );
   };
@@ -438,7 +438,7 @@ function activate(context) {
         func: () => {
           selectFormat(
             targetDate,
-            `Smart Insert Date | Select Date | ` +
+            `Smart Insert Date : Select Date : ` +
             `${dateToString(targetDate, `YYYY-MM-DD ddd`)}`,
             [`Date`],
           );
@@ -447,7 +447,7 @@ function activate(context) {
     }
 
     commandQuickPick(commands,
-      `Smart Insert Date | Select Date | ` +
+      `Smart Insert Date : Select Date : ` +
       `${dateToString(dateStart, `YYYY-MM`)}`
     );
   };

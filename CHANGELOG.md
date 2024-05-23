@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.3.0] - 2024/05/23 Thu
+- update select date
+  - today | yesterday | tomorrow
+
 ## [1.3.0] - 2024/04/03 Wed
 - update select date
   - last, this, next week -> last week to next week

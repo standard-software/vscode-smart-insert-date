@@ -69,7 +69,6 @@ const createDateToString = () => {
   const ampmCustomNamesShort = [];
   const customAmPmShort = vscode.workspace
     .getConfiguration(`SmartInsertDate`).get(`CustomAmPmShort`)
-  console.log(`customAmPmShort`, customAmPmShort)
   ampmCustomNamesShort[0] = customAmPmShort?.am ?? ``;
   ampmCustomNamesShort[1] = customAmPmShort?.pm ?? ``;
 
@@ -194,11 +193,53 @@ function activate(context) {
     const dateLastMonth = _Month(-1, dateThisMonth);
     const dateNextMonth = _Month(+1, dateThisMonth);
 
-    const today = _Day(`today`)
+    const today = _Day(`today`);
+    const yesterday = _Day(`yesterday`);
+    const tomorrow = _Day(`tomorrow`);
     const dateLastWeekStart = _Day(-today.getDay() - 7, today);
     const dateNextWeekEnd = _Day(-today.getDay() + 14 - 1, today);
 
     commandQuickPick([
+      {
+        label: `Today | `
+        + `${dateToString(today, `YYYY-MM-DD`)}`
+        ,
+        func: () => {
+          selectFormat(
+            today,
+            `Smart Insert Date | Select Date | ` +
+            `${dateToString(today, `YYYY-MM-DD ddd`)}`,
+            [`Date`],
+          );
+        }
+      },
+      {
+        label: `-1 Day | Yesterday | `
+        + `${dateToString(yesterday, `YYYY-MM-DD`)}`
+        ,
+        func: () => {
+          selectFormat(
+            yesterday,
+            `Smart Insert Date | Select Date | ` +
+            `${dateToString(yesterday, `YYYY-MM-DD ddd`)}`,
+            [`Date`],
+          );
+        }
+      },
+      {
+        label: `+1 Day | Tomorrow | `
+        + `${dateToString(tomorrow, `YYYY-MM-DD`)}`
+        ,
+        func: () => {
+          selectFormat(
+            tomorrow,
+            `Smart Insert Date | Select Date | ` +
+            `${dateToString(tomorrow, `YYYY-MM-DD ddd`)}`,
+            [`Date`],
+          );
+        }
+      },
+      {label: ``, kind: vscode.QuickPickItemKind.Separator},
       {
         label: `Last Week To Next Week | `
         + `${dateToString(dateLastWeekStart, `YYYY-MM-DD`)}`

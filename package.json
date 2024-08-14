@@ -26,6 +26,24 @@
     "Other"
   ],
   "keywords": ["datetime", "date", "time"],
+  "enabledApiProposals": [
+    "quickPickSeparators"
+  ],
+  "scripts": {
+    "lint": "eslint --fix ./src",
+    "pack": "npx -y vsce package && code --install-extension vscode-smart-insert-date-1.4.0.vsix",
+    "": ""
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.84.0",
+    "@types/mocha": "^10.0.3",
+    "@types/node": "18.x",
+    "eslint": "^8.52.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2",
+    "@vscode/test-electron": "^2.3.6"
+  },
   "activationEvents": [],
   "main": "./src/extension.js",
   "contributes": {
@@ -148,23 +166,5 @@
         "when": "editorTextFocus"
       }
     ]
-  },
-  "enabledApiProposals": [
-    "quickPickSeparators"
-  ],
-  "scripts": {
-    "lint": "eslint --fix ./src",
-    "pack": "npx -y vsce package && code --install-extension vscode-smart-insert-date-1.4.0.vsix",
-    "": ""
-  },
-  "devDependencies": {
-    "@types/vscode": "^1.84.0",
-    "@types/mocha": "^10.0.3",
-    "@types/node": "18.x",
-    "eslint": "^8.52.0",
-    "glob": "^10.3.10",
-    "mocha": "^10.2.0",
-    "typescript": "^5.2.2",
-    "@vscode/test-electron": "^2.3.6"
   }
 }

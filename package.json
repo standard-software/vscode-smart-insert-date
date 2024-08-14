@@ -10,7 +10,7 @@
     "email": "standard.software.net@gmail.com",
     "url": "https://www.facebook.com/stndardsoftware"
   },
-  "license":"MIT",
+  "license": "MIT",
   "homepage": "https://github.com/standard-software/vscode-smart-insert-date",
   "repository": {
     "type": "git",
@@ -123,12 +123,12 @@
         "title": "Smart Insert Date : Insert Now Time"
       },
       {
-        "command": "vscode-smart-insert-date.SelectFormat",
-        "title": "Smart Insert Date : Select Format..."
+        "command": "vscode-smart-insert-date.SelectDate",
+        "title": "Smart Insert Date : Select Date ..."
       },
       {
-        "command": "vscode-smart-insert-date.SelectDate",
-        "title": "Smart Insert Date : Select Date..."
+        "command": "vscode-smart-insert-date.SelectFormat",
+        "title": "Smart Insert Date : Select Format ..."
       }
     ],
     "keybindings": [

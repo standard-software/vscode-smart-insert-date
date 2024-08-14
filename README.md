@@ -63,9 +63,9 @@ Mac
 
 | Command             | Default Key Windows     | Default Key Mac         |
 |-                    |-                        | -                       |
-| Insert Today        | Alt + Ctrl +  ;          | Opt + Ctrl +  ;          |
-| Insert Now DateTime | Alt + Ctrl + Shift +  ;  | Opt + Ctrl + Shift +  ;  |
-| Insert Now Time     | Alt + Shift +  ;         | Opt + Shift +  ;         |
+| Insert Today        | Alt + Ctrl + ;          | Opt + Ctrl + ;          |
+| Insert Now DateTime | Alt + Ctrl + Shift + ;  | Opt + Ctrl + Shift + ;  |
+| Insert Now Time     | Alt + Shift + ;         | Opt + Shift + ;         |
 
 ## Usage
 

@@ -124,6 +124,75 @@
             "pm": ""
           },
           "description": "Smart Insert Date : CustomAmPmLong"
+        },
+        "SmartInsertDate.CustomMenu": {
+          "type": "array",
+          "description": "Smart Insert Date : CustomMenu",
+          "default": [
+            { "format": "YYYY-MM-DD ddd" },
+            { "format": "ddd, MMM DD, YYYY" },
+            { "format": "dddd, MMMMM DD, YYYY" },
+            { "format": "dddd, MM DD, YYYY" },
+            { "format": "ddd, DD MMM, YYYY" },
+            { "format": "YYYY/MM/DD(ddd)" },
+            { "format": "YYYYMMDD" },
+            {
+              "label": "YYYY-MM-DD",
+              "items": [
+                { "format": "YYYY-MM-DD" },
+                { "format": "YYYY-MM-DD ddd" },
+                { "format": "YYYY-MM-DD dddd" }
+              ]
+            },
+            {
+              "label": "YYYY/MM/DD",
+              "items": [
+                { "format": "YYYY/MM/DD" },
+                { "format": "YYYY/MM/DD ddd" },
+                {
+                  "label": "Japanese",
+                  "separator": true
+                },
+                { "format": "YYYY/MM/DD(DDD)" },
+                { "format": "YYYY/MM/DD DDD曜" },
+                { "format": "YYYY/MM/DD DDDD" },
+                {
+                  "label": "'+Time 12'",
+                  "items": [
+                    { "format": "YYYY/MM/DD hh:mm aa" },
+                    { "format": "YYYY/MM/DD ddd hh:mm aa" },
+                    {
+                      "label": "Japanese",
+                      "separator": true
+                    },
+                    { "format": "YYYY/MM/DD(DDD) hh:mm aa" },
+                    { "format": "YYYY/MM/DD DDD曜 hh:mm aa" },
+                    { "format": "YYYY/MM/DD DDDD hh:mm aa" },
+                    { "format": "YYYY/MM/DD(DDD) AA hh:mm" },
+                    { "format": "YYYY/MM/DD DDD曜 AA hh:mm" },
+                    { "format": "YYYY/MM/DD DDDD AA hh:mm" }
+                  ]
+                },
+                {
+                  "label": "'+Time 24'",
+                  "items": [
+                    { "format": "YYYY/MM/DD HH:mm" },
+                    { "format": "YYYY/MM/DD ddd HH:mm" },
+                    {
+                      "label": "Japanese",
+                      "separator": true
+                    },
+                    { "format": "YYYY/MM/DD(DDD) HH:mm" },
+                    { "format": "YYYY/MM/DD DDD曜 HH:mm" },
+                    { "format": "YYYY/MM/DD DDDD HH:mm" },
+                    { "format": "YYYY/MM/DD(DDD) HH:mm" },
+                    { "format": "YYYY/MM/DD DDD曜 HH:mm" },
+                    { "format": "YYYY/MM/DD DDDD HH:mm" }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       }
     },
@@ -146,7 +215,11 @@
       },
       {
         "command": "vscode-smart-insert-date.SelectFormat",
-        "title": "Smart Insert Date : Select Format ..."
+        "title": "Smart Insert Date : Select Format : Root Command ..."
+      },
+      {
+        "command": "vscode-smart-insert-date.SelectFormatCustomMenu",
+        "title": "Smart Insert Date : Select Format : Custom Menu ..."
       }
     ],
     "keybindings": [

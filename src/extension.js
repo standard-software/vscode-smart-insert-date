@@ -13,6 +13,7 @@ const {
   _Year,
   _Month,
   _Day,
+  _subLastDelimLast,
 } = require(`./parts/parts.js`);
 
 const {
@@ -39,6 +40,12 @@ const getDateFormatArray = (formatType) => {
     .getConfiguration(`SmartInsertDate`).get(formatType);
   return formatData.map(item => item.format);
 };
+
+const getCustomMenu = () => {
+  const menuData = vscode.workspace
+    .getConfiguration(`SmartInsertDate`).get(`CustomMenu`);
+  return menuData;
+}
 
 const createDateToString = () => {
 
@@ -94,20 +101,28 @@ function activate(context) {
 
   const dateToString = createDateToString();
 
-  const _insertDateTime = (dateType, date, formatIndex, format) => {
+  const inesrtDateTime = (date, format) => {
     const editor = getEditor(); if (!editor) { return; }
+    const text = dateToString(date, format);
+    insertTextSelected(editor, text);
+
+  }
+
+  const writeBuffer = ({dateType, date, formatIndex, text}) => {
     insertBuffer.dateType = dateType;
     insertBuffer.date = date;
     insertBuffer.formatIndex = formatIndex;
-
-    insertBuffer.text = dateToString(
-      insertBuffer.date,
-      format,
-    );
-    insertTextSelected(editor, insertBuffer.text);
+    insertBuffer.text = text;
   }
 
-  const insertDateTime = (dateType) => {
+  const _insertDateTimeBuffer = (dateType, date, formatIndex, format) => {
+    const editor = getEditor(); if (!editor) { return; }
+    const text = dateToString(date, format);
+    writeBuffer({dateType, date, formatIndex, text})
+    insertTextSelected(editor, text);
+  }
+
+  const insertDateTimeBuffer = (dateType) => {
     if (!([`Date`, `DateTime`, `Time`].includes(dateType))) {
       throw new Error(`insertDateTimeCommand insertType`);
     }
@@ -116,38 +131,39 @@ function activate(context) {
     if (dateFormatArray.length === 0) { return; }
 
     const selectedText = getSelectedText(editor)[0] ?? ``;
+
+    let formatIndex = 0;
+    let date = new Date();
     if (
       insertBuffer.dateType === dateType
       && insertBuffer.text === selectedText
     ) {
-      insertBuffer.formatIndex += 1;
-      if (dateFormatArray.length === insertBuffer.formatIndex) {
-        insertBuffer.formatIndex = 0;
+      formatIndex = insertBuffer.formatIndex + 1;
+      if (dateFormatArray.length === formatIndex) {
+        formatIndex = 0;
       }
-    } else {
-      insertBuffer.formatIndex = 0;
-      insertBuffer.date = new Date();
+      date = insertBuffer.date;
     }
 
-    _insertDateTime(
-      dateType, insertBuffer.date, insertBuffer.formatIndex,
-      dateFormatArray[insertBuffer.formatIndex]
+    _insertDateTimeBuffer(
+      dateType, date, formatIndex,
+      dateFormatArray[formatIndex]
     )
   }
 
   registerCommand(context,
     `vscode-smart-insert-date.Today`,
-    () => { insertDateTime(`Date`); }
+    () => { insertDateTimeBuffer(`Date`); }
   );
 
   registerCommand(context,
     `vscode-smart-insert-date.NowDateTime`,
-    () => { insertDateTime(`DateTime`); }
+    () => { insertDateTimeBuffer(`DateTime`); }
   );
 
   registerCommand(context,
     `vscode-smart-insert-date.NowTime`,
-    () => { insertDateTime(`Time`); }
+    () => { insertDateTimeBuffer(`Time`); }
   );
 
   const selectFormat = (targetDate, placeHolder, dateTypes) => {
@@ -163,7 +179,7 @@ function activate(context) {
         commands.push({
           label: dateToString(targetDate, format),
           description: ``,
-          func: () => { _insertDateTime(dateType, targetDate, index, format); }
+          func: () => { _insertDateTimeBuffer(dateType, targetDate, index, format); }
         });
       }
     }
@@ -178,8 +194,60 @@ function activate(context) {
     () => {
       selectFormat(
         new Date(),
-        `Smart Insert Date : Select Format`,
+        `Smart Insert Date : Select Format : Root Command`,
         [`Date`, `DateTime`, `Time`],
+      );
+    }
+  );
+
+  const selectFormatCustomMenu = (menuItems, targetDate, placeHolder) => {
+    const commands = [];
+    for (const menuItem of menuItems) {
+      if (menuItem.visible === false) { continue; }
+      if (menuItem.separator === true) {
+        commands.push({
+          label: menuItem.label,
+          kind: vscode.QuickPickItemKind.Separator,
+        });
+      } else if (menuItem.format) {
+        const label = dateToString(targetDate,
+          menuItem.label ?? menuItem.format
+        );
+        commands.push({
+          label,
+          description: ``,
+          func: () => { inesrtDateTime(targetDate, menuItem.format); }
+        });
+      } else if (menuItem.items) {
+        const label = dateToString(targetDate,
+          menuItem.label ?? ''
+        );
+        commands.push({
+          label,
+          description: '>>',
+          func: () => {
+            selectFormatCustomMenu(
+              menuItem.items,
+              targetDate,
+              `${_subLastDelimLast(placeHolder, ` : `)} : ${label}`,
+            );
+          }
+        })
+      }
+    }
+    commandQuickPick(
+      commands,
+      placeHolder
+    );
+  };
+
+  registerCommand(context,
+    `vscode-smart-insert-date.SelectFormatCustomMenu`,
+    () => {
+      selectFormatCustomMenu(
+        getCustomMenu(),
+        new Date(),
+        `Smart Insert Date : Select Format : Custom Menu`,
       );
     }
   );
@@ -298,7 +366,7 @@ function activate(context) {
     const dateLastYear = _Year(-1, dateThisYear);
     const dateNextYear = _Year(+1, dateThisYear);
 
-    const yearThis =  dateThisYear.getFullYear();
+    const yearThis = dateThisYear.getFullYear();
     commandQuickPick([
       {
         label: `${yearThis - 100} - ${yearThis - 10 - 1} : 100 year before`,

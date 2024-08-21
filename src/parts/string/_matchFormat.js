@@ -36,6 +36,7 @@ _matchFormat.reset = () => {
 
   _matchFormat.add([`zenkaku`],
     value => value.match(
+      // eslint-disable-next-line no-control-regex
       /^[^\x01-\x7E\xA1-\xDF]+$/,
     ) ? true : false,
   );
@@ -91,7 +92,7 @@ _matchFormat.reset = () => {
   );
   _matchFormat.add([`float_more`],
     value => value.match(
-      // eslint-disable-next-line max-len
+
       /^[-|+]?[0-9]*\.[0-9]*$|^[+|-]?[0-9]+$|^[-|+]?[0-9]+\.?[0-9]*([eE][+-]?[0-9]+)?$/,
     ) ? true : false,
   );

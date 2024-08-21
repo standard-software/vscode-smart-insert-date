@@ -63,7 +63,7 @@ __SortFuncOrder.version.ascending = (a, b) => {
     if (lowerA > lowerB) { return 1; }
     if (valueA < valueB) { return 1; }
     if (valueA > valueB) { return -1; }
-     // lowerCase < upperCase
+    // lowerCase < upperCase
   }
   if (arrayA.length < arrayB.length) { return -1; }
   if (arrayA.length > arrayB.length) { return 1; }

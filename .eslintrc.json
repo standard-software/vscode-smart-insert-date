@@ -1,25 +1,27 @@
 {
-	"env": {
-		"browser": false,
-		"commonjs": true,
-		"es6": true,
+  "env": {
+    "browser": false,
+    "commonjs": true,
+    "es6": true,
     "es2022": true,
-		"node": true,
-		"mocha": true
-	},
-	"parserOptions": {
-		"ecmaFeatures": {
-			"jsx": true
-		},
-		"sourceType": "module"
-	},
-	"rules": {
-		"no-const-assign": "warn",
-		"no-this-before-super": "warn",
-		"no-undef": "warn",
-		"no-unreachable": "warn",
-		"no-unused-vars": "warn",
-		"constructor-super": "warn",
-		"valid-typeof": "warn"
-	}
+    "node": true,
+    "mocha": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-const-assign": "warn",
+    "no-this-before-super": "warn",
+    "no-undef": "warn",
+    "no-unreachable": "warn",
+    "no-unused-vars": "warn",
+    "constructor-super": "warn",
+    "valid-typeof": "warn",
+    "space-in-parens": "warn",
+    "no-multi-spaces": "warn"
+  }
 }

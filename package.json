@@ -129,6 +129,10 @@
           "type": "array",
           "description": "Smart Insert Date : CustomMenu",
           "default": [
+            {
+              "label": "'Root Command'",
+              "items": "RootCommands"
+            },
             { "format": "YYYY-MM-DD ddd" },
             { "format": "ddd, MMM DD, YYYY" },
             { "format": "dddd, MMMMM DD, YYYY" },

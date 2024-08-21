@@ -218,7 +218,7 @@ function activate(context) {
           description: ``,
           func: () => { inesrtDateTime(targetDate, menuItem.format); }
         });
-      } else if (menuItem.items) {
+      } else if (Array.isArray(menuItem.items)) {
         const label = dateToString(targetDate,
           menuItem.label ?? ''
         );
@@ -230,6 +230,21 @@ function activate(context) {
               menuItem.items,
               targetDate,
               `${_subLastDelimLast(placeHolder, ` : `)} : ${label}`,
+            );
+          }
+        })
+      } else if (menuItem.items === `RootCommands`) {
+        const label = dateToString(targetDate,
+          menuItem.label ?? ''
+        );
+        commands.push({
+          label,
+          description: '>>',
+          func: () => {
+            selectFormat(
+              targetDate,
+              `${_subLastDelimLast(placeHolder, ` : `)} : ${label}`,
+              [`Date`, `DateTime`, `Time`],
             );
           }
         })

@@ -14,6 +14,7 @@ const {
   _Month,
   _Day,
   _subLastDelimLast,
+  _subLastDelimFirst,
 } = require(`./parts/parts.js`);
 
 const {
@@ -252,7 +253,7 @@ function activate(context) {
           func: () => {
             selectFormatRootCommand(
               targetDate,
-              `${_subLastDelimLast(placeHolder, ` : `)} : ${label}`,
+              `${_subLastDelimFirst(placeHolder, ` : `)} : ${label}`,
               dateType,
             );
           }
@@ -271,7 +272,7 @@ function activate(context) {
       selectFormatMenu(
         getMenuDateTime(),
         new Date(),
-        `Smart Insert Date : Select Format : Custom Menu`,
+        `Smart Insert Date : Select Format`,
         `DateTime`,
       );
     }

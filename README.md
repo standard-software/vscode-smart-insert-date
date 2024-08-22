@@ -319,3 +319,7 @@ Other Patterns
 ## License
 
 Released under the [MIT License][license].
+
+## Veresion / Change log
+
+[./CHANGELOG.md](./CHANGELOG.md)

@@ -130,71 +130,300 @@
           "description": "Smart Insert Date : CustomMenu",
           "default": [
             {
-              "label": "'Root Command'",
-              "items": "RootCommands"
-            },
-            { "format": "YYYY-MM-DD ddd" },
-            { "format": "ddd, MMM DD, YYYY" },
-            { "format": "dddd, MMMMM DD, YYYY" },
-            { "format": "dddd, MM DD, YYYY" },
-            { "format": "ddd, DD MMM, YYYY" },
-            { "format": "YYYY/MM/DD(ddd)" },
-            { "format": "YYYYMMDD" },
-            {
-              "label": "YYYY-MM-DD",
+              "label": "YYYY-MM-DD 'etc'",
               "items": [
-                { "format": "YYYY-MM-DD" },
-                { "format": "YYYY-MM-DD ddd" },
-                { "format": "YYYY-MM-DD dddd" }
-              ]
-            },
-            {
-              "label": "YYYY/MM/DD",
-              "items": [
-                { "format": "YYYY/MM/DD" },
-                { "format": "YYYY/MM/DD ddd" },
                 {
-                  "label": "Japanese",
-                  "separator": true
-                },
-                { "format": "YYYY/MM/DD(DDD)" },
-                { "format": "YYYY/MM/DD DDD曜" },
-                { "format": "YYYY/MM/DD DDDD" },
-                {
-                  "label": "'+Time 12'",
+                  "label": "YYYY-MM-DD",
                   "items": [
-                    { "format": "YYYY/MM/DD hh:mm aa" },
-                    { "format": "YYYY/MM/DD ddd hh:mm aa" },
+                    { "format": "YYYY-MM-DD" },
+                    { "format": "YYYY-MM-DD ddd" },
+                    { "format": "YYYY-MM-DD dddd" },
                     {
                       "label": "Japanese",
                       "separator": true
                     },
-                    { "format": "YYYY/MM/DD(DDD) hh:mm aa" },
-                    { "format": "YYYY/MM/DD DDD曜 hh:mm aa" },
-                    { "format": "YYYY/MM/DD DDDD hh:mm aa" },
-                    { "format": "YYYY/MM/DD(DDD) AA hh:mm" },
-                    { "format": "YYYY/MM/DD DDD曜 AA hh:mm" },
-                    { "format": "YYYY/MM/DD DDDD AA hh:mm" }
+                    { "format": "YYYY-MM-DD(DDD)" },
+                    { "format": "YYYY-MM-DD DDD曜" },
+                    { "format": "YYYY-MM-DD DDDD" },
+                    {
+                      "separator": true
+                    },
+                    {
+                      "label": "'+Time 12'",
+                      "items": [
+                        { "format": "YYYY-MM-DD hh:mm aa" },
+                        { "format": "YYYY-MM-DD ddd hh:mm aa" },
+                        { "format": "YYYY-MM-DD dddd hh:mm aa" },
+                        {
+                          "label": "Japanese",
+                          "separator": true
+                        },
+                        { "format": "YYYY-MM-DD(DDD) hh:mm aa" },
+                        { "format": "YYYY-MM-DD DDD曜 hh:mm aa" },
+                        { "format": "YYYY-MM-DD DDDD hh:mm aa" },
+                        { "format": "YYYY-MM-DD(DDD) AA hh:mm" },
+                        { "format": "YYYY-MM-DD DDD曜 AA hh:mm" },
+                        { "format": "YYYY-MM-DD DDDD AA hh:mm" }
+                      ]
+                    },
+                    {
+                      "label": "'+Time 24'",
+                      "items": [
+                        { "format": "YYYY-MM-DD HH:mm" },
+                        { "format": "YYYY-MM-DD ddd HH:mm" },
+                        { "format": "YYYY-MM-DD dddd HH:mm" },
+                        {
+                          "label": "Japanese",
+                          "separator": true
+                        },
+                        { "format": "YYYY-MM-DD(DDD) HH:mm" },
+                        { "format": "YYYY-MM-DD DDD曜 HH:mm" },
+                        { "format": "YYYY-MM-DD DDDD HH:mm" }
+                      ]
+                    }
                   ]
                 },
                 {
-                  "label": "'+Time 24'",
+                  "label": "YYYY/MM/DD",
                   "items": [
-                    { "format": "YYYY/MM/DD HH:mm" },
-                    { "format": "YYYY/MM/DD ddd HH:mm" },
+                    { "format": "YYYY/MM/DD" },
+                    { "format": "YYYY/MM/DD ddd" },
+                    { "format": "YYYY/MM/DD dddd" },
                     {
                       "label": "Japanese",
                       "separator": true
                     },
-                    { "format": "YYYY/MM/DD(DDD) HH:mm" },
-                    { "format": "YYYY/MM/DD DDD曜 HH:mm" },
-                    { "format": "YYYY/MM/DD DDDD HH:mm" },
-                    { "format": "YYYY/MM/DD(DDD) HH:mm" },
-                    { "format": "YYYY/MM/DD DDD曜 HH:mm" },
-                    { "format": "YYYY/MM/DD DDDD HH:mm" }
+                    { "format": "YYYY/MM/DD(DDD)" },
+                    { "format": "YYYY/MM/DD DDD曜" },
+                    { "format": "YYYY/MM/DD DDDD" },
+                    {
+                      "separator": true
+                    },
+                    {
+                      "label": "'+Time 12'",
+                      "items": [
+                        { "format": "YYYY/MM/DD hh:mm aa" },
+                        { "format": "YYYY/MM/DD ddd hh:mm aa" },
+                        { "format": "YYYY/MM/DD dddd hh:mm aa" },
+                        {
+                          "label": "Japanese",
+                          "separator": true
+                        },
+                        { "format": "YYYY/MM/DD(DDD) hh:mm aa" },
+                        { "format": "YYYY/MM/DD DDD曜 hh:mm aa" },
+                        { "format": "YYYY/MM/DD DDDD hh:mm aa" },
+                        { "format": "YYYY/MM/DD(DDD) AA hh:mm" },
+                        { "format": "YYYY/MM/DD DDD曜 AA hh:mm" },
+                        { "format": "YYYY/MM/DD DDDD AA hh:mm" }
+                      ]
+                    },
+                    {
+                      "label": "'+Time 24'",
+                      "items": [
+                        { "format": "YYYY/MM/DD HH:mm" },
+                        { "format": "YYYY/MM/DD ddd HH:mm" },
+                        { "format": "YYYY/MM/DD dddd HH:mm" },
+                        {
+                          "label": "Japanese",
+                          "separator": true
+                        },
+                        { "format": "YYYY/MM/DD(DDD) HH:mm" },
+                        { "format": "YYYY/MM/DD DDD曜 HH:mm" },
+                        { "format": "YYYY/MM/DD DDDD HH:mm" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "YYYY.MM.DD",
+                  "items": [
+                    { "format": "YYYY.MM.DD" },
+                    { "format": "YYYY.MM.DD ddd" },
+                    { "format": "YYYY.MM.DD dddd" },
+                    {
+                      "label": "Japanese",
+                      "separator": true
+                    },
+                    { "format": "YYYY.MM.DD(DDD)" },
+                    { "format": "YYYY.MM.DD DDD曜" },
+                    { "format": "YYYY.MM.DD DDDD" },
+                    {
+                      "separator": true
+                    },
+                    {
+                      "label": "'+Time 12'",
+                      "items": [
+                        { "format": "YYYY.MM.DD hh:mm aa" },
+                        { "format": "YYYY.MM.DD ddd hh:mm aa" },
+                        { "format": "YYYY.MM.DD dddd hh:mm aa" },
+                        {
+                          "label": "Japanese",
+                          "separator": true
+                        },
+                        { "format": "YYYY.MM.DD(DDD) hh:mm aa" },
+                        { "format": "YYYY.MM.DD DDD曜 hh:mm aa" },
+                        { "format": "YYYY.MM.DD DDDD hh:mm aa" },
+                        { "format": "YYYY.MM.DD(DDD) AA hh:mm" },
+                        { "format": "YYYY.MM.DD DDD曜 AA hh:mm" },
+                        { "format": "YYYY.MM.DD DDDD AA hh:mm" }
+                      ]
+                    },
+                    {
+                      "label": "'+Time 24'",
+                      "items": [
+                        { "format": "YYYY.MM.DD HH:mm" },
+                        { "format": "YYYY.MM.DD ddd HH:mm" },
+                        { "format": "YYYY.MM.DD dddd HH:mm" },
+                        {
+                          "label": "Japanese",
+                          "separator": true
+                        },
+                        { "format": "YYYY.MM.DD(DDD) HH:mm" },
+                        { "format": "YYYY.MM.DD DDD曜 HH:mm" },
+                        { "format": "YYYY.MM.DD DDDD HH:mm" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "YYYY MM DD",
+                  "items": [
+                    { "format": "YYYY MM DD" },
+                    { "format": "YYYY MM DD ddd" },
+                    { "format": "YYYY MM DD dddd" },
+                    {
+                      "label": "Japanese",
+                      "separator": true
+                    },
+                    { "format": "YYYY MM DD(DDD)" },
+                    { "format": "YYYY MM DD DDD曜" },
+                    { "format": "YYYY MM DD DDDD" },
+                    {
+                      "separator": true
+                    },
+                    {
+                      "label": "'+Time 12'",
+                      "items": [
+                        { "format": "YYYY MM DD hh:mm aa" },
+                        { "format": "YYYY MM DD ddd hh:mm aa" },
+                        { "format": "YYYY MM DD dddd hh:mm aa" },
+                        {
+                          "label": "Japanese",
+                          "separator": true
+                        },
+                        { "format": "YYYY MM DD(DDD) hh:mm aa" },
+                        { "format": "YYYY MM DD DDD曜 hh:mm aa" },
+                        { "format": "YYYY MM DD DDDD hh:mm aa" },
+                        { "format": "YYYY MM DD(DDD) AA hh:mm" },
+                        { "format": "YYYY MM DD DDD曜 AA hh:mm" },
+                        { "format": "YYYY MM DD DDDD AA hh:mm" }
+                      ]
+                    },
+                    {
+                      "label": "'+Time 24'",
+                      "items": [
+                        { "format": "YYYY MM DD HH:mm" },
+                        { "format": "YYYY MM DD ddd HH:mm" },
+                        { "format": "YYYY MM DD dddd HH:mm" },
+                        {
+                          "label": "Japanese",
+                          "separator": true
+                        },
+                        { "format": "YYYY MM DD(DDD) HH:mm" },
+                        { "format": "YYYY MM DD DDD曜 HH:mm" },
+                        { "format": "YYYY MM DD DDDD HH:mm" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "YYYYMMDD",
+                  "items": [
+                    { "format": "YYYYMMDD" },
+                    { "format": "YYYYMMDD ddd" },
+                    { "format": "YYYYMMDD dddd" },
+                    {
+                      "label": "Japanese",
+                      "separator": true
+                    },
+                    { "format": "YYYYMMDD(DDD)" },
+                    { "format": "YYYYMMDD DDD曜" },
+                    { "format": "YYYYMMDD DDDD" },
+                    {
+                      "separator": true
+                    },
+                    {
+                      "label": "'+Time 12'",
+                      "items": [
+                        { "format": "YYYYMMDD hh:mm aa" },
+                        { "format": "YYYYMMDD ddd hh:mm aa" },
+                        { "format": "YYYYMMDD dddd hh:mm aa" },
+                        {
+                          "label": "Japanese",
+                          "separator": true
+                        },
+                        { "format": "YYYYMMDD(DDD) hh:mm aa" },
+                        { "format": "YYYYMMDD DDD曜 hh:mm aa" },
+                        { "format": "YYYYMMDD DDDD hh:mm aa" },
+                        { "format": "YYYYMMDD(DDD) AA hh:mm" },
+                        { "format": "YYYYMMDD DDD曜 AA hh:mm" },
+                        { "format": "YYYYMMDD DDDD AA hh:mm" }
+                      ]
+                    },
+                    {
+                      "label": "'+Time 24'",
+                      "items": [
+                        { "format": "YYYYMMDD HH:mm" },
+                        { "format": "YYYYMMDD ddd HH:mm" },
+                        { "format": "YYYYMMDD dddd HH:mm" },
+                        {
+                          "label": "Japanese",
+                          "separator": true
+                        },
+                        { "format": "YYYYMMDD(DDD) HH:mm" },
+                        { "format": "YYYYMMDD DDD曜 HH:mm" },
+                        { "format": "YYYYMMDD DDDD HH:mm" }
+                      ]
+                    }
                   ]
                 }
               ]
+            },
+            {
+              "label": "MMM DD, YYYY",
+              "items": [
+                { "format": "MMM DD, YYYY" },
+                { "format": "ddd, MMM DD, YYYY" },
+                { "format": "dddd, MMM DD, YYYY" }
+              ]
+            },
+            {
+              "label": "MMMMM DD, YYYY",
+              "items": [
+                { "format": "MMMMM DD, YYYY" },
+                { "format": "ddd, MMMMM DD, YYYY" },
+                { "format": "dddd, MMMMM DD, YYYY" }
+              ]
+            },
+            {
+              "label": "MM DD, YYYY",
+              "items": [
+                { "format": "MM DD, YYYY" },
+                { "format": "ddd, MM DD, YYYY" },
+                { "format": "dddd, MM DD, YYYY" }
+              ]
+            },
+            {
+              "label": "DD MMM, YYYY",
+              "items": [
+                { "format": "DD MMM, YYYY" },
+                { "format": "ddd, DD MMM, YYYY" },
+                { "format": "dddd, DD MMM, YYYY" }
+              ]
+            },
+            {
+              "label": "'Root Commands'",
+              "items": "RootCommands"
             }
           ]
         }

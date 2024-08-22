@@ -41,9 +41,15 @@ const getDateFormatArray = (formatType) => {
   return formatData.map(item => item.format);
 };
 
-const getCustomMenu = () => {
+const getMenuDateTime = () => {
   const menuData = vscode.workspace
-    .getConfiguration(`SmartInsertDate`).get(`CustomMenu`);
+    .getConfiguration(`SmartInsertDate`).get(`MenuDateTime`);
+  return menuData;
+}
+
+const getMenuDate = () => {
+  const menuData = vscode.workspace
+    .getConfiguration(`SmartInsertDate`).get(`getMenuDate`);
   return menuData;
 }
 
@@ -166,20 +172,29 @@ function activate(context) {
     () => { insertDateTimeBuffer(`Time`); }
   );
 
-  const selectFormat = (targetDate, placeHolder, dateTypes) => {
+  const selectFormatRootCommand = (targetDate, placeHolder, dateType) => {
+    let dateTypes;
+    if (dateType === `Date`) {
+      dateTypes = [`Date`];
+    } else if (dateType === `DateTime`) {
+      dateTypes = [`Date`, `DateTime`, `Time`]
+    } else {
+      throw new Error(`selectFormatRootCommand dateType:${dateType}`);
+    }
+
     const commands = [];
-    for (const dateType of dateTypes) {
-      const formats = getDateFormatArray(`${dateType}Format`);
+    for (const type of dateTypes) {
+      const formats = getDateFormatArray(`${type}Format`);
       if (formats.length !== 0) {
         commands.push(
-          {label: dateType, kind: vscode.QuickPickItemKind.Separator}
+          {label: type, kind: vscode.QuickPickItemKind.Separator}
         );
       }
       for (const [index, format] of formats.entries()) {
         commands.push({
           label: dateToString(targetDate, format),
           description: ``,
-          func: () => { _insertDateTimeBuffer(dateType, targetDate, index, format); }
+          func: () => { _insertDateTimeBuffer(type, targetDate, index, format); }
         });
       }
     }
@@ -189,18 +204,11 @@ function activate(context) {
     );
   };
 
-  registerCommand(context,
-    `vscode-smart-insert-date.SelectFormat`,
-    () => {
-      selectFormat(
-        new Date(),
-        `Smart Insert Date : Select Format : Root Command`,
-        [`Date`, `DateTime`, `Time`],
-      );
+  const selectFormatMenu = (menuItems, targetDate, placeHolder, dateType) => {
+    if (![`Date`, `DateTime`].includes(dateType)) {
+      throw new Error(`selectFormatRootCommand dateType:${dateType}`);
     }
-  );
 
-  const selectFormatCustomMenu = (menuItems, targetDate, placeHolder) => {
     const commands = [];
     for (const menuItem of menuItems) {
       if (menuItem.visible === false) { continue; }
@@ -226,10 +234,11 @@ function activate(context) {
           label,
           description: '>>',
           func: () => {
-            selectFormatCustomMenu(
+            selectFormatMenu(
               menuItem.items,
               targetDate,
               `${_subLastDelimLast(placeHolder, ` : `)} : ${label}`,
+              dateType
             );
           }
         })
@@ -241,10 +250,10 @@ function activate(context) {
           label,
           description: '>>',
           func: () => {
-            selectFormat(
+            selectFormatRootCommand(
               targetDate,
               `${_subLastDelimLast(placeHolder, ` : `)} : ${label}`,
-              [`Date`, `DateTime`, `Time`],
+              dateType,
             );
           }
         })
@@ -257,12 +266,13 @@ function activate(context) {
   };
 
   registerCommand(context,
-    `vscode-smart-insert-date.SelectFormatCustomMenu`,
+    `vscode-smart-insert-date.SelectFormat`,
     () => {
-      selectFormatCustomMenu(
-        getCustomMenu(),
+      selectFormatMenu(
+        getMenuDateTime(),
         new Date(),
         `Smart Insert Date : Select Format : Custom Menu`,
+        `DateTime`,
       );
     }
   );
@@ -288,11 +298,11 @@ function activate(context) {
         + `${dateToString(today, `YYYY-MM-DD`)}`
         ,
         func: () => {
-          selectFormat(
+          selectFormatRootCommand(
             today,
             `Smart Insert Date : Select Date : ` +
             `${dateToString(today, `YYYY-MM-DD ddd`)}`,
-            [`Date`],
+            `Date`,
           );
         }
       },
@@ -301,11 +311,11 @@ function activate(context) {
         + `${dateToString(yesterday, `YYYY-MM-DD`)}`
         ,
         func: () => {
-          selectFormat(
+          selectFormatRootCommand(
             yesterday,
             `Smart Insert Date : Select Date : ` +
             `${dateToString(yesterday, `YYYY-MM-DD ddd`)}`,
-            [`Date`],
+            `Date`,
           );
         }
       },
@@ -314,11 +324,11 @@ function activate(context) {
         + `${dateToString(tomorrow, `YYYY-MM-DD`)}`
         ,
         func: () => {
-          selectFormat(
+          selectFormatRootCommand(
             tomorrow,
             `Smart Insert Date : Select Date : ` +
             `${dateToString(tomorrow, `YYYY-MM-DD ddd`)}`,
-            [`Date`],
+            `Date`,
           );
         }
       },
@@ -487,11 +497,11 @@ function activate(context) {
                 : ``),
         description: `▸`,
         func: () => {
-          selectFormat(
+          selectFormatRootCommand(
             targetDate,
             `Smart Insert Date : Select Date : ` +
             `${dateToString(targetDate, `YYYY-MM-DD ddd`)}`,
-            [`Date`],
+            `Date`,
           );
         }
       });
@@ -519,11 +529,11 @@ function activate(context) {
           ),
         description: `▸`,
         func: () => {
-          selectFormat(
+          selectFormatRootCommand(
             targetDate,
             `Smart Insert Date : Select Date : ` +
             `${dateToString(targetDate, `YYYY-MM-DD ddd`)}`,
-            [`Date`],
+            `Date`,
           );
         }
       });

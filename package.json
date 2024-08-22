@@ -125,7 +125,7 @@
           },
           "description": "Smart Insert Date : CustomAmPmLong"
         },
-        "SmartInsertDate.CustomMenu": {
+        "SmartInsertDate.MenuDateTime": {
           "type": "array",
           "description": "Smart Insert Date : CustomMenu",
           "default": [
@@ -219,11 +219,7 @@
       },
       {
         "command": "vscode-smart-insert-date.SelectFormat",
-        "title": "Smart Insert Date : Select Format : Root Command ..."
-      },
-      {
-        "command": "vscode-smart-insert-date.SelectFormatCustomMenu",
-        "title": "Smart Insert Date : Select Format : Custom Menu ..."
+        "title": "Smart Insert Date : Select Format ..."
       }
     ],
     "keybindings": [

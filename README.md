@@ -98,7 +98,15 @@ Works the same way.
 ### Select Format
 
 - run [Smart Insert Date : Select Format]
-![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat.png)
+
+![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat01.png)
+![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat02.png)
+![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat03.png)
+![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat04.png)
+![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat05.png)
+![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat06.png)
+![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat07.png)
+![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat08.png)
 
 
 ### Select Date

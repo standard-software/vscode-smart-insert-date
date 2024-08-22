@@ -205,6 +205,165 @@ settings.json
       "items": [
         { "format": "MMM DD, YYYY" },
         { "format": "ddd, MMM DD, YYYY" },
+        { "format": "dddd, MMM DD, YYYY" },
+        {
+          "separator": true
+        },
+        {
+          "label": "'+Time 12'",
+          "items": [
+            { "format": "YYYY-MM-DD hh:mm aa" },
+            { "format": "YYYY-MM-DD ddd hh:mm aa" },
+            { "format": "YYYY-MM-DD dddd hh:mm aa" }
+          ]
+        },
+        {
+          "label": "'+Time 24'",
+          "items": [
+            { "format": "YYYY-MM-DD HH:mm" },
+            { "format": "YYYY-MM-DD ddd HH:mm" },
+            { "format": "YYYY-MM-DD dddd HH:mm" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "MMMMM DD, YYYY",
+      "items": [
+        { "format": "MMMMM DD, YYYY" },
+        { "format": "ddd, MMMMM DD, YYYY" },
+        { "format": "dddd, MMMMM DD, YYYY" },
+        {
+          "separator": true
+        },
+        {
+          "label": "'+Time 12'",
+          "items": [
+            { "format": "YYYY-MM-DD hh:mm aa" },
+            { "format": "YYYY-MM-DD ddd hh:mm aa" },
+            { "format": "YYYY-MM-DD dddd hh:mm aa" }
+          ]
+        },
+        {
+          "label": "'+Time 24'",
+          "items": [
+            { "format": "YYYY-MM-DD HH:mm" },
+            { "format": "YYYY-MM-DD ddd HH:mm" },
+            { "format": "YYYY-MM-DD dddd HH:mm" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "MM DD, YYYY",
+      "items": [
+        { "format": "MM DD, YYYY" },
+        { "format": "ddd, MM DD, YYYY" },
+        { "format": "dddd, MM DD, YYYY" },
+        {
+          "separator": true
+        },
+        {
+          "label": "'+Time 12'",
+          "items": [
+            { "format": "YYYY-MM-DD hh:mm aa" },
+            { "format": "YYYY-MM-DD ddd hh:mm aa" },
+            { "format": "YYYY-MM-DD dddd hh:mm aa" }
+          ]
+        },
+        {
+          "label": "'+Time 24'",
+          "items": [
+            { "format": "YYYY-MM-DD HH:mm" },
+            { "format": "YYYY-MM-DD ddd HH:mm" },
+            { "format": "YYYY-MM-DD dddd HH:mm" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "DD MMM, YYYY",
+      "items": [
+        { "format": "DD MMM, YYYY" },
+        { "format": "ddd, DD MMM, YYYY" },
+        { "format": "dddd, DD MMM, YYYY" },
+        {
+          "separator": true
+        },
+        {
+          "label": "'+Time 12'",
+          "items": [
+            { "format": "YYYY-MM-DD hh:mm aa" },
+            { "format": "YYYY-MM-DD ddd hh:mm aa" },
+            { "format": "YYYY-MM-DD dddd hh:mm aa" }
+          ]
+        },
+        {
+          "label": "'+Time 24'",
+          "items": [
+            { "format": "YYYY-MM-DD HH:mm" },
+            { "format": "YYYY-MM-DD ddd HH:mm" },
+            { "format": "YYYY-MM-DD dddd HH:mm" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "'Root Commands'",
+      "items": "RootCommands"
+    }
+  ],
+  "SmartInsertDate.MenuDate": [
+    {
+      "label": "YYYY-MM-DD 'etc'",
+      "items": [
+        {
+          "label": "YYYY-MM-DD",
+          "items": [
+            { "format": "YYYY-MM-DD" },
+            { "format": "YYYY-MM-DD ddd" },
+            { "format": "YYYY-MM-DD dddd" }
+          ]
+        },
+        {
+          "label": "YYYY/MM/DD",
+          "items": [
+            { "format": "YYYY/MM/DD" },
+            { "format": "YYYY/MM/DD ddd" },
+            { "format": "YYYY/MM/DD dddd" }
+          ]
+        },
+        {
+          "label": "YYYY.MM.DD",
+          "items": [
+            { "format": "YYYY.MM.DD" },
+            { "format": "YYYY.MM.DD ddd" },
+            { "format": "YYYY.MM.DD dddd" }
+          ]
+        },
+        {
+          "label": "YYYY MM DD",
+          "items": [
+            { "format": "YYYY MM DD" },
+            { "format": "YYYY MM DD ddd" },
+            { "format": "YYYY MM DD dddd" }
+          ]
+        },
+        {
+          "label": "YYYYMMDD",
+          "items": [
+            { "format": "YYYYMMDD" },
+            { "format": "YYYYMMDD ddd" },
+            { "format": "YYYYMMDD dddd" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "MMM DD, YYYY",
+      "items": [
+        { "format": "MMM DD, YYYY" },
+        { "format": "ddd, MMM DD, YYYY" },
         { "format": "dddd, MMM DD, YYYY" }
       ]
     },
@@ -540,6 +699,124 @@ settings.json
                 { "format": "YYYYMMDD DDDD HH:mm" }
               ]
             }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "MMM DD, YYYY",
+      "items": [
+        { "format": "MMM DD, YYYY" },
+        { "format": "ddd, MMM DD, YYYY" },
+        { "format": "dddd, MMM DD, YYYY" }
+      ]
+    },
+    {
+      "label": "MMMMM DD, YYYY",
+      "items": [
+        { "format": "MMMMM DD, YYYY" },
+        { "format": "ddd, MMMMM DD, YYYY" },
+        { "format": "dddd, MMMMM DD, YYYY" }
+      ]
+    },
+    {
+      "label": "MM DD, YYYY",
+      "items": [
+        { "format": "MM DD, YYYY" },
+        { "format": "ddd, MM DD, YYYY" },
+        { "format": "dddd, MM DD, YYYY" }
+      ]
+    },
+    {
+      "label": "DD MMM, YYYY",
+      "items": [
+        { "format": "DD MMM, YYYY" },
+        { "format": "ddd, DD MMM, YYYY" },
+        { "format": "dddd, DD MMM, YYYY" }
+      ]
+    },
+    {
+      "label": "'Root Commands'",
+      "items": "RootCommands"
+    }
+  ],
+  "SmartInsertDate.MenuDate": [
+    {
+      "label": "YYYY-MM-DD 'etc'",
+      "items": [
+        {
+          "label": "YYYY-MM-DD",
+          "items": [
+            { "format": "YYYY-MM-DD" },
+            { "format": "YYYY-MM-DD ddd" },
+            { "format": "YYYY-MM-DD dddd" },
+            {
+              "label": "Japanese",
+              "separator": true
+            },
+            { "format": "YYYY-MM-DD(DDD)" },
+            { "format": "YYYY-MM-DD DDD曜" },
+            { "format": "YYYY-MM-DD DDDD" },
+          ]
+        },
+        {
+          "label": "YYYY/MM/DD",
+          "items": [
+            { "format": "YYYY/MM/DD" },
+            { "format": "YYYY/MM/DD ddd" },
+            { "format": "YYYY/MM/DD dddd" },
+            {
+              "label": "Japanese",
+              "separator": true
+            },
+            { "format": "YYYY/MM/DD(DDD)" },
+            { "format": "YYYY/MM/DD DDD曜" },
+            { "format": "YYYY/MM/DD DDDD" },
+          ]
+        },
+        {
+          "label": "YYYY.MM.DD",
+          "items": [
+            { "format": "YYYY.MM.DD" },
+            { "format": "YYYY.MM.DD ddd" },
+            { "format": "YYYY.MM.DD dddd" },
+            {
+              "label": "Japanese",
+              "separator": true
+            },
+            { "format": "YYYY.MM.DD(DDD)" },
+            { "format": "YYYY.MM.DD DDD曜" },
+            { "format": "YYYY.MM.DD DDDD" },
+          ]
+        },
+        {
+          "label": "YYYY MM DD",
+          "items": [
+            { "format": "YYYY MM DD" },
+            { "format": "YYYY MM DD ddd" },
+            { "format": "YYYY MM DD dddd" },
+            {
+              "label": "Japanese",
+              "separator": true
+            },
+            { "format": "YYYY MM DD(DDD)" },
+            { "format": "YYYY MM DD DDD曜" },
+            { "format": "YYYY MM DD DDDD" },
+          ]
+        },
+        {
+          "label": "YYYYMMDD",
+          "items": [
+            { "format": "YYYYMMDD" },
+            { "format": "YYYYMMDD ddd" },
+            { "format": "YYYYMMDD dddd" },
+            {
+              "label": "Japanese",
+              "separator": true
+            },
+            { "format": "YYYYMMDD(DDD)" },
+            { "format": "YYYYMMDD DDD曜" },
+            { "format": "YYYYMMDD DDDD" },
           ]
         }
       ]

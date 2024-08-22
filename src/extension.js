@@ -50,7 +50,7 @@ const getMenuDateTime = () => {
 
 const getMenuDate = () => {
   const menuData = vscode.workspace
-    .getConfiguration(`SmartInsertDate`).get(`getMenuDate`);
+    .getConfiguration(`SmartInsertDate`).get(`MenuDate`);
   return menuData;
 }
 
@@ -207,7 +207,7 @@ function activate(context) {
 
   const selectFormatMenu = (menuItems, targetDate, placeHolder, dateType) => {
     if (![`Date`, `DateTime`].includes(dateType)) {
-      throw new Error(`selectFormatRootCommand dateType:${dateType}`);
+      throw new Error(`selectFormatMenu dateType:${dateType}`);
     }
 
     const commands = [];
@@ -299,7 +299,8 @@ function activate(context) {
         + `${dateToString(today, `YYYY-MM-DD`)}`
         ,
         func: () => {
-          selectFormatRootCommand(
+          selectFormatMenu(
+            getMenuDate(),
             today,
             `Smart Insert Date : Select Date : ` +
             `${dateToString(today, `YYYY-MM-DD ddd`)}`,
@@ -312,7 +313,8 @@ function activate(context) {
         + `${dateToString(yesterday, `YYYY-MM-DD`)}`
         ,
         func: () => {
-          selectFormatRootCommand(
+          selectFormatMenu(
+            getMenuDate(),
             yesterday,
             `Smart Insert Date : Select Date : ` +
             `${dateToString(yesterday, `YYYY-MM-DD ddd`)}`,
@@ -325,7 +327,8 @@ function activate(context) {
         + `${dateToString(tomorrow, `YYYY-MM-DD`)}`
         ,
         func: () => {
-          selectFormatRootCommand(
+          selectFormatMenu(
+            getMenuDate(),
             tomorrow,
             `Smart Insert Date : Select Date : ` +
             `${dateToString(tomorrow, `YYYY-MM-DD ddd`)}`,
@@ -498,7 +501,8 @@ function activate(context) {
                 : ``),
         description: `▸`,
         func: () => {
-          selectFormatRootCommand(
+          selectFormatMenu(
+            getMenuDate(),
             targetDate,
             `Smart Insert Date : Select Date : ` +
             `${dateToString(targetDate, `YYYY-MM-DD ddd`)}`,
@@ -530,7 +534,8 @@ function activate(context) {
           ),
         description: `▸`,
         func: () => {
-          selectFormatRootCommand(
+          selectFormatMenu(
+            getMenuDate(),
             targetDate,
             `Smart Insert Date : Select Date : ` +
             `${dateToString(targetDate, `YYYY-MM-DD ddd`)}`,

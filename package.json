@@ -285,17 +285,17 @@
                 {
                   "label": "'+Time 12'",
                   "items": [
-                    { "format": "YYYY-MM-DD hh:mm aa" },
-                    { "format": "YYYY-MM-DD ddd hh:mm aa" },
-                    { "format": "YYYY-MM-DD dddd hh:mm aa" }
+                    { "format": "MMM DD, YYYY hh:mm aa" },
+                    { "format": "ddd, MMM DD, YYYY hh:mm aa" },
+                    { "format": "dddd, MMM DD, YYYY hh:mm aa" }
                   ]
                 },
                 {
                   "label": "'+Time 24'",
                   "items": [
-                    { "format": "YYYY-MM-DD HH:mm" },
-                    { "format": "YYYY-MM-DD ddd HH:mm" },
-                    { "format": "YYYY-MM-DD dddd HH:mm" }
+                    { "format": "MMM DD, YYYY HH:mm" },
+                    { "format": "ddd, MMM DD, YYYY HH:mm" },
+                    { "format": "dddd, MMM DD, YYYY HH:mm" }
                   ]
                 }
               ]
@@ -312,17 +312,17 @@
                 {
                   "label": "'+Time 12'",
                   "items": [
-                    { "format": "YYYY-MM-DD hh:mm aa" },
-                    { "format": "YYYY-MM-DD ddd hh:mm aa" },
-                    { "format": "YYYY-MM-DD dddd hh:mm aa" }
+                    { "format": "MMMMM DD, YYYY hh:mm aa" },
+                    { "format": "ddd, MMMMM DD, YYYY hh:mm aa" },
+                    { "format": "dddd, MMMMM DD, YYYY hh:mm aa" }
                   ]
                 },
                 {
                   "label": "'+Time 24'",
                   "items": [
-                    { "format": "YYYY-MM-DD HH:mm" },
-                    { "format": "YYYY-MM-DD ddd HH:mm" },
-                    { "format": "YYYY-MM-DD dddd HH:mm" }
+                    { "format": "MMMMM DD, YYYY HH:mm" },
+                    { "format": "ddd, MMMMM DD, YYYY HH:mm" },
+                    { "format": "dddd, MMMMM DD, YYYY HH:mm" }
                   ]
                 }
               ]
@@ -339,17 +339,17 @@
                 {
                   "label": "'+Time 12'",
                   "items": [
-                    { "format": "YYYY-MM-DD hh:mm aa" },
-                    { "format": "YYYY-MM-DD ddd hh:mm aa" },
-                    { "format": "YYYY-MM-DD dddd hh:mm aa" }
+                    { "format": "MM DD, YYYY hh:mm aa" },
+                    { "format": "ddd, MM DD, YYYY hh:mm aa" },
+                    { "format": "dddd, MM DD, YYYY hh:mm aa" }
                   ]
                 },
                 {
                   "label": "'+Time 24'",
                   "items": [
-                    { "format": "YYYY-MM-DD HH:mm" },
-                    { "format": "YYYY-MM-DD ddd HH:mm" },
-                    { "format": "YYYY-MM-DD dddd HH:mm" }
+                    { "format": "MM DD, YYYY HH:mm" },
+                    { "format": "ddd, MM DD, YYYY HH:mm" },
+                    { "format": "dddd, MM DD, YYYY HH:mm" }
                   ]
                 }
               ]
@@ -366,17 +366,17 @@
                 {
                   "label": "'+Time 12'",
                   "items": [
-                    { "format": "YYYY-MM-DD hh:mm aa" },
-                    { "format": "YYYY-MM-DD ddd hh:mm aa" },
-                    { "format": "YYYY-MM-DD dddd hh:mm aa" }
+                    { "format": "DD MMM, YYYY hh:mm aa" },
+                    { "format": "ddd, DD MMM, YYYY hh:mm aa" },
+                    { "format": "dddd, DD MMM, YYYY hh:mm aa" }
                   ]
                 },
                 {
                   "label": "'+Time 24'",
                   "items": [
-                    { "format": "YYYY-MM-DD HH:mm" },
-                    { "format": "YYYY-MM-DD ddd HH:mm" },
-                    { "format": "YYYY-MM-DD dddd HH:mm" }
+                    { "format": "DD MMM, YYYY HH:mm" },
+                    { "format": "ddd, DD MMM, YYYY HH:mm" },
+                    { "format": "dddd, DD MMM, YYYY HH:mm" }
                   ]
                 }
               ]

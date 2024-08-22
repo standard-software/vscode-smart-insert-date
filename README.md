@@ -131,38 +131,11 @@ keybindings.json
 ]
 ```
 
-## Setting
+## Setting Sample
 
-settings.json
+settings.json can be found in the following file.
 
-```json
-{
-  "SmartInsertDate.DateFormat": [
-    { "format": "YYYY-MM-DD ddd" },
-    { "format": "ddd, MMM DD, YYYY" },
-    { "format": "dddd, MMMMM DD, YYYY" },
-    { "format": "dddd, MM DD, YYYY" },
-    { "format": "ddd, DD MMM, YYYY" },
-    { "format": "YYYY/MM/DD(ddd)" },
-    { "format": "YYYYMMDD" }
-  ],
-  "SmartInsertDate.DateTimeFormat": [
-    { "format": "YYYY-MM-DD ddd HH:mm" },
-    { "format": "ddd, MMM DD, YYYY hh:mm aa" },
-    { "format": "dddd, MMMMM DD, YYYY hh:mm aa" },
-    { "format": "dddd, MM DD, YYYY hh:mm aa" },
-    { "format": "ddd, DD MMM, YYYY HH:mm" },
-    { "format": "YYYY/MM/DD(ddd) AAhh:mm:ss" },
-    { "format": "YYYYMMDDHHmmss" }
-  ],
-  "SmartInsertDate.TimeFormat": [
-    { "format": "HH:mm" },
-    { "format": "hh:mm aa" },
-    { "format": "AAhh:mm:ss" },
-    { "format": "HH:mm:ss" }
-  ],
-}
-```
+[Default Setting ./SETTING_SAMPLE.md](./SETTING_SAMPLE.md)
 
 ## Date Format String
 
@@ -210,27 +183,9 @@ _ = Space
 
 ## To Japanese
 
-### Setting
-settings.json
+### Setting Sample
 
-```json
-{
-  "SmartInsertDate.DateFormat": [
-    { "format": "YYYY/MM/DD(DDD)" },
-    { "format": "YYYY年MM月DD日 DDDD" },
-    { "format": "GE年MM月DD日" },
-    { "format": "GGE年MM月DD日 DDD" },
-    { "format": "GGGEE年MM月DD日 DDDD" }
-  ],
-  "SmartInsertDate.DateTimeFormat": [
-    { "format": "YYYY/MM/DD(DDD) HH:mm" },
-    { "format": "YYYY年MM月DD日 DDDD AAAhh時mm分" }
-  ],
-  "SmartInsertDate.TimeFormat": [
-    { "format": "AAAhh時mm分" }
-  ],
-}
-```
+[Setting for Japanese ./SETTING_SAMPLE.md](./SETTING_SAMPLE.md)
 
 ### Date Format String
 

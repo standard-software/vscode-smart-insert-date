@@ -59,6 +59,7 @@
             { "format": "dddd, MMMMM DD, YYYY" },
             { "format": "dddd, MM DD, YYYY" },
             { "format": "ddd, DD MMM, YYYY" },
+            { "format": "YYYY/MM/DD ddd" },
             { "format": "YYYY/MM/DD(ddd)" },
             { "format": "YYYYMMDD" }
           ],
@@ -72,7 +73,8 @@
             { "format": "dddd, MMMMM DD, YYYY hh:mm aa" },
             { "format": "dddd, MM DD, YYYY hh:mm aa" },
             { "format": "ddd, DD MMM, YYYY HH:mm" },
-            { "format": "YYYY/MM/DD(ddd) AAhh:mm:ss" },
+            { "format": "YYYY/MM/DD ddd hh:mm:ss aa" },
+            { "format": "YYYY/MM/DD(ddd) AA hh:mm:ss" },
             { "format": "YYYYMMDDHHmmss" }
           ],
           "description": "Smart Insert Date : DateTimeFormat"
@@ -82,8 +84,10 @@
           "default": [
             { "format": "HH:mm" },
             { "format": "hh:mm aa" },
-            { "format": "AAhh:mm:ss" },
-            { "format": "HH:mm:ss" }
+            { "format": "AA hh:mm" },
+            { "format": "HH:mm:ss" },
+            { "format": "hh:mm:ss aa" },
+            { "format": "AA hh:mm:ss" }
           ],
           "description": "Smart Insert Date : TimeFormat"
         },
@@ -137,50 +141,7 @@
                   "items": [
                     { "format": "YYYY-MM-DD" },
                     { "format": "YYYY-MM-DD ddd" },
-                    { "format": "YYYY-MM-DD dddd" },
-                    {
-                      "label": "Japanese",
-                      "separator": true
-                    },
-                    { "format": "YYYY-MM-DD(DDD)" },
-                    { "format": "YYYY-MM-DD DDD曜" },
-                    { "format": "YYYY-MM-DD DDDD" },
-                    {
-                      "separator": true
-                    },
-                    {
-                      "label": "'+Time 12'",
-                      "items": [
-                        { "format": "YYYY-MM-DD hh:mm aa" },
-                        { "format": "YYYY-MM-DD ddd hh:mm aa" },
-                        { "format": "YYYY-MM-DD dddd hh:mm aa" },
-                        {
-                          "label": "Japanese",
-                          "separator": true
-                        },
-                        { "format": "YYYY-MM-DD(DDD) hh:mm aa" },
-                        { "format": "YYYY-MM-DD DDD曜 hh:mm aa" },
-                        { "format": "YYYY-MM-DD DDDD hh:mm aa" },
-                        { "format": "YYYY-MM-DD(DDD) AA hh:mm" },
-                        { "format": "YYYY-MM-DD DDD曜 AA hh:mm" },
-                        { "format": "YYYY-MM-DD DDDD AA hh:mm" }
-                      ]
-                    },
-                    {
-                      "label": "'+Time 24'",
-                      "items": [
-                        { "format": "YYYY-MM-DD HH:mm" },
-                        { "format": "YYYY-MM-DD ddd HH:mm" },
-                        { "format": "YYYY-MM-DD dddd HH:mm" },
-                        {
-                          "label": "Japanese",
-                          "separator": true
-                        },
-                        { "format": "YYYY-MM-DD(DDD) HH:mm" },
-                        { "format": "YYYY-MM-DD DDD曜 HH:mm" },
-                        { "format": "YYYY-MM-DD DDDD HH:mm" }
-                      ]
-                    }
+                    { "format": "YYYY-MM-DD dddd" }
                   ]
                 },
                 {
@@ -190,13 +151,6 @@
                     { "format": "YYYY/MM/DD ddd" },
                     { "format": "YYYY/MM/DD dddd" },
                     {
-                      "label": "Japanese",
-                      "separator": true
-                    },
-                    { "format": "YYYY/MM/DD(DDD)" },
-                    { "format": "YYYY/MM/DD DDD曜" },
-                    { "format": "YYYY/MM/DD DDDD" },
-                    {
                       "separator": true
                     },
                     {
@@ -204,17 +158,7 @@
                       "items": [
                         { "format": "YYYY/MM/DD hh:mm aa" },
                         { "format": "YYYY/MM/DD ddd hh:mm aa" },
-                        { "format": "YYYY/MM/DD dddd hh:mm aa" },
-                        {
-                          "label": "Japanese",
-                          "separator": true
-                        },
-                        { "format": "YYYY/MM/DD(DDD) hh:mm aa" },
-                        { "format": "YYYY/MM/DD DDD曜 hh:mm aa" },
-                        { "format": "YYYY/MM/DD DDDD hh:mm aa" },
-                        { "format": "YYYY/MM/DD(DDD) AA hh:mm" },
-                        { "format": "YYYY/MM/DD DDD曜 AA hh:mm" },
-                        { "format": "YYYY/MM/DD DDDD AA hh:mm" }
+                        { "format": "YYYY/MM/DD dddd hh:mm aa" }
                       ]
                     },
                     {
@@ -222,14 +166,7 @@
                       "items": [
                         { "format": "YYYY/MM/DD HH:mm" },
                         { "format": "YYYY/MM/DD ddd HH:mm" },
-                        { "format": "YYYY/MM/DD dddd HH:mm" },
-                        {
-                          "label": "Japanese",
-                          "separator": true
-                        },
-                        { "format": "YYYY/MM/DD(DDD) HH:mm" },
-                        { "format": "YYYY/MM/DD DDD曜 HH:mm" },
-                        { "format": "YYYY/MM/DD DDDD HH:mm" }
+                        { "format": "YYYY/MM/DD dddd HH:mm" }
                       ]
                     }
                   ]
@@ -241,13 +178,6 @@
                     { "format": "YYYY.MM.DD ddd" },
                     { "format": "YYYY.MM.DD dddd" },
                     {
-                      "label": "Japanese",
-                      "separator": true
-                    },
-                    { "format": "YYYY.MM.DD(DDD)" },
-                    { "format": "YYYY.MM.DD DDD曜" },
-                    { "format": "YYYY.MM.DD DDDD" },
-                    {
                       "separator": true
                     },
                     {
@@ -255,17 +185,7 @@
                       "items": [
                         { "format": "YYYY.MM.DD hh:mm aa" },
                         { "format": "YYYY.MM.DD ddd hh:mm aa" },
-                        { "format": "YYYY.MM.DD dddd hh:mm aa" },
-                        {
-                          "label": "Japanese",
-                          "separator": true
-                        },
-                        { "format": "YYYY.MM.DD(DDD) hh:mm aa" },
-                        { "format": "YYYY.MM.DD DDD曜 hh:mm aa" },
-                        { "format": "YYYY.MM.DD DDDD hh:mm aa" },
-                        { "format": "YYYY.MM.DD(DDD) AA hh:mm" },
-                        { "format": "YYYY.MM.DD DDD曜 AA hh:mm" },
-                        { "format": "YYYY.MM.DD DDDD AA hh:mm" }
+                        { "format": "YYYY.MM.DD dddd hh:mm aa" }
                       ]
                     },
                     {
@@ -273,14 +193,7 @@
                       "items": [
                         { "format": "YYYY.MM.DD HH:mm" },
                         { "format": "YYYY.MM.DD ddd HH:mm" },
-                        { "format": "YYYY.MM.DD dddd HH:mm" },
-                        {
-                          "label": "Japanese",
-                          "separator": true
-                        },
-                        { "format": "YYYY.MM.DD(DDD) HH:mm" },
-                        { "format": "YYYY.MM.DD DDD曜 HH:mm" },
-                        { "format": "YYYY.MM.DD DDDD HH:mm" }
+                        { "format": "YYYY.MM.DD dddd HH:mm" }
                       ]
                     }
                   ]
@@ -292,13 +205,6 @@
                     { "format": "YYYY MM DD ddd" },
                     { "format": "YYYY MM DD dddd" },
                     {
-                      "label": "Japanese",
-                      "separator": true
-                    },
-                    { "format": "YYYY MM DD(DDD)" },
-                    { "format": "YYYY MM DD DDD曜" },
-                    { "format": "YYYY MM DD DDDD" },
-                    {
                       "separator": true
                     },
                     {
@@ -306,17 +212,7 @@
                       "items": [
                         { "format": "YYYY MM DD hh:mm aa" },
                         { "format": "YYYY MM DD ddd hh:mm aa" },
-                        { "format": "YYYY MM DD dddd hh:mm aa" },
-                        {
-                          "label": "Japanese",
-                          "separator": true
-                        },
-                        { "format": "YYYY MM DD(DDD) hh:mm aa" },
-                        { "format": "YYYY MM DD DDD曜 hh:mm aa" },
-                        { "format": "YYYY MM DD DDDD hh:mm aa" },
-                        { "format": "YYYY MM DD(DDD) AA hh:mm" },
-                        { "format": "YYYY MM DD DDD曜 AA hh:mm" },
-                        { "format": "YYYY MM DD DDDD AA hh:mm" }
+                        { "format": "YYYY MM DD dddd hh:mm aa" }
                       ]
                     },
                     {
@@ -324,14 +220,7 @@
                       "items": [
                         { "format": "YYYY MM DD HH:mm" },
                         { "format": "YYYY MM DD ddd HH:mm" },
-                        { "format": "YYYY MM DD dddd HH:mm" },
-                        {
-                          "label": "Japanese",
-                          "separator": true
-                        },
-                        { "format": "YYYY MM DD(DDD) HH:mm" },
-                        { "format": "YYYY MM DD DDD曜 HH:mm" },
-                        { "format": "YYYY MM DD DDDD HH:mm" }
+                        { "format": "YYYY MM DD dddd HH:mm" }
                       ]
                     }
                   ]
@@ -343,13 +232,6 @@
                     { "format": "YYYYMMDD ddd" },
                     { "format": "YYYYMMDD dddd" },
                     {
-                      "label": "Japanese",
-                      "separator": true
-                    },
-                    { "format": "YYYYMMDD(DDD)" },
-                    { "format": "YYYYMMDD DDD曜" },
-                    { "format": "YYYYMMDD DDDD" },
-                    {
                       "separator": true
                     },
                     {
@@ -357,17 +239,7 @@
                       "items": [
                         { "format": "YYYYMMDD hh:mm aa" },
                         { "format": "YYYYMMDD ddd hh:mm aa" },
-                        { "format": "YYYYMMDD dddd hh:mm aa" },
-                        {
-                          "label": "Japanese",
-                          "separator": true
-                        },
-                        { "format": "YYYYMMDD(DDD) hh:mm aa" },
-                        { "format": "YYYYMMDD DDD曜 hh:mm aa" },
-                        { "format": "YYYYMMDD DDDD hh:mm aa" },
-                        { "format": "YYYYMMDD(DDD) AA hh:mm" },
-                        { "format": "YYYYMMDD DDD曜 AA hh:mm" },
-                        { "format": "YYYYMMDD DDDD AA hh:mm" }
+                        { "format": "YYYYMMDD dddd hh:mm aa" }
                       ]
                     },
                     {
@@ -375,14 +247,7 @@
                       "items": [
                         { "format": "YYYYMMDD HH:mm" },
                         { "format": "YYYYMMDD ddd HH:mm" },
-                        { "format": "YYYYMMDD dddd HH:mm" },
-                        {
-                          "label": "Japanese",
-                          "separator": true
-                        },
-                        { "format": "YYYYMMDD(DDD) HH:mm" },
-                        { "format": "YYYYMMDD DDD曜 HH:mm" },
-                        { "format": "YYYYMMDD DDDD HH:mm" }
+                        { "format": "YYYYMMDD dddd HH:mm" }
                       ]
                     }
                   ]

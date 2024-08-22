@@ -2,6 +2,9 @@
 
 ## [2.0.0] - 2024/08/23 Fri
 - Select Format command can now be set in the tree menu.
+- update package.json
+- update README
+- add SETTING_SAMPLE.md
 
 ## [1.4.0] - 2024/05/23 Thu
 - update select date

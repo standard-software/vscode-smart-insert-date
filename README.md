@@ -9,6 +9,21 @@ This extension inserts formatted dates and times into the editor.
 
 Dates can be selected in weeks, months or years.
 
+## Install
+
+Smart Insert Date - Visual Studio Marketplace  
+https://marketplace.visualstudio.com/items?itemName=SatoshiYamamoto.vscode-smart-insert-date
+
+## GitHub
+
+standard-software/vscode-smart-insert-date  
+https://github.com/standard-software/vscode-smart-insert-date
+
+## Contact
+
+standard.software.net@gmail.com  
+Japanese / English
+
 ## Output Example
 
 You can change the format settings, but the default is to allow the output of the following content
@@ -49,8 +64,8 @@ PM11:04:04
 - Smart Insert Date : Insert Today
 - Smart Insert Date : Insert Now DateTime
 - Smart Insert Date : Insert Now Time
-- Smart Insert Date : Select Date
-- Smart Insert Date : Select Format
+- Smart Insert Date : Select Date ...
+- Smart Insert Date : Select Format ...
 ```
 
 Windows  
@@ -103,10 +118,6 @@ Works the same way.
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat02.png)
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat03.png)
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat04.png)
-![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat05.png)
-![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat06.png)
-![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat07.png)
-![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat08.png)
 
 
 ### Select Date

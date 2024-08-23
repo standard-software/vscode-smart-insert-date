@@ -1,5 +1,9 @@
 # Change Log
 
+## [2.1.0] - 2024/08/23 Fri
+- udpate package.json
+  - update setting select format
+
 ## [2.0.0] - 2024/08/23 Fri
 - Select Format command can now be set in the tree menu.
 - update package.json

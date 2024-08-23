@@ -68,12 +68,12 @@
         "SmartInsertDate.DateTimeFormat": {
           "type": "array",
           "default": [
-            { "format": "YYYY-MM-DD ddd HH:mm" },
-            { "format": "ddd, MMM DD, YYYY hh:mm aa" },
-            { "format": "dddd, MMMMM DD, YYYY hh:mm aa" },
-            { "format": "dddd, MM DD, YYYY hh:mm aa" },
-            { "format": "ddd, DD MMM, YYYY HH:mm" },
-            { "format": "YYYY/MM/DD ddd hh:mm:ss aa" },
+            { "format": "YYYY-MM-DD ddd HH:mm:ss" },
+            { "format": "ddd, MMM DD, YYYY hh:mm:ss aa" },
+            { "format": "dddd, MMMMM DD, YYYY hh:mm:ss aa" },
+            { "format": "dddd, MM DD, YYYY hh:mm:ss aa" },
+            { "format": "ddd, DD MMM, YYYY HH:mm:ss" },
+            { "format": "YYYY/MM/DD ddd HH:mm:ss" },
             { "format": "YYYY/MM/DD(ddd) AA hh:mm:ss" },
             { "format": "YYYYMMDDHHmmss" }
           ],
@@ -134,62 +134,52 @@
           "description": "Smart Insert Date : CustomMenu",
           "default": [
             {
-              "label": "YYYY-MM-DD 'etc'",
+              "label": "YYYY-MM-DD",
               "items": [
+                { "format": "YYYY-MM-DD" },
+                { "format": "YYYY-MM-DD ddd" },
+                { "format": "YYYY-MM-DD dddd" },
                 {
-                  "label": "YYYY-MM-DD",
-                  "items": [
-                    { "format": "YYYY-MM-DD" },
-                    { "format": "YYYY-MM-DD ddd" },
-                    { "format": "YYYY-MM-DD dddd" },
-                    {
-                      "separator": true
-                    },
-                    {
-                      "label": "'+Time 12'",
-                      "items": [
-                        { "format": "YYYY-MM-DD hh:mm aa" },
-                        { "format": "YYYY-MM-DD ddd hh:mm aa" },
-                        { "format": "YYYY-MM-DD dddd hh:mm aa" }
-                      ]
-                    },
-                    {
-                      "label": "'+Time 24'",
-                      "items": [
-                        { "format": "YYYY-MM-DD HH:mm" },
-                        { "format": "YYYY-MM-DD ddd HH:mm" },
-                        { "format": "YYYY-MM-DD dddd HH:mm" }
-                      ]
-                    }
-                  ]
+                  "label": "+Time 12",
+                  "separator": true
                 },
+                { "format": "YYYY-MM-DD hh:mm aa" },
+                { "format": "YYYY-MM-DD ddd hh:mm aa" },
+                { "format": "YYYY-MM-DD dddd hh:mm aa" },
                 {
-                  "label": "YYYY/MM/DD",
-                  "items": [
-                    { "format": "YYYY/MM/DD" },
-                    { "format": "YYYY/MM/DD ddd" },
-                    { "format": "YYYY/MM/DD dddd" },
-                    {
-                      "separator": true
-                    },
-                    {
-                      "label": "'+Time 12'",
-                      "items": [
-                        { "format": "YYYY/MM/DD hh:mm aa" },
-                        { "format": "YYYY/MM/DD ddd hh:mm aa" },
-                        { "format": "YYYY/MM/DD dddd hh:mm aa" }
-                      ]
-                    },
-                    {
-                      "label": "'+Time 24'",
-                      "items": [
-                        { "format": "YYYY/MM/DD HH:mm" },
-                        { "format": "YYYY/MM/DD ddd HH:mm" },
-                        { "format": "YYYY/MM/DD dddd HH:mm" }
-                      ]
-                    }
-                  ]
+                  "label": "+Time 24",
+                  "separator": true
                 },
+                { "format": "YYYY-MM-DD HH:mm" },
+                { "format": "YYYY-MM-DD ddd HH:mm" },
+                { "format": "YYYY-MM-DD dddd HH:mm" }
+              ]
+            },
+            {
+              "label": "YYYY/MM/DD",
+              "items": [
+                { "format": "YYYY/MM/DD" },
+                { "format": "YYYY/MM/DD ddd" },
+                { "format": "YYYY/MM/DD dddd" },
+                {
+                  "label": "+Time 12",
+                  "separator": true
+                },
+                { "format": "YYYY/MM/DD hh:mm aa" },
+                { "format": "YYYY/MM/DD ddd hh:mm aa" },
+                { "format": "YYYY/MM/DD dddd hh:mm aa" },
+                {
+                  "label": "+Time 24",
+                  "separator": true
+                },
+                { "format": "YYYY/MM/DD HH:mm" },
+                { "format": "YYYY/MM/DD ddd HH:mm" },
+                { "format": "YYYY/MM/DD dddd HH:mm" }
+              ]
+            },
+            {
+              "label": "YYYY.MM.DD 'etc'",
+              "items": [
                 {
                   "label": "YYYY.MM.DD",
                   "items": [
@@ -197,24 +187,19 @@
                     { "format": "YYYY.MM.DD ddd" },
                     { "format": "YYYY.MM.DD dddd" },
                     {
+                      "label": "+Time 12",
                       "separator": true
                     },
+                    { "format": "YYYY.MM.DD hh:mm aa" },
+                    { "format": "YYYY.MM.DD ddd hh:mm aa" },
+                    { "format": "YYYY.MM.DD dddd hh:mm aa" },
                     {
-                      "label": "'+Time 12'",
-                      "items": [
-                        { "format": "YYYY.MM.DD hh:mm aa" },
-                        { "format": "YYYY.MM.DD ddd hh:mm aa" },
-                        { "format": "YYYY.MM.DD dddd hh:mm aa" }
-                      ]
+                      "label": "+Time 24",
+                      "separator": true
                     },
-                    {
-                      "label": "'+Time 24'",
-                      "items": [
-                        { "format": "YYYY.MM.DD HH:mm" },
-                        { "format": "YYYY.MM.DD ddd HH:mm" },
-                        { "format": "YYYY.MM.DD dddd HH:mm" }
-                      ]
-                    }
+                    { "format": "YYYY.MM.DD HH:mm" },
+                    { "format": "YYYY.MM.DD ddd HH:mm" },
+                    { "format": "YYYY.MM.DD dddd HH:mm" }
                   ]
                 },
                 {
@@ -224,24 +209,19 @@
                     { "format": "YYYY MM DD ddd" },
                     { "format": "YYYY MM DD dddd" },
                     {
+                      "label": "+Time 12",
                       "separator": true
                     },
+                    { "format": "YYYY MM DD hh:mm aa" },
+                    { "format": "YYYY MM DD ddd hh:mm aa" },
+                    { "format": "YYYY MM DD dddd hh:mm aa" },
                     {
-                      "label": "'+Time 12'",
-                      "items": [
-                        { "format": "YYYY MM DD hh:mm aa" },
-                        { "format": "YYYY MM DD ddd hh:mm aa" },
-                        { "format": "YYYY MM DD dddd hh:mm aa" }
-                      ]
+                      "label": "+Time 24",
+                      "separator": true
                     },
-                    {
-                      "label": "'+Time 24'",
-                      "items": [
-                        { "format": "YYYY MM DD HH:mm" },
-                        { "format": "YYYY MM DD ddd HH:mm" },
-                        { "format": "YYYY MM DD dddd HH:mm" }
-                      ]
-                    }
+                    { "format": "YYYY MM DD HH:mm" },
+                    { "format": "YYYY MM DD ddd HH:mm" },
+                    { "format": "YYYY MM DD dddd HH:mm" }
                   ]
                 },
                 {
@@ -251,24 +231,19 @@
                     { "format": "YYYYMMDD ddd" },
                     { "format": "YYYYMMDD dddd" },
                     {
+                      "label": "+Time 12",
                       "separator": true
                     },
+                    { "format": "YYYYMMDD hh:mm aa" },
+                    { "format": "YYYYMMDD ddd hh:mm aa" },
+                    { "format": "YYYYMMDD dddd hh:mm aa" },
                     {
-                      "label": "'+Time 12'",
-                      "items": [
-                        { "format": "YYYYMMDD hh:mm aa" },
-                        { "format": "YYYYMMDD ddd hh:mm aa" },
-                        { "format": "YYYYMMDD dddd hh:mm aa" }
-                      ]
+                      "label": "+Time 24",
+                      "separator": true
                     },
-                    {
-                      "label": "'+Time 24'",
-                      "items": [
-                        { "format": "YYYYMMDD HH:mm" },
-                        { "format": "YYYYMMDD ddd HH:mm" },
-                        { "format": "YYYYMMDD dddd HH:mm" }
-                      ]
-                    }
+                    { "format": "YYYYMMDD HH:mm" },
+                    { "format": "YYYYMMDD ddd HH:mm" },
+                    { "format": "YYYYMMDD dddd HH:mm" }
                   ]
                 }
               ]
@@ -280,24 +255,19 @@
                 { "format": "ddd, MMM DD, YYYY" },
                 { "format": "dddd, MMM DD, YYYY" },
                 {
+                  "label": "+Time 12",
                   "separator": true
                 },
+                { "format": "MMM DD, YYYY hh:mm aa" },
+                { "format": "ddd, MMM DD, YYYY hh:mm aa" },
+                { "format": "dddd, MMM DD, YYYY hh:mm aa" },
                 {
-                  "label": "'+Time 12'",
-                  "items": [
-                    { "format": "MMM DD, YYYY hh:mm aa" },
-                    { "format": "ddd, MMM DD, YYYY hh:mm aa" },
-                    { "format": "dddd, MMM DD, YYYY hh:mm aa" }
-                  ]
+                  "label": "+Time 24",
+                  "separator": true
                 },
-                {
-                  "label": "'+Time 24'",
-                  "items": [
-                    { "format": "MMM DD, YYYY HH:mm" },
-                    { "format": "ddd, MMM DD, YYYY HH:mm" },
-                    { "format": "dddd, MMM DD, YYYY HH:mm" }
-                  ]
-                }
+                { "format": "MMM DD, YYYY HH:mm" },
+                { "format": "ddd, MMM DD, YYYY HH:mm" },
+                { "format": "dddd, MMM DD, YYYY HH:mm" }
               ]
             },
             {
@@ -307,24 +277,19 @@
                 { "format": "ddd, MMMMM DD, YYYY" },
                 { "format": "dddd, MMMMM DD, YYYY" },
                 {
+                  "label": "+Time 12",
                   "separator": true
                 },
+                { "format": "MMMMM DD, YYYY hh:mm aa" },
+                { "format": "ddd, MMMMM DD, YYYY hh:mm aa" },
+                { "format": "dddd, MMMMM DD, YYYY hh:mm aa" },
                 {
-                  "label": "'+Time 12'",
-                  "items": [
-                    { "format": "MMMMM DD, YYYY hh:mm aa" },
-                    { "format": "ddd, MMMMM DD, YYYY hh:mm aa" },
-                    { "format": "dddd, MMMMM DD, YYYY hh:mm aa" }
-                  ]
+                  "label": "+Time 24",
+                  "separator": true
                 },
-                {
-                  "label": "'+Time 24'",
-                  "items": [
-                    { "format": "MMMMM DD, YYYY HH:mm" },
-                    { "format": "ddd, MMMMM DD, YYYY HH:mm" },
-                    { "format": "dddd, MMMMM DD, YYYY HH:mm" }
-                  ]
-                }
+                { "format": "MMMMM DD, YYYY HH:mm" },
+                { "format": "ddd, MMMMM DD, YYYY HH:mm" },
+                { "format": "dddd, MMMMM DD, YYYY HH:mm" }
               ]
             },
             {
@@ -334,24 +299,19 @@
                 { "format": "ddd, MM DD, YYYY" },
                 { "format": "dddd, MM DD, YYYY" },
                 {
+                  "label": "+Time 12",
                   "separator": true
                 },
+                { "format": "MM DD, YYYY hh:mm aa" },
+                { "format": "ddd, MM DD, YYYY hh:mm aa" },
+                { "format": "dddd, MM DD, YYYY hh:mm aa" },
                 {
-                  "label": "'+Time 12'",
-                  "items": [
-                    { "format": "MM DD, YYYY hh:mm aa" },
-                    { "format": "ddd, MM DD, YYYY hh:mm aa" },
-                    { "format": "dddd, MM DD, YYYY hh:mm aa" }
-                  ]
+                  "label": "+Time 24",
+                  "separator": true
                 },
-                {
-                  "label": "'+Time 24'",
-                  "items": [
-                    { "format": "MM DD, YYYY HH:mm" },
-                    { "format": "ddd, MM DD, YYYY HH:mm" },
-                    { "format": "dddd, MM DD, YYYY HH:mm" }
-                  ]
-                }
+                { "format": "MM DD, YYYY HH:mm" },
+                { "format": "ddd, MM DD, YYYY HH:mm" },
+                { "format": "dddd, MM DD, YYYY HH:mm" }
               ]
             },
             {
@@ -361,24 +321,19 @@
                 { "format": "ddd, DD MMM, YYYY" },
                 { "format": "dddd, DD MMM, YYYY" },
                 {
+                  "label": "+Time 12",
                   "separator": true
                 },
+                { "format": "DD MMM, YYYY hh:mm aa" },
+                { "format": "ddd, DD MMM, YYYY hh:mm aa" },
+                { "format": "dddd, DD MMM, YYYY hh:mm aa" },
                 {
-                  "label": "'+Time 12'",
-                  "items": [
-                    { "format": "DD MMM, YYYY hh:mm aa" },
-                    { "format": "ddd, DD MMM, YYYY hh:mm aa" },
-                    { "format": "dddd, DD MMM, YYYY hh:mm aa" }
-                  ]
+                  "label": "+Time 24",
+                  "separator": true
                 },
-                {
-                  "label": "'+Time 24'",
-                  "items": [
-                    { "format": "DD MMM, YYYY HH:mm" },
-                    { "format": "ddd, DD MMM, YYYY HH:mm" },
-                    { "format": "dddd, DD MMM, YYYY HH:mm" }
-                  ]
-                }
+                { "format": "DD MMM, YYYY HH:mm" },
+                { "format": "ddd, DD MMM, YYYY HH:mm" },
+                { "format": "dddd, DD MMM, YYYY HH:mm" }
               ]
             },
             {

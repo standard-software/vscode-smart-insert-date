@@ -154,7 +154,7 @@ keybindings.json
 
 settings.json can be found in the following file.
 
-[Default Setting ./SETTING_SAMPLE.md](./SETTING_SAMPLE.md)
+[Default Setting ./SETTING_DEFAULT.md](./SETTING_DEFAULT.md)
 
 ## Date Format String
 
@@ -204,7 +204,7 @@ _ = Space
 
 ### Setting Sample
 
-[Setting for Japanese ./SETTING_SAMPLE.md](./SETTING_SAMPLE.md)
+[Setting for Japanese ./SETTING_JAPANESE.md](./SETTING_JAPANESE.md)
 
 ### Date Format String
 

@@ -3,6 +3,8 @@
 ## [2.1.0] - 2024/08/23 Fri
 - udpate package.json
   - update setting select format
+- add file SETTING_DEFAULT.md / SETTING_JAPANESE.md
+  - delete file SETTING_SAMPLE.md
 
 ## [2.0.0] - 2024/08/23 Fri
 - Select Format command can now be set in the tree menu.

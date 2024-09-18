@@ -21,42 +21,11 @@ https://github.com/standard-software/vscode-smart-insert-date
 
 ## Contact
 
+Please contact me if you have any requests.
+
+Satoshi Yamamoto  
 standard.software.net@gmail.com  
 Japanese / English
-
-## Output Example
-
-You can change the format settings, but the default is to allow the output of the following content
-
-### Date
-```
-2023-12-15 Fri
-Fri, Dec 15, 2023
-Friday, December 15, 2023
-Friday, 12 15, 2023
-Fri, 15 Dec, 2023
-2023/12/15(Fri)
-20231215
-```
-
-### Datetime
-```
-2023-12-15 Fri 23:02
-Fri, Dec 15, 2023 11:02 pm
-Friday, December 15, 2023 11:02 pm
-Friday, 12 15, 2023 11:02 pm
-Fri, 15 Dec, 2023 23:02
-2023/12/15(Fri) PM11:03:32
-20231215230332
-```
-
-### Time
-```
-23:03
-11:03 pm
-PM11:04:04
-23:04:06
-```
 
 ## Command
 
@@ -68,12 +37,6 @@ PM11:04:04
 - Smart Insert Date : Select Format ...
 ```
 
-Windows  
-![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_command_win.png)
-
-Mac  
-![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_command_mac.png)
-
 ### Default Key
 
 | Command             | Default Key Windows     | Default Key Mac         |
@@ -84,7 +47,13 @@ Mac
 
 ## Usage
 
-### Insert
+Selecting the command inserts the date and time at the cursor position.
+
+```
+- Smart Insert Date : Insert Today
+- Smart Insert Date : Insert Now DateTime
+- Smart Insert Date : Insert Now Time
+```
 
 - Press
   - Windows[`Alt + Ctrl + ;`]
@@ -106,29 +75,129 @@ Saturday, December 16, 2023
 ```
 - rotate
 
-run [Smart Insert Date : Insert Now DateTime]  
-run [Smart Insert Date : Insert Now Time]  
-Works the same way.
+## Output Example
 
-### Select Format
+By default, the following formatted date and time can be output.  
+The settings can also be changed.
 
-- run [Smart Insert Date : Select Format]
+### Insert Today
+```
+2023-12-15 Fri
+Fri, Dec 15, 2023
+Friday, December 15, 2023
+Friday, 12 15, 2023
+Fri, 15 Dec, 2023
+2023/12/15(Fri)
+20231215
+```
 
-![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat01.png)
-![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat02.png)
-![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat03.png)
-![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectformat04.png)
+### Insert Now DateTime
+```
+2023-12-15 Fri 23:02
+Fri, Dec 15, 2023 11:02 pm
+Friday, December 15, 2023 11:02 pm
+Friday, 12 15, 2023 11:02 pm
+Fri, 15 Dec, 2023 23:02
+2023/12/15(Fri) PM11:03:32
+20231215230332
+```
+
+### Insert Now Time
+```
+23:03
+11:03 pm
+PM11:04:04
+23:04:06
+```
 
 
-### Select Date
+## Select Format
 
-- run [Smart Insert Date : Select Date]
+```
+- Smart Insert Date : Select Format ...
+```
+
+Select Format is a tree menu structure.This can be changed through customization.
+
+```
+- 2024-09-18 >>
+  - 2024-09-18
+  - 2024-09-18 Wed
+  - 2024-09-18 Wednesday
+  --- +Time 12
+  - 2024-09-18 10:59:47 am
+  - 2024-09-18 Wed 10:59:47 am
+  - 2024-09-18 Wednesday 10:59:47 am
+  --- +Time 24
+  - 2024-09-18 10:59:47
+  - 2024-09-18 Wed 10:59:47
+  - 2024-09-18 Wednesday 10:59:47
+  
+- 2024/09/18 >>
+  - ...
+- 2024.09.18 etc >>
+  - ...
+- Sep 18, 2024 >>
+  - ...
+- September 18, 2024 >>
+  - ...
+- 09 18, 2024 >>
+  - ...
+- 18 Sep, 2024 >>
+  - ...
+- Root Commands  >>
+  --- Date
+  - 2024-09-18 Wed
+  - Wed, Sep 18, 2024
+  - Wednesday, September 18, 2024
+  - Wednesday, 09 18, 2024
+  - Wed, 18 Sep, 2024
+  - 2024/09/18 Wed
+  - 2024/09/18(Wed)
+  - 20240918
+  --- DateTime
+  - 2024-09-18 Wed 11:04:12
+  - Wed, Sep 18, 2024 11:04:12 am
+  - Wednesday, September 18, 2024 11:04:12 am
+  - Wednesday, 09 18, 2024 11:04:12 am
+  - Wed, 18 Sep, 2024 11:04:12
+  - 2024/09/18 Wed 11:04:12
+  - 2024/09/18(Wed) AM 11:04:12
+  - 20240918110442
+  --- Time
+  - 11:04
+  - 11:04 am
+  - AM 11:04
+  - 11:04:12
+  - 11:04:12 am
+  - AM 11:04:12
+```
+
+Customization can be done in the “SmartInsertDate.MenuDateTime” field.
+
+Root Command works in conjunction with the following command settings.
+```
+- Smart Insert Date : Insert Today
+- Smart Insert Date : Insert Now DateTime
+- Smart Insert Date : Insert Now Time
+```
+
+## Select Date
+
+```
+- Smart Insert Date : Select Date ...
+```
+Select Date is a tree menu structure.
+
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectdate_01.png)
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectdate_02.png)
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectdate_03.png)
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectdate_04.png)
 ![](https://raw.githubusercontent.com/standard-software/vscode-smart-insert-date/main/img/readme_selectdate_05.png)
 
+After selecting the date, you can choose the format.
+
+This format can be customized in the “SmartInsertDate.MenuDate” section.
 
 ## Recommended key bindings
 
@@ -290,10 +359,3 @@ Other Patterns
 | `AAA`   | 下        | ampm: 上,下
 | `AAAA`  | 下午      | ampm: 上午,下午
 
-## License
-
-Released under the [MIT License][license].
-
-## Veresion / Change log
-
-[./CHANGELOG.md](./CHANGELOG.md)

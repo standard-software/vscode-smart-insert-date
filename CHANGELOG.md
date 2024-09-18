@@ -1,5 +1,9 @@
 # Change Log
 
+## [2.2.0]  -2024/09/18 Wed
+- Added feature to set consecutive dates with multi-cursor
+- Record in buffer even if date is specified
+
 ## [2.1.0] - 2024/08/23 Fri
 - udpate package.json
   - update setting select format

@@ -75,13 +75,20 @@ const insertTextNotSelected = (editor, str) => {
 };
 
 const insertTextSelected = (editor, str) => {
+  _insertTextSelected(editor, () => str);
+}
+const _insertTextSelected = (editor, func) => {
+  const strs = [];
   editor.edit(editBuilder => {
-    for (const selection of editor.selections) {
+    for (const [index, selection] of editor.selections.entries()) {
+      const str = func(index, selection);
+      strs.push(str);
       editBuilder.replace(selection, str);
     }
   }).then(() => {
     const newSelections = [];
-    for (const selection of editor.selections) {
+    for (const [index, selection] of editor.selections.entries()) {
+      const str = strs[index];
       if (
         selection.start.line === selection.end.line
         && selection.start.character === selection.end.character
@@ -133,6 +140,7 @@ module.exports = {
 
   insertText,
   insertTextNotSelected,
+  _insertTextSelected,
   insertTextSelected,
   getSelectedText,
 };

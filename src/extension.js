@@ -5,7 +5,7 @@ const {
   getEditor,
   commandQuickPick,
 
-  insertTextSelected,
+  _insertTextSelected,
   getSelectedText,
 } = require(`./lib/libVSCode.js`);
 
@@ -108,13 +108,6 @@ function activate(context) {
 
   const dateToString = createDateToString();
 
-  const inesrtDateTime = (date, format) => {
-    const editor = getEditor(); if (!editor) { return; }
-    const text = dateToString(date, format);
-    insertTextSelected(editor, text);
-
-  }
-
   const writeBuffer = ({dateType, date, formatIndex, text}) => {
     insertBuffer.dateType = dateType;
     insertBuffer.date = date;
@@ -124,14 +117,23 @@ function activate(context) {
 
   const _insertDateTimeBuffer = (dateType, date, formatIndex, format) => {
     const editor = getEditor(); if (!editor) { return; }
-    const text = dateToString(date, format);
-    writeBuffer({dateType, date, formatIndex, text})
-    insertTextSelected(editor, text);
+    _insertTextSelected(editor, (index) => {
+      let text;
+      if (index === 0) {
+        text = dateToString(date, format);
+        writeBuffer({dateType, date, formatIndex, text})
+      } else {
+        const _date = new Date(date.getTime());
+        _date.setDate(_date.getDate() + index);
+        text = dateToString(_date, format);
+      }
+      return text;
+    });
   }
 
   const insertDateTimeBuffer = (dateType) => {
     if (!([`Date`, `DateTime`, `Time`].includes(dateType))) {
-      throw new Error(`insertDateTimeCommand insertType`);
+      throw new Error(`insertDateTimeBuffer Command insertType`);
     }
     const editor = getEditor(); if (!editor) { return; }
     const dateFormatArray = getDateFormatArray(`${dateType}Format`);
@@ -225,7 +227,9 @@ function activate(context) {
         commands.push({
           label,
           description: ``,
-          func: () => { inesrtDateTime(targetDate, menuItem.format); }
+          func: () => {
+            _insertDateTimeBuffer(dateType, targetDate, -1, menuItem.format);
+          }
         });
       } else if (Array.isArray(menuItem.items)) {
         const label = dateToString(targetDate,

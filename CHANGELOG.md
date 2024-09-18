@@ -2,7 +2,8 @@
 
 ## [2.3.0] - 2024/09/18 Wed
 - Select Date In Month etc
-  - show Last / Next Day of Week
+  - show Last/Next Day of Week
+- change sub menu mark
 
 ## [2.2.0] - 2024/09/18 Wed
 - Added feature to set consecutive dates with multi-cursor

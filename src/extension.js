@@ -302,6 +302,7 @@ function activate(context) {
         label: `Today : `
         + `${dateToString(today, `YYYY-MM-DD`)}`
         ,
+        description: `>>`,
         func: () => {
           selectFormatMenu(
             getMenuDate(),
@@ -316,6 +317,7 @@ function activate(context) {
         label: `-1 Day : Yesterday : `
         + `${dateToString(yesterday, `YYYY-MM-DD`)}`
         ,
+        description: `>>`,
         func: () => {
           selectFormatMenu(
             getMenuDate(),
@@ -330,6 +332,7 @@ function activate(context) {
         label: `+1 Day : Tomorrow : `
         + `${dateToString(tomorrow, `YYYY-MM-DD`)}`
         ,
+        description: `>>`,
         func: () => {
           selectFormatMenu(
             getMenuDate(),
@@ -346,48 +349,48 @@ function activate(context) {
         + `${dateToString(dateLastWeekStart, `YYYY-MM-DD`)}`
         + ` _ ${dateToString(dateNextWeekEnd, `YYYY-MM-DD`)}`
         ,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectDateInDays(dateLastWeekStart, + 21); }
       },
       {label: ``, kind: vscode.QuickPickItemKind.Separator},
       {
         label: `This Month : `
         + `${dateToString(dateThisMonth, `YYYY-MM : MMM`)}`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectDateInMonth(dateThisMonth); }
       },
       {
         label: `-1 Month : Last Month : `
         + `${dateToString(dateLastMonth, `YYYY-MM : MMM`)}`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectDateInMonth(dateLastMonth); }
       },
       {
         label: `+1 Month : Next Month : `
         + `${dateToString(dateNextMonth, `YYYY-MM : MMM`)}`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectDateInMonth(dateNextMonth); }
       },
       {label: ``, kind: vscode.QuickPickItemKind.Separator},
       {
         label: `This Year : ${dateThisYear.getFullYear()}`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectMonth(dateThisYear); }
       },
       {
         label: `-1 Year : Last Year : ${dateLastYear.getFullYear()}`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectMonth(dateLastYear); }
       },
       {
         label: `+1 Year : Next Year : ${dateNextYear.getFullYear()}`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectMonth(dateNextYear); }
       },
       {label: ``, kind: vscode.QuickPickItemKind.Separator},
       {
         label: `Select Year range -100 to +100`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectDateRange200Year(); }
       },
     ], `Smart Insert Date : Select Date`);
@@ -403,37 +406,37 @@ function activate(context) {
     commandQuickPick([
       {
         label: `${yearThis - 100} - ${yearThis - 10 - 1} : 100 year before`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectTenYear(_Year(-100, dateThisYear)); }
       },
       {
         label: `${yearThis - 10} - ${yearThis - 2} : 10 year before`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectOneYear(_Year(-10, dateThisYear), 9); }
       },
       {
         label: `${yearThis - 1} : Last year`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectMonth(dateLastYear); }
       },
       {
         label: `${yearThis} : This year`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectMonth(dateThisYear); }
       },
       {
         label: `${yearThis + 1} : Next year`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectMonth(dateNextYear); }
       },
       {
         label: `${yearThis + 2} - ${yearThis + 10} : 10 year after`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectOneYear(_Year(2, dateThisYear), 9); }
       },
       {
         label: `${yearThis + 10 + 1} - ${yearThis + 100} : 100 year after`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectTenYear(_Year(11, dateThisYear)); }
       },
     ], `Smart Insert Date : Select Date : Select Year range -100 to +100`);
@@ -445,7 +448,7 @@ function activate(context) {
       const targetDate = _Year(i * 10, dateYear);
       commands.push({
         label: `${dateToString(targetDate, `YYYY`)} - ${dateToString(_Year(9, targetDate), `YYYY`)}`,
-        description: `▸`,
+        description: `>>`,
         func: () => { selectOneYear(targetDate, 10); },
       });
     }
@@ -460,7 +463,7 @@ function activate(context) {
       const targetDate = _Year(i, dateYear);
       commands.push({
         label: dateToString(targetDate, `YYYY`),
-        description: `▸`,
+        description: `>>`,
         func: () => { selectMonth(targetDate); },
       });
     }
@@ -477,7 +480,7 @@ function activate(context) {
       commands.push({
         label: dateToString(targetDate, `MM : YYYY-MM : MMM`) +
         (isThisMonth ? ` : This month` : ``),
-        description: `▸`,
+        description: `>>`,
         func: () => {
           selectDateInMonth(targetDate);
         },
@@ -514,7 +517,7 @@ function activate(context) {
           : isLastDayOfWeek ? ` : Last ${todayDayOfWeek}`
           : isNextDayOfWeek ? ` : Next ${todayDayOfWeek}`
           : ``),
-        description: `▸`,
+        description: `>>`,
         func: () => {
           selectFormatMenu(
             getMenuDate(),
@@ -558,7 +561,7 @@ function activate(context) {
             : isNextDayOfWeek ? ` : Next ${todayDayOfWeek}`
             : ``
           ),
-        description: `▸`,
+        description: `>>`,
         func: () => {
           selectFormatMenu(
             getMenuDate(),

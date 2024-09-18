@@ -1,6 +1,10 @@
 # Change Log
 
-## [2.2.0]  -2024/09/18 Wed
+## [2.3.0] - 2024/09/18 Wed
+- Select Date In Month etc
+  - show Last / Next Day of Week
+
+## [2.2.0] - 2024/09/18 Wed
 - Added feature to set consecutive dates with multi-cursor
 - Record in buffer even if date is specified
 - update README

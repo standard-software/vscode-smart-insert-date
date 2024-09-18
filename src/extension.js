@@ -489,20 +489,31 @@ function activate(context) {
   };
 
   const selectDateInMonth = (dateMonth) => {
-    const commands = [];
+    const today = _Day(`today`);
+    const yesterday = _Day(`yesterday`);
+    const tomorrow = _Day(`tomorrow`);
+    const lastDayOfWeek = _Day(-7, today);
+    const nextDayOfWeek = _Day(+7, today);
+    const todayDayOfWeek = dateToString(today, `dddd`);
+
     const monthDaysCount = monthDayCount(dateMonth);
+    const commands = [];
     for (let i = 1; i <= monthDaysCount; i += 1) {
       const targetDate = _Day(i - 1, dateMonth);
-      const isYesterday = equalDate(targetDate, _Day(-1));
+      const isYesterday = equalDate(targetDate, yesterday);
       const isToday = equalToday(targetDate);
-      const isTomorrow = equalDate(targetDate, _Day(1));
+      const isTomorrow = equalDate(targetDate, tomorrow);
+      const isLastDayOfWeek = equalDate(targetDate, lastDayOfWeek);
+      const isNextDayOfWeek = equalDate(targetDate, nextDayOfWeek);
       commands.push({
         label:
           dateToString(targetDate, `DD : YYYY-MM-DD ddd`) +
           (isYesterday ? ` : Yesterday`
-            : isToday ? ` : Today`
-              : isTomorrow ? ` : Tomorrow`
-                : ``),
+          : isToday ? ` : Today`
+          : isTomorrow ? ` : Tomorrow`
+          : isLastDayOfWeek ? ` : Last ${todayDayOfWeek}`
+          : isNextDayOfWeek ? ` : Next ${todayDayOfWeek}`
+          : ``),
         description: `▸`,
         func: () => {
           selectFormatMenu(
@@ -522,18 +533,29 @@ function activate(context) {
   };
 
   const selectDateInDays = (dateStart, dateCount) => {
+    const today = _Day(`today`);
+    const yesterday = _Day(`yesterday`);
+    const tomorrow = _Day(`tomorrow`);
+    const lastDayOfWeek = _Day(-7, today);
+    const nextDayOfWeek = _Day(+7, today);
+    const todayDayOfWeek = dateToString(today, `dddd`);
+
     const commands = [];
     for (let i = 0; i <= dateCount - 1; i += 1) {
       const targetDate = _Day(i, dateStart);
-      const isYesterday = equalDate(targetDate, _Day(`yesterday`));
-      const isToday = equalToday(targetDate, _Day(`today`));
-      const isTomorrow = equalDate(targetDate, _Day(`tomorrow`));
+      const isYesterday = equalDate(targetDate, yesterday);
+      const isToday = equalToday(targetDate);
+      const isTomorrow = equalDate(targetDate, tomorrow);
+      const isLastDayOfWeek = equalDate(targetDate, lastDayOfWeek);
+      const isNextDayOfWeek = equalDate(targetDate, nextDayOfWeek);
       commands.push({
         label:
           dateToString(targetDate, `DD : YYYY-MM-DD ddd`) + (
             isYesterday ? ` : Yesterday`
             : isToday ? ` : Today`
             : isTomorrow ? ` : Tomorrow`
+            : isLastDayOfWeek ? ` : Last ${todayDayOfWeek}`
+            : isNextDayOfWeek ? ` : Next ${todayDayOfWeek}`
             : ``
           ),
         description: `▸`,

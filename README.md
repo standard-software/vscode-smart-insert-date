@@ -199,6 +199,42 @@ After selecting the date, you can choose the format.
 
 This format can be customized in the “SmartInsertDate.MenuDate” section.
 
+## Multi Cursor
+
+If you are using a multi-cursor, the date can be added to output the format.
+
+### Date
+```
+_|_
+
+__|__
+
+___|___
+```
+↓
+```
+_2024-09-14 Sat_
+
+__2024-09-15 Sun__
+
+___2024-09-16 Mon___
+```
+
+### DateTime
+```
+|
+|
+|
+|
+```
+↓
+```
+Wed, Sep 18, 2024 11:29:41 am
+Thu, Sep 19, 2024 11:29:41 am
+Fri, Sep 20, 2024 11:29:41 am
+Sat, Sep 21, 2024 11:29:41 am
+```
+
 ## Recommended key bindings
 
 keybindings.json
